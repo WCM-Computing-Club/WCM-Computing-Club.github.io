@@ -1,0 +1,6 @@
+---
+title: "About"
+output: html_document
+---
+
+Welcome! WCM Biostats Computing Club was founded by [Jihui Lee](https://jihuilee.com) and [Elizabeth Mauer](http://hpr.weill.cornell.edu/divisions/biostatistics/Elizabeth_Mauer.html) in 2018.

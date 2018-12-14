@@ -1,1 +1,3 @@
-# WCM-Computing-Club.github.io
+# WCM Biostatistics Computing Club
+
+You can check the upcoming meeting schedule and topics [here](https://wcm-computing-club.github.io)

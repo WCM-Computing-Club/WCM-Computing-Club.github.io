@@ -1,0 +1,20 @@
+name: "Yay internet!"
+output_dir: "."
+navbar:
+  title: "Home"
+  left:
+    - text: "About"
+      href: about.html
+    - text: "Schedule"
+      href: schedule.html
+    - text: "Resources"
+      href: resource.html
+  right:
+    - icon: fa-envelope fa-lg
+      href: mailto:<jil2043@med.cornell.edu>
+    - icon: fa-github fa-lg
+      href: https://github.com/WCM-computing-club/WCM-computing-club.github.io
+
+output:
+  html_document:
+   css: styles.css
