@@ -10,6 +10,8 @@ output:
 
 Unless otherwise noted, we meet bi-weekly; Thursdays at 4-5pm in C1. 
 
+If there are topics you'd like (us) to cover, please let us know!
+
 <br>
 
 ## Presentations
@@ -34,7 +36,3 @@ The second meeting of a month will be four 15-minute presentations by 4 presente
 | Date      | Presenter  | Topic  | Software | Slides | Codes | Resources  |                                         
 |:----------|:--------------------------------|:------------------------------------------------------------------------------------|:---------------:|:---------------:|:---------------:|:---------------:|
 | 01/24/2018  |  TBD1 <br> TBD2 <br> TBD3 <br> TBD4 <br> |   | | | | |
-
-
-
-
