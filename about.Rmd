@@ -1,6 +1,16 @@
 ---
-title: "About"
+title: <center> Welcome to WCM Computing Club! </center>
 output: html_document
 ---
 
-Welcome! WCM Biostats Computing Club was founded by [Jihui Lee](https://jihuilee.com) and [Elizabeth Mauer](http://hpr.weill.cornell.edu/divisions/biostatistics/Elizabeth_Mauer.html) in 2018.
+<br>
+
+WCM Computing Club was founded by [Jihui Lee](https://jihuilee.com) and [Elizabeth Mauer](http://hpr.weill.cornell.edu/divisions/biostatistics/Elizabeth_Mauer.html) in 2018. Jihui, a recent Columbia graduate, enjoyed [Columbia Biostatistics Computing Club](https://columbia-computing-club.github.io) as a graduate student, and was inspired to create a club for staffs in the Department of Healthcare Policy & Research at Weill Cornell Medicine.
+
+The club holds bi-weekly (2nd and 4th Thursdays at 4-5pm) very *informal* and *casual* meetings. In those meetings, we will
+
+- Introduce cool ways of coding in R, SAS, Python, and more
+- Learn and practice the coding skills
+- Share our thoughts and ideas
+
+The meetings will be interactive -- we will try the new codes and debug together. So, please bring your laptop to the meetings! 

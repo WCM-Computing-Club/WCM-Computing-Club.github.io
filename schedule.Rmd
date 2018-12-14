@@ -19,8 +19,8 @@ The first meeting of a month will be one 1-hour presentation by one presenter on
 
 | Date      | Presenter  | Topic  | Software | Slides | Codes | Resources  |                                         
 |:----------|:--------------------------------|:------------------------------------------------------------------------------------|:---------------:|:---------------:|:---------------:|:---------------:|
-| 12/13/2018  | [Elizabeth Mauer](http://hpr.weill.cornell.edu/divisions/biostatistics/Elizabeth_Mauer.html) | Workflow and Organization for Collaboration | N/A | [<i class="fas fa-desktop fa-lg"></i>](file_slides/201812_Mauer_Organization_and_Documentation_of_Workflow.html) [<i class="fas fa-desktop fa-lg"></i>](file_slides/201812_Mauer_Integrating_Git_into_Your_Data_Analysis_Workflow_for_Version_Control.html) | | [<i class="fab fa-safari fa-lg"></i>](http://happygitwithr.com/)  [<i class="fa fa-file fa-lg"></i>](http://www.medicine.mcgill.ca/epidemiology/joseph/pbelisle/CodebookCookbook/CodebookCookbook.pdf)|
-| 01/10/2019 | [Jihui Lee](https://jihuilee.com) | How to build a package in R | `R` |  <i class="fas fa-desktop fa-lg"></i> | <i class="fa fa-file-code-o" fa-lg"></i> | <i class="fab fa-safari fa-lg"></i> |
+| 12/13/2018  | [Elizabeth Mauer, MS](http://hpr.weill.cornell.edu/divisions/biostatistics/Elizabeth_Mauer.html) | Workflow and Organization for Collaboration | N/A | [<i class="fas fa-desktop fa-lg"></i>](file_slides/201812_Mauer_Organization_and_Documentation_of_Workflow.html) [<i class="fas fa-desktop fa-lg"></i>](file_slides/201812_Mauer_Integrating_Git_into_Your_Data_Analysis_Workflow_for_Version_Control.html) | | [<i class="fab fa-safari fa-lg"></i>](http://happygitwithr.com/)  [<i class="fa fa-file fa-lg"></i>](http://www.medicine.mcgill.ca/epidemiology/joseph/pbelisle/CodebookCookbook/CodebookCookbook.pdf)|
+| 01/10/2019 | [Jihui Lee, PhD](https://jihuilee.com) | How to build a package in R | `R` |  <i class="fas fa-desktop fa-lg"></i> | <i class="fa fa-file-code-o" fa-lg"></i> | <i class="fab fa-safari fa-lg"></i> |
 
 <br>
 <br>
