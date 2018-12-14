@@ -6,13 +6,8 @@ output:
     toc_float: true
 ---
 
-Some useful resources here:
-
-## Workflow and Organization for Collaboration
-
-- Organization and Documentation for the Data Analyst Workflow by Elizabeth Mauer [[html]](file_resources/201812_Mauer_Organization_and_Documentation_of_Workflow.html)
-- Integrating Git into Your Data Analysis Workflow for Version Control by Elizabeth Mauer [[html]](file_resources/201812_Mauer_Integrating_Git_into_Your_Data_Analysis_Workflow_for_Version_Control.html)
+Some useful resources & links:
 
 ## R
 
-- The Beauty of ggplot2 by Jihui Lee [[pdf]](file_resources/ggplot2.pdf) [[R Markdown]](file_resources/ggplot2.rmd)
+- The Beauty of ggplot2 by Jihui Lee [[pdf]](file_resources/R_ggplot2.pdf) [[R Markdown]](file_resources/R_ggplot2.rmd)

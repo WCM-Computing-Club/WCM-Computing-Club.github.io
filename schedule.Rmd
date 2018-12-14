@@ -6,27 +6,35 @@ output:
     toc_float: true
 ---
 
-Unless otherwise noted, we meet on the second Thursday at 4-5pm in C1. 
+<br>
 
-## Fall 2018
+Unless otherwise noted, we meet bi-weekly; Thursdays at 4-5pm in C1. 
 
-```{r, echo=FALSE, comment=FALSE, message=FALSE}
-library(knitr)
-library(tidyverse)
-library(kableExtra)
+<br>
 
-schedule = matrix(NA, nrow = 100, ncol = 3)
-colnames(schedule) = c("Date", "Presenters", "Title")
+## Presentations
 
-schedule[1,] = c("December 13, 2018", "Elizabeth Mauer", "Workflow and Organization for Collaboration")
-schedule[2,] = c("January 10, 2019", "TBA", "TBA")
+<br>
+The first meeting of a month will be one 1-hour presentation by one presenter on a single topic. There will be interactive computing practice.
 
-schedule = schedule[!is.na(schedule[,1]),]
+| Date      | Presenter  | Topic  | Software | Slides | Codes | Resources  |                                         
+|:----------|:--------------------------------|:------------------------------------------------------------------------------------|:---------------:|:---------------:|:---------------:|:---------------:|
+| 12/13/2018  | [Elizabeth Mauer](http://hpr.weill.cornell.edu/divisions/biostatistics/Elizabeth_Mauer.html) | Workflow and Organization for Collaboration | N/A | [<i class="fas fa-desktop fa-lg"></i>](file_slides/201812_Mauer_Organization_and_Documentation_of_Workflow.html) [<i class="fas fa-desktop fa-lg"></i>](file_slides/201812_Mauer_Integrating_Git_into_Your_Data_Analysis_Workflow_for_Version_Control.html) | | [<i class="fab fa-safari fa-lg"></i>](http://happygitwithr.com/)  [<i class="fa fa-file fa-lg"></i>](http://www.medicine.mcgill.ca/epidemiology/joseph/pbelisle/CodebookCookbook/CodebookCookbook.pdf)|
+| 01/10/2019 | [Jihui Lee](https://jihuilee.com) | How to build a package in R | `R` |  [<i class="fas fa-desktop fa-lg"></i>]() | [<i class="fa fa-file-code-o" fa-lg"></i>]() | [<i class="fab fa-safari fa-lg"></i>]() |
 
-kable(schedule, row.names = FALSE) %>%
-  kable_styling(bootstrap_options = "striped") %>%
-  kable_styling(bootstrap_options = "striped") %>%
-  column_spec(1, width = "5em")
-```
+<br>
+<br>
 
-If there are topics you'd like (us) to cover, please let us know!
+## Mini Presentations
+
+<br>
+The second meeting of a month will be 4 15-minute presentations by 4 presenters. Each presenter will introduce fun, new coding skills.
+(e.g. visualization, reporting, new packages)
+
+| Date      | Presenter  | Topic  | Software | Slides | Codes | Resources  |                                         
+|:----------|:--------------------------------|:------------------------------------------------------------------------------------|:---------------:|:---------------:|:---------------:|:---------------:|
+| 01/24/2018  |  TBD1 <br> TBD2 <br> TBD3 <br> TBD4 <br> |   | | | | |
+
+
+
+
