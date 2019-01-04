@@ -15,5 +15,5 @@ navbar:
 
 output:
   html_document:
-   theme: lumen
+   theme: cosmo
    css: styles.css
