@@ -22,8 +22,9 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -99,9 +100,6 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
-summary {
-  display: list-item;
-}
 </style>
 
 
@@ -116,6 +114,7 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
+
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -135,43 +134,6 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
-}
-.dropdown-submenu {
-  position: relative;
-}
-.dropdown-submenu>.dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -6px;
-  margin-left: -1px;
-  border-radius: 0 6px 6px 6px;
-}
-.dropdown-submenu:hover>.dropdown-menu {
-  display: block;
-}
-.dropdown-submenu>a:after {
-  display: block;
-  content: " ";
-  float: right;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 5px 0 5px 5px;
-  border-left-color: #cccccc;
-  margin-top: 5px;
-  margin-right: -10px;
-}
-.dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
-}
-.dropdown-submenu.pull-left {
-  float: none;
-}
-.dropdown-submenu.pull-left>.dropdown-menu {
-  left: -100%;
-  margin-left: 10px;
-  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -193,77 +155,18 @@ $(document).ready(function () {
 });
 </script>
 
+
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
-
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
 </script>
 
 <!-- code folding -->
+
 
 
 
@@ -311,21 +214,20 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore"><center>
-Welcome to WCM Computing Club!
+Welcome to the WCM Biostatistics Computing Club!
 </center></h1>
 
 </div>
 
 
 <p><br></p>
-<p>WCM Computing Club was founded by <a href="https://jihuilee.com">Jihui Lee</a> and <a href="http://hpr.weill.cornell.edu/divisions/biostatistics/Elizabeth_Mauer.html">Elizabeth Mauer</a> in 2018. Jihui, a recent Columbia graduate, enjoyed <a href="https://columbia-computing-club.github.io">Columbia Biostatistics Computing Club</a> as a graduate student, and was inspired to create a club for staffs in the Department of Healthcare Policy &amp; Research at Weill Cornell Medicine.</p>
-<p>The club holds bi-weekly (2nd and 4th Thursdays at 4-5pm) very <em>informal</em> and <em>casual</em> meetings. In those meetings, we will</p>
-<ul>
-<li>Introduce cool ways of coding in R, SAS, Python, and more</li>
-<li>Learn and practice the coding skills</li>
-<li>Share our thoughts and ideas</li>
-</ul>
-<p>The meetings will be interactive – we will try the new codes and debug together. So, please bring your laptop to the meetings!</p>
+<p>The Weill Cornell Medicine (WCM) Biostatistics Computing Club serves as a forum for academic research staff and faculty to learn new computational skills, specifically regarding Biostatistical analyses. The goals of the club are: to bridge the skills gap that exists amongst researchers siloed in their own lines of work, to foster cross-institutional collaboration, and to help members grow personally and professionally with the computational skills they wish to master. The club was founded in 2018 by <a href="https://jihuilee.com">Jihui Lee</a> and <a href="http://hpr.weill.cornell.edu/divisions/biostatistics/Elizabeth_Mauer.html">Elizabeth Mauer</a>. Jihui, a recent Columbia graduate, enjoyed <a href="https://columbia-computing-club.github.io">Columbia Biostatistics Computing Club</a> as a graduate student and was inspired to create a club for staff in the Department of Healthcare Policy &amp; Research at Weill Cornell Medicine. The club is hosted by the <a href="http://hpr.weill.cornell.edu/divisions/biostatistics/">Division of Biostatistics and Epidemiology</a>, <a href="http://hpr.weill.cornell.edu/">Department of Healthcare Policy &amp; Research</a> along with the <a href="https://ctscweb.weill.cornell.edu/about-us/ctsc-programs/biostatistics-epidemiology-and-research-design">Biostatistics, Epidemiology and Research Design (BERD) Core</a>, <a href="https://ctscweb.weill.cornell.edu/">Clinical and Translational Science Center</a>.</p>
+<p>The club holds bi-weekly very <em>informal</em> and <em>casual</em> meetings. The meetings are interactive, so please bring your laptop to the meetings!</p>
+<p><br></p>
+<center>
+<img src="file_resources/WCM_HealthcarePolicyResearch_LOGO_HZSS1L_CLR_CMYK.png" alt="hi" width="450" height="300"><img src="file_resources/WCM_CTSC-Long_LOGO_HZSS1L_CLR_RGB.png" alt="hi" style="text-align:center;" width="350" height="250">
+</center>
+<p><br></p>
 
 
 
