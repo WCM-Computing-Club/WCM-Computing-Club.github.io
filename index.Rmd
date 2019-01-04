@@ -1,19 +1,16 @@
 ---
-title: <center> Welcome to WCM Computing Club! </center>
+title: <center> Welcome to the WCM Biostatistics Computing Club! </center>
 output: html_document
 ---
 
+
+<center><img src="file_resources/WCM_HealthcarePolicyResearch_LOGO_HZSS1L_CLR_CMYK.png" alt="hi" width="350" height="350"><img src="file_resources/WCM_CTSC-Long_LOGO_HZSS1L_CLR_RGB.png" alt="hi" style="text-align:center;" width="250" height="250"></center>
+
 <br>
 
-
 The Weill Cornell Medicine (WCM) Biostatistics Computing Club serves as a forum for academic research staff and faculty to learn new computational skills, specifically regarding Biostatistical analyses. The goals of the club are: to bridge the skills gap that exists amongst researchers siloed in their own lines of work, to foster cross-institutional collaboration, and to help members grow personally and professionally with the computational skills they wish to master. The club was founded in 2018 by [Jihui Lee](https://jihuilee.com) and [Elizabeth Mauer](http://hpr.weill.cornell.edu/divisions/biostatistics/Elizabeth_Mauer.html). Jihui, a recent Columbia graduate, enjoyed [Columbia Biostatistics Computing Club](https://columbia-computing-club.github.io) as a graduate student and was inspired to create a club for staff in the Department of Healthcare Policy & Research at Weill Cornell Medicine. The club is hosted by the [Division of Biostatistics and Epidemiology](http://hpr.weill.cornell.edu/divisions/biostatistics/), [Department of Healthcare Policy & Research](http://hpr.weill.cornell.edu/) along with the [Biostatistics, Epidemiology and Research Design (BERD) Core](https://ctscweb.weill.cornell.edu/about-us/ctsc-programs/biostatistics-epidemiology-and-research-design), [Clinical and Translational Science Center](https://ctscweb.weill.cornell.edu/).
+
 
 The club holds bi-weekly very *informal* and *casual* meetings. 
 The meetings are interactive, so please bring your laptop to the meetings! 
 
-<br>
-
-<center><img src="file_resources/WCM_HealthcarePolicyResearch_LOGO_HZSS1L_CLR_CMYK.png" alt="hi" width="450" height="300"><img src="file_resources/WCM_CTSC-Long_LOGO_HZSS1L_CLR_RGB.png" alt="hi" style="text-align:center;" width="350" height="250"></center>
-
-
-<br>
