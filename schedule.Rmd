@@ -35,6 +35,6 @@ The second meeting of a month will be four 15-minute presentations by 4 presente
 
 | Date      | Presenter  | Topic  | Software | Slides | Codes | Resources  |                                         
 |:----------|:--------------------------------|:------------------------------------------------------------------------------------|:---------------:|:---------------:|:---------------:|:---------------:|
-| 01/31/2018  |  Kaylee Ho, MS <br> Clara Oromendia, MS | GIS/geospatial analysis <br> R Shiny  | <br> R | | | |
+| 01/31/2018  |  Kaylee Ho, MS <br> Clara Oromendia, MS | GIS/geospatial analysis <br> R Shiny  | <br> `R` | | | |
 | 02/28/2018  |  TBD1 <br> TBD2 <br> TBD3 <br> TBD4 <br> |   | | | | |
 
