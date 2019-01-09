@@ -10,4 +10,4 @@ Some useful resources & links:
 
 ## R
 
-- The Beauty of ggplot2 by Jihui Lee [[pdf]](file_resources/R_ggplot2.pdf) [[R Markdown]](file_resources/R_ggplot2.rmd)
+- The Beauty of ggplot2 by Jihui Lee [[pdf]](file_resources/R_ggplot2.pdf) [[html]](file_resources/R_ggplot2.html)
