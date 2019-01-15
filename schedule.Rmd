@@ -31,7 +31,7 @@ The first meeting of a month will be one 1-hour presentation by one presenter on
 ## Mini Presentations
 
 <br>
-The second meeting of a month will be four 15-minute presentations by 4 presenters. Each presenter will introduce fun, new coding skills.
+The second meeting of a month will be mini presentations by up to 4 presenters. Each presenter will introduce fun, new coding skills.
 (e.g. visualization, reporting, new packages)
 
 | Date      | Presenter  | Topic  | Software | Slides | Codes | Resources  |                                         
