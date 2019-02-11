@@ -20,20 +20,20 @@ If there are topics you'd like (us) to cover, please let us know!
 The first meeting of a month will be one 1-hour presentation by one presenter on a single topic. There will be interactive computing practice.
 
 | Date      | Presenter  | Topic  | Software | Slides | Codes | Resources  |                                         
-|:----------|:--------------------------------|:------------------------------------------------------------------------------------|:---------------:|:---------------:|:---------------:|:---------------:|
+|:----------|:----------------------------------------------------------------|:--------------------------------------------------------------------------------------------------|:--------------:|:-----------------------:|:------------:|:-------------------:|
 | 12/13/2018  | [Elizabeth Mauer, MS](http://hpr.weill.cornell.edu/divisions/biostatistics/Elizabeth_Mauer.html) | Workflow and Organization for Collaboration | N/A | [<i class="fas fa-desktop fa-lg"></i>](file_slides/201812_Mauer_Organization_and_Documentation_of_Workflow.html) [<i class="fas fa-desktop fa-lg"></i>](file_slides/201812_Mauer_Integrating_Git_into_Your_Data_Analysis_Workflow_for_Version_Control.html) | | [<i class="fab fa-safari fa-lg"></i>](http://happygitwithr.com/)  [<i class="fa fa-file fa-lg"></i>](http://www.medicine.mcgill.ca/epidemiology/joseph/pbelisle/CodebookCookbook/CodebookCookbook.pdf)|
-| 01/17/2019 | [Jihui Lee, PhD](https://jihuilee.com) | How to build a package in R | `R` |  <i class="fas fa-desktop fa-lg"></i> | <i class="fa fa-file-code-o" fa-lg"></i> | <i class="fab fa-safari fa-lg"></i> |
+| 01/17/2019 | [Jihui Lee, PhD](https://jihuilee.com) | How to build a package in R | `R` |  [<i class="fas fa-desktop fa-lg"></i>](file_slides/201901_Lee_R_Package.pdf) | [<i class="fa fa-file-code-o" fa-lg"></i>](file_slides/201901_Lee_R_Package.R) | [<i class="fab fa-safari fa-lg"></i>](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/) [<i class="fab fa-safari fa-lg"></i>](https://support.rstudio.com/hc/en-us/articles/200486488-Developing-Packages-with-RStudio) |
+| 01/31/2019 | [Clara Oromendia, MS](http://hpr.weill.cornell.edu/divisions/biostatistics/Clara_Oromendia.html) | R Shiny | `R`  | [<i class="fas fa-desktop fa-lg"></i>](file_slides/201901_Oromendia_R_Shiny.pptx) | [<i class="fa fa-file-code-o" fa-lg"></i>](https://github.com/Oromendia/ShinyWorkshop2019)   | [<i class="fab fa-safari fa-lg"></i>](https://resources.rstudio.com/rstudio-conf-2019) [<i class="fab fa-safari fa-lg"></i>](https://github.com/rstudio/rstudio-conf/tree/master/2019)|
+| TBD | Katherine Hoffman, MS | Overview of dplyr  | `R`  |  |   |   |
 <br>
 <br>
 
 ## Mini Presentations
 
 <br>
-The second meeting of a month will be four 15-minute presentations by 4 presenters. Each presenter will introduce fun, new coding skills.
+The second meeting of a month will be mini presentations by up to 4 presenters. Each presenter will introduce fun, new coding skills.
 (e.g. visualization, reporting, new packages)
 
 | Date      | Presenter  | Topic  | Software | Slides | Codes | Resources  |                                         
-|:----------|:--------------------------------|:------------------------------------------------------------------------------------|:---------------:|:---------------:|:---------------:|:---------------:|
-| 01/31/2018  |  Kaylee Ho, MS <br> Clara Oromendia, MS | GIS/geospatial analysis <br> R Shiny  | <br> `R` | | | |
-| 02/28/2018  |  TBD1 <br> TBD2 <br> TBD3 <br> TBD4 <br> |   | | | | |
-
+|:----------|:----------------------------------------------|:--------------------------------------------------------------------------------------------------|:--------------:|:-------------------:|:---------------:|:---------------:|
+| 02/28/2018  |  Kaylee Ho, MS <br> Victoria Cooley, MS | GIS / geospatial analysis <br> TBD  | | | | |
