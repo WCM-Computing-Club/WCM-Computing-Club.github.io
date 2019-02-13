@@ -24,9 +24,13 @@ The first meeting of a month will be one 1-hour presentation by one presenter on
 | 12/13/2018  | [Elizabeth Mauer, MS](http://hpr.weill.cornell.edu/divisions/biostatistics/Elizabeth_Mauer.html) | Workflow and Organization for Collaboration | N/A | [<i class="fas fa-desktop fa-lg"></i>](file_slides/201812_Mauer_Organization_and_Documentation_of_Workflow.html) [<i class="fas fa-desktop fa-lg"></i>](file_slides/201812_Mauer_Integrating_Git_into_Your_Data_Analysis_Workflow_for_Version_Control.html) | | [<i class="fab fa-safari fa-lg"></i>](http://happygitwithr.com/)  [<i class="fa fa-file fa-lg"></i>](http://www.medicine.mcgill.ca/epidemiology/joseph/pbelisle/CodebookCookbook/CodebookCookbook.pdf)|
 | 01/17/2019 | [Jihui Lee, PhD](https://jihuilee.com) | How to build a package in R | `R` |  [<i class="fas fa-desktop fa-lg"></i>](file_slides/201901_Lee_R_Package.pdf) | [<i class="fa fa-file-code-o" fa-lg"></i>](file_slides/201901_Lee_R_Package.R) | [<i class="fab fa-safari fa-lg"></i>](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/) [<i class="fab fa-safari fa-lg"></i>](https://support.rstudio.com/hc/en-us/articles/200486488-Developing-Packages-with-RStudio) |
 | 01/31/2019 | [Clara Oromendia, MS](http://hpr.weill.cornell.edu/divisions/biostatistics/Clara_Oromendia.html) | R Shiny | `R`  | [<i class="fas fa-desktop fa-lg"></i>](file_slides/201901_Oromendia_R_Shiny.pptx) | [<i class="fa fa-file-code-o" fa-lg"></i>](https://github.com/Oromendia/ShinyWorkshop2019)   | [<i class="fab fa-safari fa-lg"></i>](https://resources.rstudio.com/rstudio-conf-2019) [<i class="fab fa-safari fa-lg"></i>](https://github.com/rstudio/rstudio-conf/tree/master/2019)|
+<<<<<<< HEAD
 | 02/28/2019 | Katherine Hoffman, MS | Overview of dplyr  | `R`  |  |   |   |
 | 03/28/2019 | Victoria Cooley, MS | Visualization in R  | `R`  |  |   |   |
 | 04/11/2019 | [Gulce Askin, MPH](http://hpr.weill.cornell.edu/divisions/biostatistics/Gulce_Askin_profile.html) | Templates for Consultation  | `R`  |  |   |   |
+=======
+| TBD | Katherine Hoffman, MS | Overview of dplyr  | `R`  |  |   |   |
+>>>>>>> 33e088696bccccba7431ca76018b4a5450302844
 <br>
 <br>
 
