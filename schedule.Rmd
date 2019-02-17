@@ -38,4 +38,4 @@ The second meeting of a month will be mini presentations by up to 4 presenters. 
 
 | Date      | Presenter  | Topic  | Software | Slides | Codes | Resources  |                                         
 |:----------|:----------------------------------------------------------------|:--------------------------------------------------------------------------------------------------|:--------------:|:-----------------------:|:------------:|:-------------------:|
-| 03/14/2019  |  Kaylee Ho, MS <br> [Hanhan Wang, MPS](http://hpr.weill.cornell.edu/divisions/biostatistics/Hanhan_Wang.html) | GIS / geospatial analysis <br> TBD  | | | | |
+| 03/14/2019  |  Kaylee Ho, MS <br> [Hanhan Wang, MPS](http://hpr.weill.cornell.edu/divisions/biostatistics/Hanhan_Wang.html) <br> [Xian Wu, MPH](http://hpr.weill.cornell.edu/divisions/biostatistics/Xian_Wu.html) | GIS / geospatial analysis <br> TBD <br><br> Propensity score methods for complex surveys  | <br><br><br> SAS | | | |
