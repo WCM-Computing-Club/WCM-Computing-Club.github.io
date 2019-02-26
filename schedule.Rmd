@@ -8,7 +8,7 @@ output:
 
 <br>
 
-Unless otherwise noted, we meet bi-weekly; Thursdays at 4-5pm in C1. 
+Unless otherwise noted, we meet bi-weekly; Tuesdays at 12pm -- 1pm in C1. 
 
 If there are topics you'd like (us) to cover, please let us know!
 
@@ -20,22 +20,22 @@ If there are topics you'd like (us) to cover, please let us know!
 The first meeting of a month will be one 1-hour presentation by one presenter on a single topic. There will be interactive computing practice.
 
 | Date      | Presenter  | Topic  | Software | Slides | Codes | Resources  |                                         
-|:----------|:----------------------------------------------------------------|:--------------------------------------------------------------------------------------------------|:--------------:|:-----------------------:|:------------:|:-------------------:|
-| 12/13/2018  | [Elizabeth Mauer, MS](http://hpr.weill.cornell.edu/divisions/biostatistics/Elizabeth_Mauer.html) | Workflow and Organization for Collaboration | N/A | [<i class="fas fa-desktop fa-lg"></i>](file_slides/201812_Mauer_Organization_and_Documentation_of_Workflow.html) [<i class="fas fa-desktop fa-lg"></i>](file_slides/201812_Mauer_Integrating_Git_into_Your_Data_Analysis_Workflow_for_Version_Control.html) | | [<i class="fab fa-safari fa-lg"></i>](http://happygitwithr.com/)  [<i class="fa fa-file fa-lg"></i>](http://www.medicine.mcgill.ca/epidemiology/joseph/pbelisle/CodebookCookbook/CodebookCookbook.pdf)|
-| 01/17/2019 | [Jihui Lee, PhD](https://jihuilee.com) | How to build a package in R | `R` |  [<i class="fas fa-desktop fa-lg"></i>](file_slides/201901_Lee_R_Package.pdf) | [<i class="fa fa-file-code-o" fa-lg"></i>](file_slides/201901_Lee_R_Package.R) | [<i class="fab fa-safari fa-lg"></i>](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/) [<i class="fab fa-safari fa-lg"></i>](https://support.rstudio.com/hc/en-us/articles/200486488-Developing-Packages-with-RStudio) |
-| 01/31/2019 | [Clara Oromendia, MS](http://hpr.weill.cornell.edu/divisions/biostatistics/Clara_Oromendia.html) | R Shiny | `R`  | [<i class="fas fa-desktop fa-lg"></i>](file_slides/201901_Oromendia_R_Shiny.pptx) | [<i class="fa fa-file-code-o" fa-lg"></i>](https://github.com/Oromendia/ShinyWorkshop2019)   | [<i class="fab fa-safari fa-lg"></i>](https://resources.rstudio.com/rstudio-conf-2019) [<i class="fab fa-safari fa-lg"></i>](https://github.com/rstudio/rstudio-conf/tree/master/2019)|
-| 02/28/2019 | Katherine Hoffman, MS | Overview of dplyr  | `R`  |  |   |   |
-| 03/28/2019 | Victoria Cooley, MS | Visualization in R  | `R`  |  |   |   |
-| 04/11/2019 | [Gulce Askin, MPH](http://hpr.weill.cornell.edu/divisions/biostatistics/Gulce_Askin_profile.html) | R Templates for Consultation  | `R`  |  |   |   |
+|:----------|:----------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:--------------:|:-----------------------:|:------------:|:-------------------:|
+| 12/13/2018 4 -- 5pm | [Elizabeth Mauer, MS](http://hpr.weill.cornell.edu/divisions/biostatistics/Elizabeth_Mauer.html) | Workflow and Organization for Collaboration | N/A | [<i class="fas fa-desktop fa-lg"></i>](file_slides/201812_Mauer_Organization_and_Documentation_of_Workflow.html) [<i class="fas fa-desktop fa-lg"></i>](file_slides/201812_Mauer_Integrating_Git_into_Your_Data_Analysis_Workflow_for_Version_Control.html) | | [<i class="fab fa-safari fa-lg"></i>](http://happygitwithr.com/)  [<i class="fa fa-file fa-lg"></i>](http://www.medicine.mcgill.ca/epidemiology/joseph/pbelisle/CodebookCookbook/CodebookCookbook.pdf)|
+| 01/17/2019 4 -- 5pm | [Jihui Lee, PhD](https://jihuilee.com) | How to build a package in R | `R` |  [<i class="fas fa-desktop fa-lg"></i>](file_slides/201901_Lee_R_Package.pdf) | [<i class="fa fa-file-code-o" fa-lg"></i>](file_slides/201901_Lee_R_Package.R) | [<i class="fab fa-safari fa-lg"></i>](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/) [<i class="fab fa-safari fa-lg"></i>](https://support.rstudio.com/hc/en-us/articles/200486488-Developing-Packages-with-RStudio) |
+| 01/31/2019 4 -- 5pm | [Clara Oromendia, MS](http://hpr.weill.cornell.edu/divisions/biostatistics/Clara_Oromendia.html) | R Shiny | `R`  | [<i class="fas fa-desktop fa-lg"></i>](file_slides/201901_Oromendia_R_Shiny.pptx) | [<i class="fa fa-file-code-o" fa-lg"></i>](https://github.com/Oromendia/ShinyWorkshop2019)   | [<i class="fab fa-safari fa-lg"></i>](https://resources.rstudio.com/rstudio-conf-2019) [<i class="fab fa-safari fa-lg"></i>](https://github.com/rstudio/rstudio-conf/tree/master/2019)|
+| 03/05/2019 12 -- 1pm | Katherine Hoffman, MS | Overview of dplyr  | `R`  |  |   |   |
+| 04/02/2019 12 -- 1pm | Victoria Cooley, MS | Visualization in R  | `R`  |  |   |   |
 
 <br>
 
 ## Mini Presentations
 
 <br>
-The second meeting of a month will be mini presentations by up to 4 presenters. Each presenter will introduce fun, new coding skills.
+The second meeting of a month will be mini presentations. Each presenter will introduce fun, new coding skills.
 (e.g. visualization, reporting, new packages)
 
 | Date      | Presenter  | Topic  | Software | Slides | Codes | Resources  |                                         
 |:----------|:----------------------------------------------------------------|:--------------------------------------------------------------------------------------------------|:--------------:|:-----------------------:|:------------:|:-------------------:|
-| 03/14/2019  |  Kaylee Ho, MS <br> [Hanhan Wang, MPS](http://hpr.weill.cornell.edu/divisions/biostatistics/Hanhan_Wang.html) <br> [Xian Wu, MPH](http://hpr.weill.cornell.edu/divisions/biostatistics/Xian_Wu.html) | GIS / geospatial analysis <br> TBD <br> Propensity score methods for complex surveys  | <br><br> SAS | | | |
+| 03/19/2019 12 -- 1pm |  Kaylee Ho, MS <br> [Xian Wu, MPH](http://hpr.weill.cornell.edu/divisions/biostatistics/Xian_Wu.html) | GIS / geospatial analysis <br> TBD  | | | | |
+| 04/16/2019 12 -- 1pm |  [Gulce Askin, MPH](http://hpr.weill.cornell.edu/divisions/biostatistics/Gulce_Askin_profile.html) <br> [Hanhan Wang, MPS](http://hpr.weill.cornell.edu/divisions/biostatistics/Hanhan_Wang.html) | R Templates for Consultation <br> TBD  | `R` <br> | | | |
