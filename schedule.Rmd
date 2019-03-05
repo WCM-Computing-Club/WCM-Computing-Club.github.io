@@ -37,5 +37,5 @@ The second meeting of a month will be mini presentations. Each presenter will in
 
 | Date      | Presenter  | Topic  | Software | Slides | Codes | Resources  |                                         
 |:----------|:----------------------------------------------------------------|:--------------------------------------------------------------------------------------------------|:--------------:|:-----------------------:|:------------:|:-------------------:|
-| 03/19/2019 12 -- 1pm |  Kaylee Ho, MS <br> [Xian Wu, MPH](http://hpr.weill.cornell.edu/divisions/biostatistics/Xian_Wu.html) | GIS / geospatial analysis <br> TBD  | | | | |
-| 04/16/2019 12 -- 1pm |  [Gulce Askin, MPH](http://hpr.weill.cornell.edu/divisions/biostatistics/Gulce_Askin_profile.html) <br> [Hanhan Wang, MPS](http://hpr.weill.cornell.edu/divisions/biostatistics/Hanhan_Wang.html) | R Templates for Consultation <br> TBD  | `R` <br> | | | |
+| 03/19/2019 12 -- 1pm |  Kaylee Ho, MS <br> [Xian Wu, MPH](http://hpr.weill.cornell.edu/divisions/biostatistics/Xian_Wu.html) | GIS / geospatial analysis <br> propensity score methods for complex surveys  | `R` <br> `SAS` | | | |
+| 04/16/2019 12 -- 1pm |  [Gulce Askin, MPH](http://hpr.weill.cornell.edu/divisions/biostatistics/Gulce_Askin_profile.html) <br> [Hanhan Wang, MPS](http://hpr.weill.cornell.edu/divisions/biostatistics/Hanhan_Wang.html) | R Templates for Consultation <br> apply functions and Purrr  | `R` <br> `R` | | | |
