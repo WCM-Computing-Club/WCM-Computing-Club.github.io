@@ -26,6 +26,9 @@ The first meeting of a month will be one 1-hour presentation by one presenter on
 | 01/31/2019 4 -- 5pm | [Clara Oromendia, MS](http://hpr.weill.cornell.edu/divisions/biostatistics/Clara_Oromendia.html) | R Shiny | `R`  | [<i class="fas fa-desktop fa-lg"></i>](file_slides/201901_Oromendia_R_Shiny.pptx) | [<i class="fa fa-file-code-o" fa-lg"></i>](https://github.com/Oromendia/ShinyWorkshop2019)   | [<i class="fab fa-safari fa-lg"></i>](https://resources.rstudio.com/rstudio-conf-2019) [<i class="fab fa-safari fa-lg"></i>](https://github.com/rstudio/rstudio-conf/tree/master/2019)|
 | 03/05/2019 12 -- 1pm | Katherine Hoffman, MS | Overview of dplyr  | `R`  | [<i class="fas fa-desktop fa-lg"></i>](file_slides/201903_Hoffman_dplyr.html) |   |   |
 | 04/02/2019 12 -- 1pm | Victoria Cooley, MS | Visualization in R  | `R`  |  |   |   |
+| 05/09/2019 12 -- 1pm |  |  |   |  |   |   |
+| 06/04/2019 12 -- 1pm |  |  |   |  |   |   |
+
 
 <br>
 
@@ -39,4 +42,5 @@ The second meeting of a month will be mini presentations. Each presenter will in
 |:----------|:----------------------------------------------------------------|:--------------------------------------------------------------------------------------------------|:--------------:|:-----------------------:|:------------:|:-------------------:|
 | 03/19/2019 12 -- 1pm |  Kaylee Ho, MS <br> [Xian Wu, MPH](http://hpr.weill.cornell.edu/divisions/biostatistics/Xian_Wu.html) | GIS / Geospatial analysis <br> Applying propensity score methods to complex surveys  | `R` <br> `SAS` | [<i class="fas fa-desktop fa-lg"></i>](file_slides/Intro to geospatial analysis.pdf) <br> [<i class="fas fa-desktop fa-lg"></i>](file_slides/Biostat Computing Club Xian Wu 03 2019.pdf) | [<i class="fa fa-file-code-o" fa-lg"></i>](file_code/201903_Ho_geospatial_demo.Rmd) | [<i class="fa fa-file fa-lg"></i>](file_resources/201903_Ho_geospatial_demo.html) |
 | 04/16/2019 12 -- 1pm |  [Gulce Askin, MPH](http://hpr.weill.cornell.edu/divisions/biostatistics/Gulce_Askin_profile.html) <br> [Hanhan Wang, MPS](http://hpr.weill.cornell.edu/divisions/biostatistics/Hanhan_Wang.html) | R templates for consultation <br> Apply functions and Purrr  | `R` <br> `R` | | | |
-
+| 05/21/2019 12 -- 1pm |  |  |   |  |   |   |
+| 06/18/2019 12 -- 1pm |  |  |   |  |   |   |
