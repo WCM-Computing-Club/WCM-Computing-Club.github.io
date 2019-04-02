@@ -1,0 +1,105 @@
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Overview
+
+In this mini demo, we will learn to geocode addresses and plot them in ggplot2.
+
+##Required Packages
+```{r}
+# devtools::install_github("dkahle/ggmap")
+library(dplyr)
+library(ggmap)
+library(ggplot2)
+```
+
+
+##Load file
+```{r}
+facility <- read.csv('X:/Liu_Bian/SEER/data/addresses.csv', header=FALSE)
+
+head(facility)
+
+colnames(facility) <- c("name", "address", "city", "state")
+
+facility = mutate(facility,
+   address = paste(address, ", ", city, ", ", state, sep = ''))
+
+# facility$addresses <- ifelse(is.na(facility$city), facility$address, paste(facility$address, ", ", facility$city, sep = ""))
+# 
+# facility$addresses <- paste(facility$addresses, ", ", facility$state, sep = "")
+
+
+
+facility <- facility[,c(1,2)]
+
+```
+
+##Use geocode()
+```{r}
+
+#example 
+
+geocode("West Point, NY")
+
+geocode("White House")
+```
+
+##Output results
+```{r, include = FALSE}
+
+# register_google(key = "your API key", write = TRUE)
+
+
+for (i in 1:nrow(facility)){
+    result1 <- geocode(facility$address[i], output = "latlona")
+    facility$lon[i] <- as.numeric(result1[1])
+    facility$lat[i] <- as.numeric(result1[2])
+    facility$geoaddress[i] <- as.character(result1[3])
+}
+
+facility
+
+# write.csv(facility, "geocoded.csv", row.names=FALSE)
+```
+
+##Plot
+```{r}
+states <- map_data("state")
+
+ny <- subset(states, region == "new york")
+
+counties <- map_data("county")
+
+ny_county <- subset(counties, region == "new york")
+
+ny_base <- ggplot(data = ny, mapping = aes(x = long, y = lat, group = group)) +
+  coord_fixed(1.3) +
+  geom_polygon(color = "black", fill = "grey")
+
+nymap <- ny_base + geom_polygon(data = ny_county, fill = "grey", color = "white") +
+  geom_polygon(color = "black", fill = NA) 
+
+facility_map <- nymap + geom_point(aes(x= lon, y = lat), data = facility, inherit.aes = FALSE, col = "red", size = 1) 
+ 
+facility_map + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+panel.background = element_blank(),axis.text.x = element_blank(),axis.text.y = element_blank(),axis.ticks = element_blank()) + labs(x=NULL, y=NULL)  + labs(title = "New York State Lung Cancer Facilities") 
+
+
+```
+
+##zipcode package
+```{r, include = FALSE}
+library(zipcode)
+
+data(zipcode)
+
+example = data.frame(postal = c(2061, "02142", 2043, "20210", "2061-2203", "SW1P 3JX", "210", '02199-1880'))
+
+example$zip = clean.zipcodes(example$postal)
+
+example = merge(example, zipcode, by.x='zip', by.y='zip')
+```
+
+
