@@ -1,0 +1,1062 @@
+---
+title: "WCM Computing Club - Visualization in R"
+author: "Victoria Cooley, MS"
+date: "4/2/2019"
+output: 
+  html_document:
+    df_print: paged
+    toc: true
+    toc_depth: 4
+    number_sections: false
+    theme: simplex
+    highlight: tango
+    toc_float:
+      collapsed: true
+      smooth_scroll: true
+---
+
+#Introduction
+In this computing club session, we will cover visualizations in R. We will explore a variety of graphing methods in ggplot as well as learn about alternative graphing options in the ggpubr and survminer packages.
+
+##Background
+
+* Developed by Hadley Wickham to create elegant graphics
+* gg in ggplot2 means Grammar of Graphics, a graphic concept where plots are described by using a “grammar”
+* A plot can be divided into different fundamental parts : plot = data + aesthetics + geometry
+    + Data: data frame
+    + Aesthetics: indicate x and y variables, control the color, the size or the shape of points, the height of bars, and more
+    + Geometry: type of graphics (histogram, box plot, line plot, density plot, dot plot, etc.)
+* Within ggplot2() package can create plots with qplot() and ggplot() functions
+    + qplot(): quick plot function (good for simple plots)
+    + ggplot(): more advanced, can build plots incrementally
+    
+Some key points:
+
+* ggplot uses dataframes instead of individual vectors (base graphics)
+    + Everything needed to make a plot is found within the dataframe (embedded in ggplot() object or in geoms)
+    + Start plotting by feeding data and aes() object into a ggplot() object
+* Can add details to plots by layering and adding themes, scales, coords, and facets with `+` (we will cover this)
+    + Layer combines data, aesthetic mapping, a geom (geometric object), a stat (statistical transformation), and a position adjustment. 
+    + Often start a layer using a geom_ function, and can override the default position and stat.
+
+
+## Some common ggplot components and their functions
+
+This is a sample selection of some of the most common components that I find myself using in practice. For a more comprehensive list please refer to: https://ggplot2.tidyverse.org/reference/
+
+### Plotting basics
+
+*	ggplot(): **create a new ggplot**
+* aes(): **construct aesthetic mappings**
+* `+`(<gg>) `%+%`: **add components to a plot**
+
+### Geoms layer
+
+* geom_abline(), geom_hline(), geom_vline(): **reference lines (horizontal, vertical, and diagonal)**
+* geom_bar(), geom_col(), stat_count(): **bar charts**
+* geom_boxplot(), stat_boxplot(): **a box and whiskers plot**
+* geom_jitter(): **jittered points**
+* geom_path(), geom_line(), geom_step(): **connect observations**
+* geom_point(): **points**
+
+### Stats layer
+
+* Focus on the statistical transformation instead of visuals
+* stat_identity(): **leave data as is**
+
+### Position adjustment layer
+
+* Can fix overlapping geoms by using the position argument to the geom_ or stat_ function
+* position_dodge(), position_dodge2(): **dodge overlapping objects side-to-side**
+* position_identity(): **don't adjust position**
+* position_jitter(): **jitter points to avoid overplotting**
+* position_stack(), position_fill(): **stack overlapping objects on top of each another**
+
+### Annotations layer
+
+* Add fixed reference data to plots
+* geom_abline() geom_hline() geom_vline(): **reference lines: horizontal, vertical, and diagonal**
+
+### Aesthetics
+
+* aes_position: **position related aesthetics: x, y, xmin, xmax, ymin, ymax, xend, yend**
+
+### Scales
+
+* Use different scale arguments to override default and modify axis labels and legends
+* labs() and lims(): **helpers for adjustments to the labels and limits**
+* labs(), xlab(), ylab(), ggtitle(): **modify axis, legend, and plot labels**
+* lims(), xlim(), ylim(): **set scale limits**
+* expand_limits(): **expand the plot limits, using data**
+* scale_colour_brewer(), scale_fill_brewer(): **sequential, diverging and qualitative colour scales from colorbrewer.org**
+* scale_colour_continuous() scale_fill_continuous(): **continuous colour scales**
+* scale_x_continuous() scale_y_continuous(): **position scales for continuous data (x & y)**
+* scale_x_discrete() scale_y_discrete(): **position scales for discrete data**
+
+### Axes and legends
+
+* Guilds are useful for interpretability in plot reading
+* Typically controlled with the limits, breaks, and labels arguments
+* For further guide appearance customizations, use guides() or the guide argument to individual scales with guide_colourbar() or guide_legend()
+* guide_legend(): **legend guide**
+* guides(): **set guides for each scale**
+
+### Facetting 
+
+* Generate graphics and grids to display subsets of the data.
+* Very useful for breaking the data into groups and looking at trends over time within series of years 
+* facet_grid(): **lay out panels in a grid**
+* facet_wrap() **wrap a 1d ribbon of panels into 2d**
+
+### Facet labels
+	
+* Allow customization of the “strip” labels on facets
+* labeller(): **construct labelling specification**
+* label_value(), label_both(), label_context(), label_parsed(), label_wrap_gen(): **useful labeller functions**
+
+### Coordinate systems
+
+* Designates the combination of x and y aesthetics to position elements
+* Default: cartesian (coord_cartesian())
+* Additional coordinate systems: coord_map(), coord_fixed(), coord_flip(), coord_trans(), and coord_polar()
+
+### Themes
+
+* Customize how non-data elements are displayed
+* Override all settings with a complete theme (ex. theme_bw())
+* Can also modify individual settings by using theme() and the element_ functions
+* theme_set(): **modify the active theme, affecting all future plots**
+* theme(): **modify components of a theme**
+* theme_grey(), theme_gray(), theme_bw(), theme_linedraw(), theme_light(), theme_dark(), theme_minimal(), theme_classic(), theme_void(), theme_test(): **complete themes**
+
+### Datasets optimized for ggplot
+
+* diamonds: **prices of 50,000 round cut diamonds**
+* economics, economics_long: **US economic time series**
+* faithfuld: **2d density estimate of Old Faithful data**
+* midwest: **midwest demographics**
+* mpg: **fuel economy data from 1999 and 2008 for 38 popular models of car**
+* msleep: **an updated and expanded version of the mammals sleep dataset**
+* presidential: **terms of 11 presidents from Eisenhower to Obama**
+* seals: **vector field of seal movements**
+* txhousing: **housing sales in TX**
+* luv_colours: **colors() in Luv space**
+
+
+
+#Graphing with ggplot
+
+Now we will walk through a series of graphs using the ggplot syntax. We will first begin by building a graph one step at a time, drawing on the inherent layering options within the package.
+
+## Getting started
+Install either the `tidyverse` or `ggplot2` packages
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+#install.packages("tidyverse") OR install.packages("ggplot2")
+library(ggplot2)
+library(rmarkdown)
+#setwd("/Users/Vicky/Desktop")
+```
+
+## Midwest data
+Let's use the `midwest` dataset
+
+The `midwest` dataset describes the demographic information of midwest counties (437 rows and 28 variables):
+
+* PID, county, state, area
+* poptotal: **Total population**
+* popdensity: **Population density**
+* popwhite: **Number of whites**
+* popblack: **Number of blacks**
+* popamerindian: **Number of American Indians**
+* popasian: **Number of Asians**
+* popother: **Number of other races**
+* percwhite: **Percent white**
+* percblack: **Percent black**
+* percamerindan: **Percent American Indian**
+* percasian: **Percent Asian**
+* percother: **Percent other races**
+* popadults: **Number of adults**
+* percollege: **Percent college educated**
+* percprof: **Percent profession**
+* poppovertyknown, percpovertyknown, percbelowpoverty, percchildbelowpovert, percadultpoverty, percelderlypoverty, category, perchsd
+* inmetro: **In a metro area**
+
+
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+data("midwest")
+head(midwest)
+midwestdat <- midwest
+```
+
+### Step by step boxplot {.tabset .tabset-fade .tabset-pills}
+Let's build a boxplot one step at a time. We are interested in visualizing the distribution of the percent of professionals among each of the midwest states.
+
+#### Step 1
+Call the dataset
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+ggplot(midwestdat)
+
+
+```
+
+#### Step 2
+Designate the variables for the x and y axes
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+ggplot(midwestdat) +
+  aes(x = state) + 
+  aes(y = percprof)
+
+```
+
+#### Step 3
+Add the data points in point form, using jitter to increase the spread
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+ggplot(midwestdat) +
+  aes(x = state) + 
+  aes(y = percprof) +
+  geom_jitter(alpha = .5, height = 0, width = .25) 
+```
+
+#### Step 4
+Add a different color for the data belonging to each of the states
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+ggplot(midwestdat) +
+  aes(x = state) + 
+  aes(y = percprof) +
+  geom_jitter(alpha = .5, height = 0, width = .25) +
+  aes(col = state)
+```
+
+#### Step 5
+Overlay boxplots on each of the states
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+ggplot(midwestdat) +
+  aes(x = state) + 
+  aes(y = percprof) +
+  geom_jitter(alpha = .5, height = 0, width = .25) +
+  aes(col = state) +
+  geom_boxplot(alpha = .25)
+```
+
+#### Step 6
+Add title, label axes, and change theme
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+ggplot(midwestdat) +
+  aes(x = state) + 
+  aes(y = percprof) +
+  geom_jitter(alpha = .5, height = 0, width = .25) +
+  aes(col = state) +
+  geom_boxplot(alpha = .25)+
+  theme_bw() +
+  xlab("State") +
+  ylab("Percent Professionals") +
+  labs(colour = "State") + 
+  ggtitle("Distribution of the Percentage of Professionals by Midwest State")
+
+```
+
+#### Step 7
+CENTER the title!
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+ggplot(midwestdat) +
+  aes(x = state) + 
+  aes(y = percprof) +
+  geom_jitter(alpha = .5, height = 0, width = .25) +
+  aes(col = state) +
+  geom_boxplot(alpha = .25)+
+  theme_bw() +
+  xlab("State") +
+  ylab("Percent Professionals") +
+  labs(colour = "State") + 
+  ggtitle("Distribution of the Percentage of Professionals by Midwest State") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+```
+
+#### Step 8
+Different color scheme
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+ggplot(midwestdat) +
+  aes(x = state) + 
+  aes(y = percprof) +
+  geom_jitter(alpha = .5, height = 0, width = .25) +
+  aes(col = state) +
+  geom_boxplot(alpha = .25)+
+  theme_bw() +
+  xlab("State") +
+  ylab("Percent Professionals") +
+  labs(colour = "State") + 
+  ggtitle("Distribution of the Percentage of Professionals by Midwest State") +
+  theme(plot.title = element_text(hjust = 0.5)) + 
+  scale_color_brewer(palette="Dark2")
+
+```
+
+### Step by step barchart {.tabset .tabset-fade .tabset-pills}
+Next we want to visualize the population densities of the midwest states.
+
+#### Step 1
+Call the dataset
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggplot(data = midwestdat)
+
+```
+
+#### Step 2
+Designate the variables for the x and y axes
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggplot(data = midwestdat) + 
+  aes(x = state) +
+  aes(y = popdensity)
+  
+```
+
+#### Step 3
+Introduce the variable to fill the bars with
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggplot(data = midwestdat) + 
+  aes(x = state, y = popdensity) +
+  aes(fill = state) 
+  
+```
+
+#### Step 4
+Add in bars using geom_col()
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggplot(data = midwestdat) + 
+  aes(x = state, y = popdensity) +
+  aes(fill = state) +
+  geom_col() 
+ 
+```
+
+#### Step 5
+But what if we wanted the states listed horizontally on the y-axis? Use coord_flip()!
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggplot(data = midwestdat) + 
+  aes(x = state, y = popdensity) +
+  aes(fill = state) +
+  geom_col() +
+  coord_flip()
+
+```
+
+#### Step 6
+Change title, axes, and legend
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+ggplot(data = midwestdat) + 
+  aes(x = state, y = popdensity) +
+  aes(fill = state) +
+  geom_col() +
+  coord_flip() +
+  xlab("State") +
+  ylab("Population Density") +
+  scale_fill_discrete(name = "State") + 
+  ggtitle("Population Densities of Midwest States") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+```
+
+#### Step 7
+Almost there, just need to change the x axis labels and the colors. We also want to get rid of the unappealing scale on the x-axis.
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+options(scipen=10000)
+ggplot(data = midwestdat) + 
+  aes(x = state, y = popdensity) +
+  aes(fill = state) +
+  geom_col() +
+  coord_flip() +
+  xlab("State") +
+  ylab("Population Density") +
+  scale_fill_discrete(name = "State") + 
+  ggtitle("Population Densities of Midwest States") +
+  theme(plot.title = element_text(hjust = 0.5)) + 
+  scale_fill_brewer(palette="YlGnBu")
+
+
+```
+
+## Mpg data
+Let's use the `mpg` dataset
+
+The `mpg` dataset contains a subset of the fuel economy data that the EPA makes available on http://fueleconomy.gov. It contains only models which had a new release every year between 1999 and 2008 - this was used as a proxy for the popularity of the car (234 rows and 11 variables):
+
+* manufacturer: **manufacturer**
+* model: **model name**
+* displ: **engine displacement, in litres**
+* year: **year of manufacture**
+* cyl: **number of cylinders**
+* trans" **type of transmission**
+* drv: **f = front-wheel drive, r = rear wheel drive, 4 = 4wd**
+* cty: **city miles per gallon**
+* hwy: **highway miles per gallon**
+* fl: **fuel type**
+* class: **"type" of car**
+
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+data("mpg")
+head(mpg)
+mpgdat <- mpg
+```
+
+### Step by step scatterplot with facetting {.tabset .tabset-fade .tabset-pills}
+We want to construct a grid of scatterplots of city miles per gallon vs. highway miles per gallon stratified by cylinder type and clustered by drive type. 
+
+#### Step 1
+Call the dataset
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggplot(mpgdat) 
+
+
+```
+
+#### Step 2
+Designate the variables for the x and y axes
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+library(forcats)
+ggplot(mpgdat) +
+  aes(x = hwy) +
+  aes(y = cty) 
+
+```
+
+#### Step 3
+Specify the variable to stratify by or facet and impose free y axis scale
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggplot(mpgdat) +
+  aes(x = hwy) +
+  aes(y = cty) +
+  facet_wrap(~ cyl, scales = "free_y", nrow = 2) 
+
+
+```
+
+#### Step 4
+Add in the data points and color/cluster by drive type
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggplot(mpgdat) +
+  aes(x = hwy) +
+  aes(y = cty) +
+  facet_wrap(~ cyl, scales = "free_y", nrow = 2) +
+  geom_jitter(size = 1, mapping = aes(col = fct_inorder(drv)), width = 1, height = .5) 
+
+
+```
+
+#### Step 5 
+
+Let's change the facet labels, customize the legend labels, add titles, and change the colors.
+
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+mpgdat$drv <- as.factor(mpgdat$drv)
+levels(mpgdat$drv) <- c("4wd", "Front-wheel drive", "Rear wheel drive")
+
+ggplot(mpgdat) +
+  aes(x = hwy) +
+  aes(y = cty) +
+  facet_wrap(~ cyl, scales = "free_y", nrow = 2) +
+  geom_jitter(size = 1, mapping = aes(col = drv), width = 1, height = .5) +
+  xlab("Highway MPG") +
+  ylab("City MPG") + 
+  ggtitle("City miles per gallon vs. highway miles per gallon, stratified by cylinder type and clustered by drive type") +
+  theme(plot.title = element_text(hjust = 0.5)) + 
+  guides(color=guide_legend("Drive Type")) +
+  scale_colour_brewer(palette="Paired")
+  
+```
+
+#### Step 6
+
+The title is not quite right. I like to use "\n" to force the title onto two lines.
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+mpgdat$drv <- as.factor(mpgdat$drv)
+levels(mpgdat$drv) <- c("4wd", "Front-wheel drive", "Rear wheel drive")
+
+ggplot(mpgdat) +
+  aes(x = hwy) +
+  aes(y = cty) +
+  facet_wrap(~ cyl, scales = "free_y", nrow = 2) +
+  geom_jitter(size = 1, mapping = aes(col = drv), width = 1, height = .5) +
+  xlab("Highway MPG") +
+  ylab("City MPG") + 
+  ggtitle("City miles per gallon vs. highway miles per gallon, \n stratified by cylinder type and clustered by drive type") +
+  theme(plot.title = element_text(hjust = 0.5)) + 
+  guides(color=guide_legend("Drive Type")) +
+  scale_colour_brewer(palette="Paired")
+  
+```
+
+##Additional plotting
+
+Now let's build two more plots step by step.
+
+##Diamonds data
+
+Let's use the `diamonds` dataset
+
+The `diamonds` dataset describes prices and other attributes of almost 54,000 round cut diamonds (53940 rows and 10 variables):
+
+* price: **price in US dollars (\$326–\$18,823)**
+* carat: **weight of the diamond (0.2–5.01)**
+* cut: **quality of the cut (Fair, Good, Very Good, Premium, Ideal)**
+* color: **diamond colour, from J (worst) to D (best)**
+* clarity: **a measurement of how clear the diamond is (I1 (worst), SI2, SI1, VS2, VS1, VVS2, VVS1, IF (best))**
+* x: **length in mm (0–10.74)**
+* y: **width in mm (0–58.9)**
+* z: **depth in mm (0–31.8)**
+* depth: **total depth percentage = z / mean(x, y) = 2 * z / (x + y) (43–79)**
+* table: **width of top of diamond relative to widest point (43–95)**
+
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+data(diamonds)
+head(diamonds)
+diamonddat <- diamonds
+
+```
+
+### Example #1 {.tabset .tabset-fade .tabset-pills}
+
+#### Question 1
+Which layers do we need to plot price vs. carat and color by clarity?
+```{r echo = FALSE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggplot(diamonddat) +
+  aes(x = carat) +
+  aes(y = price) +
+  aes(col = clarity) +
+  geom_point()
+
+
+```
+
+#### Answer 1
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, fig.show = "hide", results="hide"}
+
+ggplot(diamonddat) +
+  aes(x = carat) +
+  aes(y = price) +
+  aes(col = clarity) +
+  geom_point()
+
+
+```
+
+#### Question 2
+Change the axes and plot titles?
+```{r echo = FALSE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggplot(diamonddat) +
+  aes(x = carat) +
+  aes(y = price) +
+  aes(col = clarity) +
+  geom_point() +
+  ylab("Price (USD)") +
+  xlab("Carat (diamond weight)") + 
+  ggtitle("Relationship of Price vs. Carat by Diamond Clarity") +
+  theme(plot.title = element_text(hjust = 0.5)) 
+  
+
+```
+
+#### Answer 2
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, fig.show = "hide", results="hide"}
+
+ggplot(diamonddat) +
+  aes(x = carat) +
+  aes(y = price) +
+  aes(col = clarity) +
+  geom_point() +
+  ylab("Price (USD)") +
+  xlab("Carat (diamond weight)") + 
+  ggtitle("Relationship of Price vs. Carat by Diamond Clarity") +
+  theme(plot.title = element_text(hjust = 0.5)) 
+  
+```
+
+#### Question 3
+Change the legend title and color scheme?
+```{r echo = FALSE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggplot(diamonddat) +
+  aes(x = carat) +
+  aes(y = price) +
+  aes(col = clarity) +
+  geom_point() +
+  ylab("Price (USD)") +
+  xlab("Carat (diamond weight)") + 
+  ggtitle("Relationship of Price vs. Carat by Diamond Clarity") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  guides(color=guide_legend("Clarity")) +
+  scale_colour_brewer(palette="RdPu")
+  
+
+```
+
+#### Answer 3
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, fig.show = "hide", results="hide"}
+
+ggplot(diamonddat) +
+  aes(x = carat) +
+  aes(y = price) +
+  aes(col = clarity) +
+  geom_point() +
+  ylab("Price (USD)") +
+  xlab("Carat (diamond weight)") + 
+  ggtitle("Relationship of Price vs. Carat by Diamond Clarity") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  guides(color=guide_legend("Clarity")) +
+  scale_colour_brewer(palette="RdPu")
+  
+```
+
+#### Smoothers
+
+Add a smoother to visualize the trend in the scatterplot
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggplot(diamonddat) +
+  aes(x = carat) +
+  aes(y = price) +
+  geom_point() +
+  ylab("Price (USD)") +
+  xlab("Carat (diamond weight)") + 
+  ggtitle("Relationship of Price vs. Carat by Diamond Clarity") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_colour_brewer(palette="RdPu") +
+  geom_smooth()
+  
+```
+
+Add smoother for each clarity group
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggplot(diamonddat) +
+  aes(x = carat) +
+  aes(y = price) +
+  aes(col = clarity) +
+  geom_point() +
+  ylab("Price (USD)") +
+  xlab("Carat (diamond weight)") + 
+  ggtitle("Relationship of Price vs. Carat by Diamond Clarity") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  guides(color=guide_legend("Clarity")) +
+  scale_colour_brewer(palette="RdPu") +
+  geom_smooth()
+  
+```
+
+Remove SE
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggplot(diamonddat) +
+  aes(x = carat) +
+  aes(y = price) +
+  aes(col = clarity) +
+  geom_point() +
+  ylab("Price (USD)") +
+  xlab("Carat (diamond weight)") + 
+  ggtitle("Relationship of Price vs. Carat by Diamond Clarity") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  guides(color=guide_legend("Clarity")) +
+  scale_colour_brewer(palette="RdPu") +
+  geom_smooth(se = FALSE)
+  
+```
+
+Display smoothing curves without the data points
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggplot(diamonddat) +
+  aes(x = carat) +
+  aes(y = price) +
+  aes(col = clarity) +
+  ylab("Price (USD)") +
+  xlab("Carat (diamond weight)") + 
+  ggtitle("Relationship of Price vs. Carat by Diamond Clarity") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  guides(color=guide_legend("Clarity")) +
+  scale_colour_brewer(palette="RdPu") +
+  geom_smooth(se = FALSE)
+  
+```
+
+#### Density
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggplot(diamonddat, aes(x=price)) + geom_density() 
+
+```
+
+
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggplot(diamonddat, aes(x=price, color=clarity)) + geom_density() + scale_color_brewer(palette = "Spectral")
+
+```
+
+#### Boxplot and Violin
+
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggplot(diamonddat, aes(x=color, y=price, fill = color)) + geom_boxplot() + scale_fill_brewer(palette = "YlGnBu")
+
+```
+
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggplot(diamonddat, aes(x=color, y=price, fill = color)) + geom_boxplot() + scale_fill_brewer(palette = "YlGnBu") + scale_y_log10()
+
+```
+
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggplot(diamonddat, aes(x=color, y=price, fill = color)) + geom_violin() + scale_fill_brewer(palette = "YlGnBu") + scale_y_log10()
+
+```
+
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggplot(diamonddat, aes(x=color, y=price, fill = color)) + geom_violin(trim = F) + geom_boxplot(width = 0.1, fill = "white") + scale_fill_brewer(palette = "YlGnBu") + scale_y_log10()
+
+```
+
+
+### Example #2 {.tabset .tabset-fade .tabset-pills}
+
+#### Task
+Using the `diamonds` dataset, create this graph:
+
+```{r echo = FALSE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+ggplot(diamonddat, aes(x=price, fill = clarity)) + geom_histogram(binwidth=200) + 
+  facet_wrap(~ clarity, scale="free_y") + 
+  xlab("Price (USD)") +
+  ylab("Frequency") + 
+  ggtitle("Frequency of round cut diamond prices, stratified by clarity") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_fill_brewer(name = "Clarity", palette = "Spectral")
+
+```
+
+#### Answer
+
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, fig.show = "hide", results="hide"}
+
+ggplot(diamonddat, aes(x=price, fill = clarity)) + geom_histogram(binwidth=200) + 
+  facet_wrap(~ clarity, scale="free_y") + 
+  xlab("Price (USD)") +
+  ylab("Frequency") + 
+  ggtitle("Frequency of round cut diamond prices, stratified by clarity") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_fill_brewer(name = "Clarity", palette = "Spectral")
+
+```
+
+## World phones data {.tabset .tabset-fade .tabset-pills}
+
+### Setup
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+data("WorldPhones")
+head(WorldPhones)
+phonedat <- WorldPhones
+
+library(reshape2)
+phonedat <- melt(phonedat)
+colnames(phonedat) = c("Year", "Continent", "Phones")
+
+```
+
+### Line graph
+
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggplot(phonedat, aes(x=Year, y=Phones, color=Continent)) + geom_line()
+
+ggplot(phonedat, aes(x=Year, y=Phones, color=Continent)) + geom_line() + scale_y_log10() + scale_x_continuous(breaks=seq(1951,1961,1))
+
+```
+
+## mtcars data
+
+Let's use the `mtcars` dataset:
+
+This dataset was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models). Contains 32 observations and 11 variables
+
+* mpg:	**Miles/(US) gallon**
+* cyl: **Number of cylinders**
+* disp: **Displacement (cu.in.)**
+* hp: **Gross horsepower**
+* drat: **Rear axle ratio**
+* wt: **Weight (1000 lbs)**
+* qsec: **1/4 mile time**
+* vs: **V/S**
+* am: **Transmission (0 = automatic, 1 = manual)**
+* gear: **Number of forward gears**
+* carb: **Number of carburetors**
+
+### Correlogram {.tabset .tabset-fade .tabset-pills}
+
+#### Setup 
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+library(ggcorrplot)
+data("mtcars")
+head(mtcars)
+mtdat <- mtcars
+
+corr <- round(cor(mtcars), 1)
+
+```
+
+#### Graph
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggcorrplot(corr, hc.order = TRUE, 
+           type = "lower", 
+           lab = TRUE, 
+           lab_size = 3, 
+           method="square", 
+           colors = c("palevioletred2", "thistle2", "darkolivegreen4"), 
+           title="Correlogram of the variables of the `mtcars` dataset", 
+           ggtheme=theme_bw) +
+           theme(plot.title = element_text(hjust = 0.5))
+
+```
+
+#ggpubr
+
+* Ideal for researchers without advanced programming skills
+* Creation of plots suitable for publication 
+* ggplot2-based graphs
+* Wrapper around the ggplot2 package (and easier syntax)
+* Automatically add p-values and significance levels to box plots, bar plots, line plots, etc.
+
+## Box plots {.tabset .tabset-fade .tabset-pills}
+(Similiar to earlier example, but we will add p-values here)
+
+### Setup
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+library(ggpubr)
+data("ToothGrowth")
+head(ToothGrowth)
+toothdat <- ToothGrowth
+
+rownames(mtdat)
+
+```
+
+### Graph
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggboxplot(toothdat, x = "dose", y = "len",
+              color = "dose", palette =c("palevioletred2", "steelblue2", "olivedrab"),
+              add = "jitter", shape = "dose")
+ 
+```
+
+### P-values
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+selectedcomp <- list(c("0.5", "1"), c("1", "2"), c("0.5", "2"))
+
+ggboxplot(toothdat, x = "dose", y = "len",
+              color = "dose", palette =c("palevioletred2", "steelblue2", "olivedrab"),
+              add = "jitter", shape = "dose") + 
+              stat_compare_means(comparisons = selectedcomp) + stat_compare_means(label.y = 50)    
+ 
+```
+
+### Violin
+
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggviolin(toothdat, x = "dose", y = "len", fill = "dose",
+         palette = c("palevioletred2", "steelblue2", "olivedrab"),
+         add = "boxplot", add.params = list(fill = "white")) +
+         stat_compare_means(comparisons = selectedcomp, label = "p.signif") + 
+         stat_compare_means(label.y = 50)                           
+
+```
+
+## Bar graphs {.tabset .tabset-fade .tabset-pills}
+
+###Setup and graph
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+mtdat$cyl <- as.factor(mtdat$cyl)   
+mtdat$type <- rownames(mtdat)
+
+ggbarplot(mtdat, x = "type", y = "mpg",
+          fill = "cyl",               
+          color = "white",         
+          palette = c("palevioletred2", "steelblue2", "olivedrab"),           
+          sort.val = "desc",          
+          sort.by.groups = FALSE,    
+          x.text.angle = 90          
+          )
+
+```
+
+###Grouped 
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggbarplot(mtdat, x = "type", y = "mpg",
+          fill = "cyl",               
+          color = "white",         
+          palette = c("palevioletred2", "steelblue2", "olivedrab"),           
+          sort.val = "asc",          
+          sort.by.groups = TRUE,    
+          x.text.angle = 90          
+          )
+
+```
+
+
+## Lollipop graphs {.tabset .tabset-fade .tabset-pills}
+
+###Graph
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggdotchart(mtdat, x = "type", y = "mpg",
+           color = "cyl",                               
+           palette = c("palevioletred2", "steelblue2", "olivedrab"), 
+           sorting = "ascending",                        
+           add = "segments",                             
+           ggtheme = theme_pubr()                        
+           )
+
+```
+
+###Rotated
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+ggdotchart(mtdat, x = "type", y = "mpg",
+           color = "cyl",                               
+           palette =c("palevioletred2", "steelblue2", "olivedrab"), 
+           sorting = "descending",                      
+           add = "segments",                            
+           rotate = TRUE,                                
+           group = "cyl",                                
+           dot.size = 6,                                
+           label = round(mtdat$mpg),                        
+           font.label = list(color = "white", size = 9, 
+                             vjust = 0.5),               
+           ggtheme = theme_pubr()                     
+           )
+```
+
+###Cleveland’s dot plot 
+
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggdotchart(mtdat, x = "type", y = "mpg",
+           color = "cyl",                               
+           palette = c("palevioletred2", "steelblue2", "olivedrab"), 
+           sorting = "descending",                      
+           rotate = TRUE,                            
+           dot.size = 2,                                
+           y.text.col = TRUE,                            
+           ggtheme = theme_pubr()) + theme_cleveland()     
+
+```
+
+##Scatterplots and extensions {.tabset .tabset-fade .tabset-pills}
+
+###Grouped 1
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+ggscatter(mtdat, x = "wt", y = "mpg",
+          add = "reg.line",                        
+          conf.int = TRUE,                          
+          color = "cyl", palette = c("palevioletred2", "steelblue2", "olivedrab"),
+          shape = "cyl") + stat_cor(aes(color = cyl), label.x = 3)          
+```
+
+###Grouped 2
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+ggscatter(mtdat, x = "wt", y = "mpg",
+          add = "reg.line",                        
+          color = "cyl", palette = c("palevioletred2", "steelblue2", "olivedrab"),
+          shape = "cyl",                            
+          fullrange = TRUE,                         
+          rug = TRUE) +
+  stat_cor(aes(color = cyl), label.x = 3)           
+```
+
+###Ellipse
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+#ellipse = TRUE: Draw ellipses around groups
+#ellipse.level: The size of the concentration ellipse in normal probability. Default is 0.95
+#ellipse.type: Ellipse types
+
+ggscatter(mtdat, x = "wt", y = "mpg",
+          color = "cyl", palette = c("palevioletred2", "steelblue2", "olivedrab"),
+          shape = "cyl",
+          ellipse = TRUE)
+```
+
+###Group means and extenders 
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+ggscatter(mtdat, x = "wt", y = "mpg",
+          color = "cyl", palette = c("palevioletred2", "steelblue2", "olivedrab"),
+          shape = "cyl",
+          ellipse = TRUE, 
+          mean.point = TRUE,
+          star.plot = TRUE)
+
+```
+
+###Point labels
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+#label: the name of the column containing point labels
+#font.label: a list which can contain the combination of the following elements: the size (e.g.: 14), the style (e.g.: “plain”, “bold”, “italic”, “bold.italic”) and the color (e.g.: “red”) of labels
+#label.select: character vector specifying some labels to show
+#repel = TRUE: avoid label overlapping
+
+ggscatter(mtdat, x = "wt", y = "mpg",
+   color = "cyl", palette = c("palevioletred2", "steelblue2", "olivedrab"),
+   label = "type", repel = TRUE)
+
+```
+
+#Survminer
+```{r echo = TRUE, message = FALSE, warning = FALSE, include=TRUE, results="hide"}
+
+library(survival)
+library(survminer)
+
+survival <- survfit(Surv(time, status) ~ adhere, data = colon)
+
+ggsurvplot(survival, data = colon, 
+                     palette = c("steelblue2", "olivedrab"),                
+                     pval = TRUE, pval.coord = c(500, 0.4), 
+                     risk.table = TRUE)
+
+```
+
+
+#Next time
+Further ggpubr and Plotly!!
+
+#References
+https://timogrossenbacher.ch/2016/12/beautiful-thematic-maps-with-ggplot2-only/
+
+https://evamaerey.github.io/ggplot_flipbook/ggplot_flipbook_xaringan.html#1
+
+http://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/
+
+http://varianceexplained.org/RData/code/code_lesson2/
+
+http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html#Animated%20Bubble%20Plot
+
+http://r-statistics.co/Complete-Ggplot2-Tutorial-Part1-With-R-Code.html#1.%20Understanding%20the%20general%20ggplot%20format
+
+
