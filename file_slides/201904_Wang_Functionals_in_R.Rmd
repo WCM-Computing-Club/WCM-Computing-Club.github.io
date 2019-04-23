@@ -1,0 +1,292 @@
+---
+title: "Functionals in R Programming"
+subtitle: "Apply functions and purrr"
+author: "Hanhan Wang"
+date: "April 23rd, 2019"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+editor_options: 
+  chunk_output_type: console
+---
+
+<style>
+  .col2 {
+    columns: 2 200px;         /* number of columns and width in pixels*/
+    -webkit-columns: 2 200px; /* chrome, safari */
+    -moz-columns: 2 200px;    /* firefox */
+  }
+  .col3 {
+    columns: 3 100px;
+    -webkit-columns: 3 100px;
+    -moz-columns: 3 100px;
+  }
+  .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    background-color: ForestGreen;
+  }
+  body {
+  font-family: Helvetica;
+  font-size: 12pt;
+  }
+  
+</style>
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(datasets)
+```
+
+
+## 1 Introduction
+
+#### 1.1 Functionals in R
+* Functionals: Takes functions as arguments.
+* Functionals in R that can replace loops:
+  + base 
+  + purrr
+  + plyr: Not under active development.
+
+#### 1.2 Loops vs. functionals
+* Keep loops in the following scenarios
+  + Modifying in place
+  + Recursive functions
+  + While loops
+
+#### 1.3 Load the datasets    
+```{r}
+library(datasets)
+summary(iris)
+summary(ChickWeight)
+```
+
+![](C:/Users/haw2012/Downloads/pic1.jpg)
+
+## 2 base 
+
+### 2.1 apply
+* Apply functions over array margins
+* apply(X, MARGIN, FUN, ...)
+* Margin: 
+  + 1: rows
+  + 2: columns
+
+* Note, apply() will coerce data frame to an array
+
+```{r}
+rowMax <- apply(ChickWeight[,c("weight","Time")],1,max)
+head(rowMax)
+
+colMax1 <- apply(t(ChickWeight[,c("weight","Time")]),1,max)
+colMax1
+
+colMax <- apply(ChickWeight[,c("weight","Time")],2, max)
+colMax
+```
+
+### 2.2 lapply
+* Apply a function over a list or vector
+
+#### lapply
+* Returns a list of the same length as X
+* lapply(X, FUN, ...)
+
+
+#### sapply
+* Wrapper of lapply, returns a vector, matrix, or array
+* sapply(X, FUN, ..., simplify = TRUE, USE.NAMES = TRUE)
+
+
+#### vapply
+* Similar to sapply, but has a pre-specified type of return value
+* vapply(X, FUN, FUN.VALUE, ..., USE.NAMES = TRUE)
+
+#### simplification
+* sapply: only simplify when X has length >0 and return values from all elements of X are of the same length
+* vapply: always simplify
+
+```{r}
+x <- list(numbers = 1:10, petalLength = iris$Petal.Length, chickWt = ChickWeight$weight)
+lapply(x, fivenum)
+sapply(x, fivenum)
+vapply(x, fivenum,  FUN.VALUE = c(Min. = 0, "1st Qu." = 0, Median = 0, "3rd Qu." = 0, Max. = 0))
+
+```
+
+
+### 2.3 tapply
+* Apply a function to each cell of a ragged array
+* Ragged array: Each (non-empty) group of values given by a unique combination of the levels of certain factors.
+* tapply(X, INDEX, FUN = NULL, ..., default = NA, simplify = TRUE)
+
+```{r}
+ChickWeight$Chick <- factor(as.numeric(as.character(ChickWeight$Chick)))
+tapply(ChickWeight$weight, ChickWeight$Chick, max )
+```
+
+### 2.4 mapply
+* Apply a function to multiple list or vector arguments
+* mapply(FUN, ..., MoreArgs = NULL, SIMPLIFY = TRUE, USE.NAMES = TRUE)
+```{r}
+withUnits <- mapply(paste, ChickWeight[,c("weight","Time")], c("gm","days"))
+head(withUnits)
+```
+
+### 2.5 eapply
+* Apply a function over values in an environment
+* eapply(env, FUN, ..., all.names = FALSE, USE.NAMES = TRUE)
+
+### 2.6 rapply
+* Recursively apply a function to a list
+* rapply(object, f, classes = "ANY", deflt = NULL, how = c("unlist", "replace", "list"), ...)
+
+## 3 purrr
+Install and load the purrr package
+```{r, eval=F}
+install.packages("purrr")
+library(purrr)
+```
+
+### 3.1 map
+* Apply a function to each element of a vector
+* map(.x, .f, ...)
+
+* **map, map_at, map_if**: Returns a list 
+
+* **map_chr, map_dbl, map_int, map_lgl**: Returns an atomic vector of corresponding data type     
+
+* **map_df, map_dfc, map_dfr**: Returns a dataframe
+
+```{r}
+map(iris[,-5], mean)
+```
+
+### 3.2 map2
+* Map over multiple inputs simultaneously: 2 arguments
+* map2(.x, .y, .f, ...)
+* Return value type can also be specified by using _chr, _dbl, _int, _lgl, etc.
+
+```{r}
+sepalL <- as.list(iris$Sepal.Length)
+sepalW <- as.list(iris$Sepal.Width)   
+
+sepalArea1 <- map2(sepalL, sepalW, ~ .x * .y)
+head(sepalArea1)
+# or
+sepalArea2 <- map2(sepalL, sepalW, `*`)
+head(sepalArea2)
+```
+
+### 3.3 pmap
+* Map over multiple inputs simultaneously: any number of arguments
+* pmap(.l, .f, ...)
+* Return value type can also be specified by using _chr, _dbl, _int, _lgl, etc.
+```{r}
+sepalPetalRatio <- pmap(list(iris$Sepal.Length,iris$Sepal.Width,
+                             iris$Petal.Length, iris$Petal.Width), 
+                        function(a, b, c, d) a*b / c*d)
+head(sepalPetalRatio)
+```
+
+### 3.4 imap
+* Apply a function to each element of a vector, and its index
+* imap(.x, .f, ...)
+* Return value type can also be specified by using _chr, _dbl, _int, _lgl, etc.
+
+```{r}
+sepalLengthIdx <- imap(iris$Sepal.Length, ~ paste0(.y, ": ", .x))
+head(sepalLengthIdx)
+
+
+## clean up the output a bit:
+sepalLengthIdx2 <- imap_chr(iris$Sepal.Length, ~ paste0(.y, ": ", .x))
+head(sepalLengthIdx2)
+```
+
+### 3.5 lmap
+*	Apply a function to list-elements of a list
+* lmap(.x, .f, ...)
+* Functions that take and returns a list or data frame
+
+```{r}
+##Example from the lmap {purrr} documentation
+disjoin <- function(x, sep = "_") {
+  name <- names(x)
+  x <- as.factor(x[[1]])
+
+  out <- lapply(levels(x), function(level) {
+    as.numeric(x == level)
+  })
+
+  names(out) <- paste(name, levels(x), sep = sep)
+  out
+}
+
+# Now, we are ready to map disjoin() on each categorical variable of a
+# data frame:
+iris %>% lmap_if(is.factor, disjoin)
+```
+
+
+## 4 base vs. purrr
+### 4.1 lapply vs. map
+```{r}
+x <- list(numbers = 1:10, petalLength = iris$Petal.Length, chickWt = ChickWeight$weight)
+```
+
+<div class="col2">
+```{r}
+lapply(x, fivenum)
+map(x, fivenum)
+```
+
+</div>
+
+### 4.2 vapply vs. map_*
+
+<div class="col2">
+```{r}
+vapply(x, mean, numeric(1))
+map_dbl(x, mean)
+```
+</div>
+
+### 4.3 mapply vs. map2 and pmap
+
+```{r}
+sepalL <- as.list(iris$Sepal.Length)
+sepalW <- as.list(iris$Sepal.Width)   
+```
+
+
+```{r}
+areaBase <- mapply('*', sepalL, sepalW, SIMPLIFY=FALSE)
+head(areaBase, 4)
+
+areaMap2 <- map2(sepalL, sepalW, ~ .x * .y)
+head(areaMap2, 4)
+
+df <- iris[,c("Sepal.Length", "Sepal.Width")]
+colnames(df) <- c("x","y")
+areaPmap <- pmap(df, function(x, y,...) x * y)
+head(areaPmap, 4)
+```
+
+
+## 5 Your thoughts?
+
+
+
+## 6 References
+
+* https://www.rdocumentation.org/packages/base/versions/3.5.3
+* https://cran.r-project.org/web/packages/purrr/purrr.pdf
+* http://adv-r.had.co.nz/Functional-programming.html
+* https://r4ds.had.co.nz/iteration.html#for-loops
+* http://adv-r.had.co.nz/Functionals.html
+* https://stackoverflow.com/questions/45101045/why-use-purrrmap-instead-of-lapply
+* https://www.r-bloggers.com/to-purrr-or-not-to-purrr/
+* https://jennybc.github.io/purrr-tutorial/bk01_base-functions.html#why_not_base
