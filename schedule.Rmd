@@ -44,8 +44,8 @@ The second meeting of a month will be mini presentations. Each presenter will in
 | 04/02/2019 12 -- 1pm |  [Kaylee Ho, MS](https://kaylee-ho.github.io) | GIS / Geospatial analysis (Supp) | `R` |  | [<i class="fa fa-file-code-o fa-lg"></i>](file_slides/201904_Ho_geospatial_demo_2.Rmd) | [<i class="fa fa-file-pdf-o fa-lg"></i>](file_slides/201904_Ho_kahle-wickham_ggmap.pdf) [<i class="fa fa-file-excel-o fa-lg"></i>](file_slides/201904_Ho_addresses.csv)
 | 04/23/2019 12 -- 1pm |  [Gulce Askin, MPH](http://hpr.weill.cornell.edu/divisions/biostatistics/Gulce_Askin_profile.html) <br> [Hanhan Wang, MPS](http://hpr.weill.cornell.edu/divisions/biostatistics/Hanhan_Wang.html) | R templates for consultation <br> Apply functions and Purrr  | `R` <br> `R` | [<i class="fas fa-desktop fa-lg"></i>](file_slides/201904_Askin_R_Templates.html) <br> [<i class="fas fa-desktop fa-lg"></i>](file_slides/201904_Wang_Functionals_in_R.html) | <br> [<i class="fa fa-file-code-o fa-lg"></i>](file_slides/201904_Wang_Functionals_in_R.Rmd) | [<i class="fab fa-safari fa-lg"></i>](http://ismayc.github.io/ecots2k16/template_pkg/) |
 | 05/09/2019 **Thursday** 12 -- 1pm | Alan Wu, MS <br> [Jihui Lee, PhD](https://jihuilee.com) | TBD <br> Pretty plots with gridExtra | `R` <br> `R` |  |   |   |
-| 05/21/2019 12 -- 1pm | Xiaoyue Ma, MS <br> [Kaylee Ho, MS](https://kaylee-ho.github.io) | TBD <br> Nested data / list column workflow using purrr | <br> `R`  |  |   |   |
-| 07/02/2019 12 -- 1pm | |  | |  |   |   |
+| 05/21/2019 12 -- 1pm | Xiaoyue Ma, MSc <br> [Kaylee Ho, MS](https://kaylee-ho.github.io) | TBD <br> Nested data / list column workflow using purrr | <br> `R`  |  |   |   |
+| 07/02/2019 12 -- 1pm | Yiyuan Wu, MS <br> | TBD <br> | `R` |  |   |   |
 | 08/06/2019 12 -- 1pm | |  | |  |   |   |
 
 
