@@ -10,4 +10,5 @@ Some useful resources & links:
 
 ## R
 
+- R Studio cheatsheets [[link]](https://resources.rstudio.com/rstudio-cheatsheets)
 - The Beauty of ggplot2 by Jihui Lee [[pdf]](file_resources/R_ggplot2.pdf) [[html]](file_resources/R_ggplot2.html)
