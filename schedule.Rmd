@@ -30,6 +30,7 @@ The first meeting of a month will be one 1-hour presentation by one presenter on
 | 06/04/2019 12 -- 1pm | [Katherine Hoffman, MS](https://www.khstats.com) | TBD  | `R`  |  |   |   |
 | 06/18/2019 12 -- 1pm | [Elizabeth Mauer, MS](http://hpr.weill.cornell.edu/divisions/biostatistics/Elizabeth_Mauer.html) | Parametrized reports | `R` |  |   |   |
 | 07/16/2019 12 -- 1pm | |  | |  |   |   |
+| 08/20/2019 12 -- 1pm | |  | |  |   |   |
 
 <br>
 
@@ -44,8 +45,8 @@ The second meeting of a month will be mini presentations. Each presenter will in
 | 03/19/2019 12 -- 1pm |  Kaylee Ho, MS <br> [Xian Wu, MPH](http://hpr.weill.cornell.edu/divisions/biostatistics/Xian_Wu.html) | GIS / Geospatial analysis <br> Applying propensity score methods to complex surveys  | `R` <br> `SAS` | [<i class="fas fa-desktop fa-lg"></i>](file_slides/201903_Ho_Intro_to_geospatial_analysis.pdf) <br> [<i class="fas fa-desktop fa-lg"></i>](file_slides/201903_Wu_Propensity_score.pdf) | [<i class="fa fa-file-code-o fa-lg"></i>](file_slides/201903_Ho_geospatial_demo.Rmd) | [<i class="fa fa-file fa-lg"></i>](file_slides/201903_Ho_geospatial_demo.html) |
 | 04/02/2019 12 -- 1pm |  Kaylee Ho, MS | GIS / Geospatial analysis (Supp) | `R` |  | [<i class="fa fa-file-code-o fa-lg"></i>](file_slides/201904_Ho_geospatial_demo_2.Rmd) | [<i class="fa fa-file-pdf-o fa-lg"></i>](file_slides/201904_Ho_kahle-wickham_ggmap.pdf) [<i class="fa fa-file-excel-o fa-lg"></i>](file_slides/201904_Ho_addresses.csv)
 | 04/23/2019 12 -- 1pm |  [Gulce Askin, MPH](http://hpr.weill.cornell.edu/divisions/biostatistics/Gulce_Askin_profile.html) <br> [Hanhan Wang, MPS](http://hpr.weill.cornell.edu/divisions/biostatistics/Hanhan_Wang.html) | R templates for consultation <br> Apply functions and Purrr  | `R` <br> `R` | [<i class="fas fa-desktop fa-lg"></i>](file_slides/201904_Askin_R_Templates.html) <br> [<i class="fas fa-desktop fa-lg"></i>](file_slides/201904_Wang_Functionals_in_R.html) | <br> [<i class="fa fa-file-code-o fa-lg"></i>](file_slides/201904_Wang_Functionals_in_R.Rmd) | [<i class="fab fa-safari fa-lg"></i>](http://ismayc.github.io/ecots2k16/template_pkg/) |
-| 05/23/2019 **Thursday** 12 -- 1pm | Xiaoyue Ma, MSc <br> Kaylee Ho, MS | Creating plots in SAS <br> Nested data / list column workflow using purrr | `SAS` <br> `R`  | [<i class="fas fa-desktop fa-lg"></i>](file_slides/201905_Ma_SAS_plot.pdf) | <br>  [<i class="fa fa-file-code-o fa-lg"></i>](file_slides/201905_Ho_purrr_demo.Rmd)  |   <br> [<i class="fab fa-safari fa-lg"></i>](https://aosmith.rbind.io/2018/08/20/automating-exploratory-plots/) [<i class="fab fa-safari fa-lg"></i>](https://hookedondata.org/going-off-the-map/) | 
-| 07/02/2019 12 -- 1pm | Yiyuan Wu, MS <br> | TBD <br> | `R` |  |   |   |
+| 05/23/2019 **Thursday** 12 -- 1pm | Xiaoyue Ma, MSc <br> Kaylee Ho, MS | Creating plots in SAS <br> Nested data / list column workflow using purrr | `SAS` <br> `R`  | [<i class="fas fa-desktop fa-lg"></i>](file_slides/201905_Ma_SAS_plot.pptx) | [<i class="fa fa-file-code-o fa-lg"></i>](file_slides/201905_Ma_SAS_Code.sas) [<i class="fa fa-file-excel-o fa-lg"></i>](file_slides/201905_Ma_Data.zip) <br> [<i class="fa fa-file-code-o fa-lg"></i>](file_slides/201905_Ho_purrr_demo.Rmd)  |   <br> [<i class="fab fa-safari fa-lg"></i>](https://aosmith.rbind.io/2018/08/20/automating-exploratory-plots/) [<i class="fab fa-safari fa-lg"></i>](https://hookedondata.org/going-off-the-map/) | 
+| 07/02/2019 12 -- 1pm | Yiyuan Wu, MS <br> Victoria Cooley, MS | TBD <br> TBD | `R` <br> `R` |  |   |   |
 | 08/06/2019 12 -- 1pm | |  | |  |   |   |
 
 
