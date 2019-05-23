@@ -1,0 +1,147 @@
+---
+title: "Playing with purrr!!"
+author: "KH"
+date: "May 22, 2019"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Overview
+In this mini session, we will be using `purrr` functions to automate some plots and run many models. 
+
+#Install packages
+```{r}
+#install.packages("dslabs")
+#install.packages("gapminder")
+library(tidyverse)
+library(dslabs)
+library(gapminder)
+library(tidyr)
+library(magrittr)
+library(broom)
+library(gtools)
+```
+
+#Load dataset
+```{r}
+data("murders")
+
+head(murders)
+```
+
+#add murder rate
+```{r}
+murders %<>%  mutate(rate = total / population * 100000)
+```
+
+#create plot function
+```{r}
+scatter_fun = function(x) {
+  murders %>% filter(region == x) %>% 
+  ggplot(aes(x = population/10^6, y = total, label = abb)) +
+    geom_point() +
+    scale_x_log10() +
+    scale_y_log10() +
+    xlab("Populations in millions (log scale)") +
+    ylab("Total number of murders (log scale)") +
+    ggtitle(paste0(x, " Region Gun Murders in 2010"))
+}
+```
+
+#test
+```{r}
+scatter_fun("West")
+```
+
+#create plots
+```{r}
+regions <- unique(murders$region)
+
+regions <- set_names(regions,regions)
+
+region_plots <- map(regions, ~scatter_fun(.x) )
+```
+
+#example
+```{r}
+region_plots$South
+```
+
+
+#Purrr models 
+```{r}
+head(gapminder)
+
+```
+
+#make nested data
+```{r}
+nested_dat <- gapminder %>% 
+  group_by(continent, country) %>% 
+  nest()
+```
+
+#view nested data
+```{r}
+nested_dat$data[[1]]
+```
+
+```{r}
+nested_dat %>% 
+  arrange(continent, country)
+```
+
+#add models whoooo
+```{r}
+nested_dat %<>%
+  mutate(model = map(data, ~lm(lifeExp ~ year, data = .)))
+```
+
+#another way
+```{r}
+country_model <- function(df) {
+  lm(lifeExp ~ year, data = df)
+}
+```
+
+
+```{r}
+nested_dat %>%  mutate(model = map(data, country_model))
+```
+
+#create tidy function 
+```{r}
+tidy_glm <- function(x) {broom::tidy(x, conf.int = TRUE, effects = "fixed")}
+```
+
+#tidy it up
+```{r}
+nested_dat %<>%  mutate(tidy = map(model, tidy_glm)) 
+```
+
+
+#unnest results
+```{r}
+result <-  nested_dat %>%  unnest(tidy, .drop = T)
+```
+.drop = Should additional list columns be dropped? By default, unnest will drop them if unnesting the specified columns requires the rows to be duplicated.
+
+
+#more tidying
+```{r}
+result %<>% mutate_at(vars(-continent, -country, -term), ~round(.x, 2))  %>%
+  mutate(signif = stars.pval(p.value)) %>%  filter(term != "(Intercept)")
+
+result
+```
+References:
+
++ Wickham, H., and Grolemund, G. (2017), R for Data Science, Sebastopol, CA: O'Reilly Media. 
++ https://emoriebeck.github.io/R-tutorials/purrr/
++ https://aosmith.rbind.io/2018/08/20/automating-exploratory-plots/
