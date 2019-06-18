@@ -1,0 +1,39 @@
+---
+title: "Wine Ratings"
+output: html_document
+params:
+  country:
+    label: "Country"
+    value: "US"
+    input: select
+    choices: [US, France, Italy, Argentina, Australia, Germany, Chile, South Africa]
+---
+
+
+```{r setup, include=FALSE}
+
+library('tidyverse')
+library('ggpubr')
+
+knitr::opts_chunk$set(echo = FALSE, warning=FALSE, fig.width = 7, fig.height = 7)
+
+wine_ratings <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-05-28/winemag-data-130k-v2.csv")
+```
+
+
+```{r}
+country <- wine_ratings %>% filter(country==params$country & variety %in% c("Cabernet Sauvignon", "Chardonnay", "Malbec", "Merlot", "Pinot Noir", 
+                                                                  "Sauvignon Blanc", "Pinot Grigio"))
+
+country$variety <- factor(country$variety)
+country <- country %>% 
+  filter(points %in% seq(80,90,1))
+
+
+ggplot(country, aes(x=as.factor(points), y=price)) +
+  geom_boxplot() +
+  facet_wrap(~ variety) +
+  scale_y_continuous(limits=c(0, 100)) +
+  ggtitle("Wine Price by Points")
+```
+

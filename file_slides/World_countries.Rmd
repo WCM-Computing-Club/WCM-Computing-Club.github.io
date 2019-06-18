@@ -1,0 +1,75 @@
+---
+title: "World Countries"
+output: html_document
+params:
+  levels:
+    label: "Legend levels"
+    value: 3
+    input: slider
+    min: 3
+    max: 10
+    step: 1
+    sep: ""
+  continent:
+    label: "Continent"
+    value: "North America"
+    input: select
+    choices: [Africa, Antarctica, Asia, Europe, North America, Oceania, Seven seas (open ocean), South America]
+  Var:
+    label: "Variable"
+    value: "lifeExp"
+    input: select
+    choices: [area_km2, lifeExp, gdpPercap, pop]
+  type:
+    label: "Plot type"
+    value: "colors"
+    input: select
+    choices: [colors, dots]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message=FALSE)
+```
+
+
+```{r}
+library('sf')
+library('spData')
+library('tmap')
+library('tidyverse')
+library('RColorBrewer')
+
+world <- st_read(system.file("shapes/world.gpkg", package="spData"))
+
+continent <- world %>% filter(continent==params$continent)
+```
+
+
+```{r, eval=(params$type=="colors")}
+tm_shape(continent) + 
+  tm_borders() +
+  tm_fill(col=params$Var, palette="Blues", n=params$levels, alpha = 0.9) +
+  tm_layout(legend.position = c(0.02, 0.01),
+            legend.title.size = 0.8, 
+            inner.margins=c(0.02, 0.1, 0.02, 0.02))
+
+```
+
+
+```{r, eval=(params$type=="dots")}
+tm_shape(continent) + 
+  tm_borders() +
+  tm_dots(col="blue", size=params$Var, alpha = 0.5) +
+  tm_layout(legend.position = c(0.02, 0.01),
+            legend.title.size = 0.8, 
+            inner.margins=c(0.02, 0.1, 0.02, 0.02))
+```
+
+
+
+
+
+
+
+
+
