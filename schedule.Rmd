@@ -33,7 +33,7 @@ The first meeting of a month will be one 1-hour presentation by one presenter on
 | 06/18/2019 12 -- 1pm | [Elizabeth Mauer, MS](http://hpr.weill.cornell.edu/divisions/biostatistics/Elizabeth_Mauer.html) | Parameterized Reports  | `R` | [<i class="fas fa-desktop fa-lg"></i>](file_slides/R_Markdown_Parameterized_Reports.html) | [<i class="fa fa-file-code-o  fa-lg"></i>](file_slides/wine_ratings.Rmd) [<i class="fa fa-file-code-o  fa-lg"></i>](file_slides/World_countries.Rmd) [<i class="fa fa-file-code-o  fa-lg"></i>](file_slides/Render_params.Rmd)| [<i class="fab fa-safari fa-lg"></i>](https://bookdown.org/yihui/rmarkdown/parameterized-reports.html) [<i class="fab fa-safari fa-lg"></i>](https://docs.rstudio.com/connect/user/param-rmarkdown.html) [<i class="fab fa-safari fa-lg"></i>](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-05-28)   |   |
 | 07/16/2019 12 -- 1pm | Imaani Easthausen, MS | Intro to Tidymodels | `R` | [<i class="fas fa-desktop fa-lg"></i>](file_slides/Intro to Tidymodels.html)  |   |   |
 | 07/24/2019 12 -- 1pm | Anjile An, MPH | Introduction to Adobe Illustrator for Scientists  | `Adobe Illustrator` |  |   | [<i class="fab fa-safari fa-lg"></i>](https://www.adobe.com/products/illustrator/free-trial-download.html) [<i class="fab fa-safari fa-lg"></i>](http://tinyurl.com/k8ya4gk)  |
-| 08/21/2019 12 -- 1pm | Elizabeth Sweeney, ScM, PhD | Plotly in R and Shiny |`R` |  |   |   |
+| 08/21/2019 12 -- 1pm | Elizabeth Sweeney, ScM, PhD | Plotting the trail with Plotly |`R` |  |   | [<i class="fab fa-safari fa-lg"></i>](https://github.com/emsweene/Plotly_Tutorial)   |
 
 <br>
 
