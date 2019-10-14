@@ -35,7 +35,7 @@ The first meeting of a month will be one 1-hour presentation by one presenter on
 | 07/24/2019 12 -- 1pm | Anjile An, MPH | Introduction to Adobe Illustrator for Scientists  | `Adobe Illustrator` |  |   | [<i class="fab fa-safari fa-lg"></i>](https://www.adobe.com/products/illustrator/free-trial-download.html) [<i class="fab fa-safari fa-lg"></i>](http://tinyurl.com/k8ya4gk)  |
 | 08/21/2019 12 -- 1pm | Elizabeth Sweeney, ScM, PhD | Plotting the trail with Plotly |`R` |  |   | [<i class="fab fa-safari fa-lg"></i>](https://github.com/emsweene/Plotly_Tutorial)   |
 | 09/03/2019 12 -- 1pm | Attendees of JSM | Takeaways from JSM 2019 | |  |   | [<i class="fab fa-safari fa-lg"></i>](https://ww2.amstat.org/meetings/jsm/2019/) |
-| 10/15/2019 12 -- 1pm | Oleksandr Savenkov, PhD | |  |  |   | |
+| 10/15/2019 12 -- 1pm | Oleksandr Savenkov, PhD | HPC Cluster |  |  |   | |
 <br>
 
 ## Mini Presentations
