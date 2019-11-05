@@ -7,12 +7,11 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
 
-<title></title>
+<title>index.utf8</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -73,7 +72,9 @@ h6 {
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
+</head>
 
+<body>
 
 <style type = "text/css">
 .main-container {
@@ -192,6 +193,8 @@ $(document).ready(function () {
 });
 </script>
 
+<div class="container-fluid main-container">
+
 <!-- tabsets -->
 
 <style type="text/css">
@@ -248,17 +251,20 @@ $(document).ready(function () {
 }
 </style>
 
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
 <!-- code folding -->
 
-
-
-
-</head>
-
-<body>
-
-
-<div class="container-fluid main-container">
 
 
 
@@ -328,7 +334,7 @@ Welcome to the WCM Biostatistics Computing Club!
 <ul>
 <li>More than one entry per person is allowed.</li>
 <li><p>The sticker can be any colors of your choosing. (If WCM logos are used, we’ll probably need to convert at least the logos to <a href="https://brand.weill.cornell.edu/brand-guidelines/color-palette">WCM branding colors</a>.)</p></li>
-<li>**Email your design to Liz (not voting) by 11/21: <a href="mailto:elm2035@med.cornell.edu*">elm2035@med.cornell.edu*</a>*</li>
+<li><strong>Email your design to Liz (not voting) by 11/21: <a href="mailto:elm2035@med.cornell.edu" class="email">elm2035@med.cornell.edu</a></strong></li>
 <li>We will all vote on our favorite sticker design – details to come.</li>
 <li>Winner will receive:
 <ul>
@@ -362,23 +368,6 @@ $(document).ready(function () {
 
 
 </script>
-
-<!-- tabsets -->
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
-<!-- code folding -->
-
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

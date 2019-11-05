@@ -7,7 +7,6 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -76,7 +75,9 @@ h6 {
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
+</head>
 
+<body>
 
 <style type = "text/css">
 .main-container {
@@ -195,6 +196,8 @@ $(document).ready(function () {
 });
 </script>
 
+<div class="container-fluid main-container">
+
 <!-- tabsets -->
 
 <style type="text/css">
@@ -251,9 +254,48 @@ $(document).ready(function () {
 }
 </style>
 
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
 <!-- code folding -->
 
 
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <style type="text/css">
 
@@ -302,6 +344,8 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -310,16 +354,6 @@ div.tocify {
 
 
 </style>
-
-
-
-</head>
-
-<body>
-
-
-<div class="container-fluid main-container">
-
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
@@ -388,9 +422,9 @@ div.tocify {
 <p><br> The first meeting of a month will be one 1-hour presentation by one presenter on a single topic. There will be interactive computing practice.</p>
 <table>
 <colgroup>
-<col width="4%" />
+<col width="3%" />
 <col width="23%" />
-<col width="44%" />
+<col width="45%" />
 <col width="5%" />
 <col width="9%" />
 <col width="5%" />
@@ -541,13 +575,13 @@ div.tocify {
 <div id="mini-presentations" class="section level2">
 <h2>Mini Presentations</h2>
 <p><br> The second meeting of a month will be mini presentations. Each presenter will introduce fun, new coding skills. (e.g. visualization, reporting, new packages)</p>
-<table style="width:100%;">
+<table>
 <colgroup>
 <col width="4%" />
 <col width="25%" />
-<col width="38%" />
+<col width="39%" />
 <col width="6%" />
-<col width="10%" />
+<col width="9%" />
 <col width="5%" />
 <col width="8%" />
 </colgroup>
@@ -622,9 +656,9 @@ div.tocify {
 <td align="left">Anjile An, MPH <br> <a href="https://github.com/nt-williams">Nicholas Williams, MPH</a></td>
 <td align="left">Making Better Scientific Posters with InDesign <br> Cabinets: Project Specific Workspace Organization Templates</td>
 <td align="center"><code>InDesign</code> <br><br> <code>R</code></td>
-<td align="center"></td>
-<td align="center"></td>
+<td align="center"><a href="file_slides/201911_An_Intro%20to%20InDesign%20-%20Slides.pdf"><i class="fas fa-desktop fa-lg"></i></a> <br></td>
 <td align="center"><br> <a href="file_slides/201911_Williams_cabinets_demo.R"><i class="fa fa-file-code-o fa-lg"></i></a></td>
+<td align="center"><a href="file_slides/201911_An_Intro%20to%20InDesign%20Tutorial.pdf"><i class="fa fa-file-pdf-o fa-lg"></i></a> <a href="file_slides/WCM%20Poster%20Template.indd"><i class="fa fa-file fa-lg"></i></a></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
@@ -657,49 +691,6 @@ $(document).ready(function () {
 });
 
 
-</script>
-
-<!-- tabsets -->
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
-<!-- code folding -->
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
