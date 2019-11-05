@@ -36,10 +36,10 @@ The first meeting of a month will be one 1-hour presentation by one presenter on
 | 07/24/2019 12 -- 1pm | Anjile An, MPH | Introduction to Adobe Illustrator for Scientists  | `Adobe Illustrator` |  |   | [<i class="fab fa-safari fa-lg"></i>](https://www.adobe.com/products/illustrator/free-trial-download.html) [<i class="fab fa-safari fa-lg"></i>](http://tinyurl.com/k8ya4gk)  |
 | 08/21/2019 12 -- 1pm | Elizabeth Sweeney, ScM, PhD | Plotting the trail with Plotly |`R` |  |   | [<i class="fab fa-safari fa-lg"></i>](https://github.com/emsweene/Plotly_Tutorial)   |
 | 09/03/2019 12 -- 1pm | Attendees of JSM | Takeaways from JSM 2019 | |  |   | [<i class="fab fa-safari fa-lg"></i>](https://ww2.amstat.org/meetings/jsm/2019/) |
-| 10/15/2019 12 -- 1pm | Oleksandr Savenkov, PhD | HPC Cluster |  | [<i class="fas fa-desktop fa-lg"></i>](file_slides/cluster.html)  |  
-| 11/5/2019 1 -- 2pm | Anjile An, MPH <br><br> [Nicholas Williams, MPH](https://github.com/nt-williams)  | Making Better Scientific Posters with InDesign <br> Cabinets: Project Specific Workspace Organization Templates | `InDesign` <br><br> `R` |  |   | |
-<br>
+| 10/15/2019 12 -- 1pm | Oleksandr Savenkov, PhD | HPC Cluster |  | [<i class="fas fa-desktop fa-lg"></i>](file_slides/cluster.html)  |  |
+|||||||
 
+<br>
 
 ## Mini Presentations
 
@@ -55,6 +55,6 @@ The second meeting of a month will be mini presentations. Each presenter will in
 | 05/23/2019 **Thursday** 12 -- 1pm | Xiaoyue Ma, MSc <br> Kaylee Ho, MS | Creating plots in SAS <br> Nested data / list column workflow using purrr | `SAS` <br> `R`  | [<i class="fas fa-desktop fa-lg"></i>](file_slides/201905_Ma_SAS_plot.pptx) | [<i class="fa fa-file-code-o fa-lg"></i>](file_slides/201905_Ma_SAS_Code.sas) [<i class="fa fa-file-excel-o fa-lg"></i>](file_slides/201905_Ma_Data.zip) <br> [<i class="fa fa-file-code-o fa-lg"></i>](file_slides/201905_Ho_purrr_demo.Rmd)  |   <br> [<i class="fab fa-safari fa-lg"></i>](https://aosmith.rbind.io/2018/08/20/automating-exploratory-plots/) [<i class="fab fa-safari fa-lg"></i>](https://hookedondata.org/going-off-the-map/) | 
 | 07/02/2019 12 -- 1pm | Yiyuan Wu, MS <br> Victoria Cooley, MS | Overview of the dygraphs package <br> Overview of the lubridate package | `R` <br> `R` | [<i class="fas fa-desktop fa-lg"></i>](file_slides/dygraphs_ppt_rmd.pdf) <br> [<i class="fas fa-desktop fa-lg"></i>](file_slides/Lubridate.html) | [<i class="fa fa-file-code-o fa-lg"></i>](file_slides/Exercises_dygraphs.html) <br> [<i class="fa fa-file-code-o fa-lg"></i>](file_slides/Lubridate.Rmd)   |  <br> [<i class="fab fa-safari fa-lg"></i>](https://evoldyn.gitlab.io/evomics-2018/ref-sheets/R_lubridate.pdf) |
 | 08/13/2019 12 -- 1pm | [Nicholas Williams, MPH](https://github.com/nt-williams) <br> [Katherine Hoffman, MS](https://www.khstats.com) | How to be a contributeR <br> Introduction to writing your own power calculation simulations in R | `R` <br> `R` | <br> [<i class="fas fa-desktop fa-lg"></i>](file_slides/Power Simulations in R.pdf)  | <br> [<i class="fa fa-file-code-o fa-lg"></i>](file_slides/power_sims.R)   |   |
-
-
+| 11/5/2019 **1 -- 2pm** | Anjile An, MPH <br> [Nicholas Williams, MPH](https://github.com/nt-williams)  | Making Better Scientific Posters with InDesign <br> Cabinets: Project Specific Workspace Organization Templates | `InDesign` <br><br> `R` |  |   | <br>  [<i class="fa fa-file-code-o fa-lg"></i>](file_slides/201911_Williams_cabinets_demo.R) |
+|||||||
 
