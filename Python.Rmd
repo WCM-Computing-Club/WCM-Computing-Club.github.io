@@ -6,6 +6,8 @@ output:
     toc_float: true
 ---
 
+## Materials
+
 We will be following Cornell's 2014 CS 1110 Class: Introduction to Computing Using Python:
 
 https://www.cs.cornell.edu/courses/cs1110/2014sp/materials/texts.php
@@ -23,3 +25,4 @@ https://python.swaroopch.com/
 The Hitchhiker's Guide to Python:
 https://docs.python-guide.org/intro/learning/
 
+## Schedule
