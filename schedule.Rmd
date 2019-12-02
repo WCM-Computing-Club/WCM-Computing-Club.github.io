@@ -35,6 +35,7 @@ The first meeting of a month will be one 1-hour presentation by one presenter on
 | 09/03/2019 12 -- 1pm | Attendees of JSM | Takeaways from JSM 2019 | |  |   | [<i class="fab fa-safari fa-lg"></i>](https://ww2.amstat.org/meetings/jsm/2019/) |
 | 10/15/2019 12 -- 1pm | Oleksandr Savenkov, PhD | HPC Cluster |  | [<i class="fas fa-desktop fa-lg"></i>](file_slides/cluster.html)  |  |
 |||||||
+| 12/17/2019 12 -- 1pm | <strong>Python Study Group</strong> | Troubleshooting Installations <br> Introduction to study group | | | | |
 
 <br>
 
