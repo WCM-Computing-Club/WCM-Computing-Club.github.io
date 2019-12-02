@@ -7,6 +7,8 @@ navbar:
       href: schedule.html
     - text: "Resources"
       href: resource.html
+    - text: "Python Study Group"
+      href: Python.html
   right:
     - icon: fa-envelope fa-lg
       href: mailto:<jil2043@med.cornell.edu>

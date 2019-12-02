@@ -11,7 +11,7 @@
 
 
 
-<title></title>
+<title>Python Study Group</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,6 +19,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -170,6 +173,101 @@ $(document).ready(function () {
 
 
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
 
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
@@ -213,49 +311,23 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore"><center>
-Welcome to the WCM Biostatistics Computing Club!
-</center></h1>
+<h1 class="title toc-ignore">Python Study Group</h1>
 
 </div>
 
 
-<p><br></p>
-<div id="wcm-biostatistics-computing-club" class="section level3">
-<h3>WCM Biostatistics Computing Club</h3>
-<p>The Weill Cornell Medicine (WCM) Biostatistics Computing Club serves as a forum for academic research staff and faculty to learn new computational skills, specifically regarding Biostatistical analyses. The goals of the club are: to bridge the skills gap that exists amongst researchers siloed in their own lines of work, to foster cross-institutional collaboration, and to help members grow personally and professionally with the computational skills they wish to master.</p>
-<p>The club was founded in 2018 by <a href="https://jihuilee.com">Jihui Lee</a> and <a href="http://hpr.weill.cornell.edu/divisions/biostatistics/Elizabeth_Mauer.html">Elizabeth Mauer</a>. Jihui, a recent Columbia graduate, enjoyed <a href="https://columbia-computing-club.github.io">Columbia Biostatistics Computing Club</a> as a graduate student and was inspired to create a club for staff in the Department of Healthcare Policy &amp; Research at Weill Cornell Medicine. The club is hosted by the <a href="http://hpr.weill.cornell.edu/divisions/biostatistics/">Division of Biostatistics and Epidemiology</a>, <a href="http://hpr.weill.cornell.edu/">Department of Healthcare Policy &amp; Research</a> along with the <a href="https://ctscweb.weill.cornell.edu/about-us/ctsc-programs/biostatistics-epidemiology-and-research-design">Biostatistics, Epidemiology and Research Design (BERD) Core</a>, <a href="https://ctscweb.weill.cornell.edu/">Clinical and Translational Science Center</a>.</p>
-<ul>
-<li>The club holds bi-weekly very <em>informal</em> and <em>casual</em> meetings.</li>
-<li>The meetings are interactive, so please bring your laptop to the meetings!</li>
-</ul>
-<p><br></p>
+<p>We will be following Cornell’s 2014 CS 1110 Class: Introduction to Computing Using Python:</p>
+<p><a href="https://www.cs.cornell.edu/courses/cs1110/2014sp/materials/texts.php" class="uri">https://www.cs.cornell.edu/courses/cs1110/2014sp/materials/texts.php</a></p>
+<p>The textbook for the class can be found here:</p>
+<p><a href="https://greenteapress.com/wp/think-python/" class="uri">https://greenteapress.com/wp/think-python/</a></p>
+<p>Additional Resources:</p>
+<p>A Byte of Python: <a href="https://python.swaroopch.com/" class="uri">https://python.swaroopch.com/</a></p>
+<p>The Hitchhiker’s Guide to Python: <a href="https://docs.python-guide.org/intro/learning/" class="uri">https://docs.python-guide.org/intro/learning/</a></p>
+
+
+
 </div>
-<div id="hex-sticker-competition" class="section level3">
-<h3>Hex Sticker Competition</h3>
-<p>Create a hex sticker design either digitally (e.g. Illustrator, Paint), or non-digitally (e.g. crayon, marker, paint brush) that reflects the mission of the computing club.</p>
-<ul>
-<li>More than one entry per person is allowed.</li>
-<li><p>The sticker can be any colors of your choosing. (If WCM logos are used, we’ll probably need to convert at least the logos to <a href="https://brand.weill.cornell.edu/brand-guidelines/color-palette">WCM branding colors</a>.)</p></li>
-<li><strong>Email your design to Liz (not voting) by 11/21: <a href="mailto:elm2035@med.cornell.edu">elm2035@med.cornell.edu</a></strong></li>
-<li>We will all vote on our favorite sticker design – details to come.</li>
-<li>Winner will receive:
-<ul>
-<li>their hex sticker used as the ‘official’ hex sticker of the computing club</li>
-<li>A Grand Prize (TBD)</li>
-<li>And last but not least, bragging rights!</li>
-</ul></li>
-</ul>
-<p><strong>Note</strong>: You can get everything in Adobe Creative Cloud for free through <a href="https://wcmcprd.service-now.com/myhelpdesk">WCM help desk</a>. Long in with your CWID, click ‘Request Something’ and then ‘Acquire Software’.</p>
-<p><br></p>
-<center>
-<img src="file_resources/WCM_HealthcarePolicyResearch_LOGO_HZSS1L_CLR_CMYK.png" alt="hi" width="450" height="300"><img src="file_resources/WCM_CTSC-Long_LOGO_HZSS1L_CLR_RGB.png" alt="hi" style="text-align:center;" width="350" height="250">
-</center>
-<p><br></p>
 </div>
-
-
-
 
 </div>
 
