@@ -32,7 +32,7 @@ https://docs.python-guide.org/intro/learning/
 |:----------|:----------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:--------------:|:-----------------------:|:------------:|
 | 12/02/2019 | NA | Download Python: [<i class="fab fa-safari fa-lg"></i>](https://www.python.org/downloads/) <br> or alternatively Anaconda: [<i class="fab fa-safari fa-lg"></i>](https://www.anaconda.com/) <br> Read <strong>A Byte of Python</strong>, Introduction - First Steps : [<i class="fab fa-safari fa-lg"></i>](https://python.swaroopch.com/)| | | Documentation for Anaconda: [<i class="fab fa-safari fa-lg"></i>](https://docs.anaconda.com/anaconda/user-guide/getting-started) |
 | 12/17/2019 12 -- 1pm | Troubleshooting Installations <br> Introduction to study group | Read <strong>Think Python</strong>, Chapter 2 <br> Read <strong>A Byte of Python</strong>, Operators and Expressions | | | |
-| 01/21/2020 | | | | | |
+| 01/28/2020 | | | | | |
 
 
 
