@@ -37,7 +37,7 @@ The first meeting of a month will be one 1-hour presentation by one presenter on
 |||||||
 | 12/17/2019 12 -- 1pm | <strong>Python Study Group</strong> | Troubleshooting Installations <br> Introduction to study group | | | | |
 | 01/28/2020 12 -- 1pm | <strong>Python Study Group</strong> | Variables, Expressions, and Statements | | | | |
-
+| 02/18/2020 12 -- 1pm | <strong>Python Study Group</strong> | Functions | | | | |
 
 <br>
 
