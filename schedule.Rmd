@@ -39,6 +39,7 @@ The first meeting of a month will be one 1-hour presentation by one presenter on
 | 01/28/2020 12 -- 1pm | <strong>Python Study Group</strong> | Variables, Expressions, and Statements | `Python` | | | |
 | 02/19/2020 12 -- 1pm | <strong>Python Study Group</strong> | Functions | `Python` | | | |
 | 03/03/2020 12 -- 1pm | Attendees of R Studio | Takeaways from R Studio 2020 | `R` | | | |
+| 03/17/2020 12 -- 1pm | Margaret Hannum, MS  | Introduction to [gtsummary](http://www.danieldsjoberg.com/gtsummary/index.html) | `R` | | | |
 
 <br>
 
