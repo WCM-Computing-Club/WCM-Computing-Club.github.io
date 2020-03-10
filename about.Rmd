@@ -15,4 +15,7 @@ The meetings are interactive, so please bring your laptop to the meetings!
 
 <br>
 
-<center><img src="file_resources/WCM_HealthcarePolicyResearch_LOGO_HZSS1L_CLR_CMYK.png" alt="hi" width="450" height="450"><img src="file_resources/WCM_CTSC-Long_LOGO_HZSS1L_CLR_RGB.png" alt="hi" style="text-align:center;" width="350" height="350"></center>
+<center><img src="file_resources/WCM_HealthcarePolicyResearch_LOGO_HZSS1L_CLR_CMYK.png" alt="hi" width="483" height="70"><img src="file_resources/WCM_CTSC-Long_LOGO_HZSS1L_CLR_RGB.png" alt="hi" style="text-align:center;" width="380" height="100"></center>
+
+
+
