@@ -39,7 +39,7 @@ The first meeting of a month will be one 1-hour presentation by one presenter on
 | 01/28/2020 12 -- 1pm | <strong>Python Study Group</strong> | Variables, Expressions, and Statements | `Python` | | | |
 | 02/19/2020 12 -- 1pm | <strong>Python Study Group</strong> | Functions | `Python` | | | |
 | 03/03/2020 12 -- 1pm | Attendees of R Studio | Takeaways from R Studio 2020 | `R` | [<i class="fas fa-desktop fa-lg"></i>](file_slides/2020-03-03_what_we_learned_computing_aw.pptx)| [<i class="fa fa-file-code-o  fa-lg"></i>](file_slides/rstudio_conf.R) | [<i class="fab fa-safari fa-lg"></i>](https://github.com/ianmcook/tidyquery) [<i class="fab fa-safari fa-lg"></i>](https://resources.rstudio.com/rstudio-conf-2020/one-r-markdown-document-fourteen-demosyihui-xie) |
-| 03/17/2020 12 -- 1pm | [Margaret Hannum, MS](http://margarethannum.github.io/)  | Introduction to [gtsummary](http://www.danieldsjoberg.com/gtsummary/index.html) | `R` | | | |
+
 
 <br>
 
