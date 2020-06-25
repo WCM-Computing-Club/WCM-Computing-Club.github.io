@@ -19,6 +19,6 @@ The club was founded in 2018 by [Jihui Lee](https://jihuilee.com) and [Elizabeth
 
 <br>
 
-<center><img src="file_resources/WCM_HealthcarePolicyResearch_LOGO_HZSS1L_CLR_CMYK.png" alt="hi" width="450" height="300"><img src="file_resources/WCM_CTSC-Long_LOGO_HZSS1L_CLR_RGB.png" alt="hi" style="text-align:center;" width="350" height="250"></center>
+<center><img src="file_resources/WCM_HealthcarePolicyResearch_LOGO_HZSS1L_CLR_CMYK.png" alt="hi" width="483" height="70"><img src="file_resources/WCM_CTSC-Long_LOGO_HZSS1L_CLR_RGB.png" alt="hi" style="text-align:center;" width="380" height="100"></center>
 
 <br>
