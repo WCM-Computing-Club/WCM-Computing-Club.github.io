@@ -1,0 +1,16 @@
+---
+title: "WCM-DSC Schedule"
+output:
+ html_document:
+   toc: true
+   toc_depth: 5
+   toc_float:
+     collapsed: false
+     smooth_scroll: false
+---
+
+### 2020
+
+| Date      | Presenter  | Topic | Slides | Resources  |                                         
+|:-------------------------|:----------------------------------------------------------------|:--------------------------------------------------------------------------------------|:--------------:|:-----------------------:|
+| 06/26/2020 11 -- 11:45am | Neel Madhukar, PhD | <strong>Building a Data Science Approach Focused on Interpretability</strong> | | [<i class="fas fa-desktop fa-lg"></i>](file_resources/Guest_speaker_Neel_Madhukar.pdf) | 

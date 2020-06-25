@@ -3,8 +3,10 @@ output_dir: "."
 navbar:
   title: "Home"
   left:
-    - text: "Schedule"
-      href: schedule.html
+    - text: "BCC Schedule"
+      href: bcc_schedule.html
+    - text: "DSC Schedule"
+      href: dsc_schedule.html
     - text: "Resources"
       href: resource.html
     - text: "Python Study Group"

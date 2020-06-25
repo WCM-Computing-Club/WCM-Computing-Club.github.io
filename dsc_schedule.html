@@ -11,7 +11,7 @@
 
 
 
-<title>Python Study Group</title>
+<title>WCM-DSC Schedule</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -313,6 +313,12 @@ div.tocify {
   border-radius: 0px;
 }
 
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
 
 </style>
 
@@ -351,7 +357,10 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="schedule.html">BCC Schedule</a>
+  <a href="bcc_schedule.html">BCC Schedule</a>
+</li>
+<li>
+  <a href="dsc_schedule.html">DSC Schedule</a>
 </li>
 <li>
   <a href="resource.html">Resources</a>
@@ -382,72 +391,40 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Python Study Group</h1>
+<h1 class="title toc-ignore">WCM-DSC Schedule</h1>
 
 </div>
 
 
-<div id="materials" class="section level2">
-<h2>Materials</h2>
-<p>We will be following Cornell’s 2014 CS 1110 Class: Introduction to Computing Using Python:</p>
-<p><a href="https://www.cs.cornell.edu/courses/cs1110/2014sp/materials/texts.php" class="uri">https://www.cs.cornell.edu/courses/cs1110/2014sp/materials/texts.php</a></p>
-<p>The textbook for the class can be found here:</p>
-<p><a href="https://greenteapress.com/wp/think-python/" class="uri">https://greenteapress.com/wp/think-python/</a></p>
-<p>Additional Resources:</p>
-<p><strong>A Byte of Python:</strong> <a href="https://python.swaroopch.com/" class="uri">https://python.swaroopch.com/</a></p>
-<p><strong>The Hitchhiker’s Guide to Python:</strong> <a href="https://docs.python-guide.org/intro/learning/" class="uri">https://docs.python-guide.org/intro/learning/</a></p>
-</div>
-<div id="schedule" class="section level2 tabset tabset-fade tabset-pills">
-<h2>Schedule</h2>
 <div id="section" class="section level3">
 <h3>2020</h3>
 <table>
 <colgroup>
-<col width="4%" />
-<col width="25%" />
-<col width="48%" />
-<col width="6%" />
-<col width="9%" />
-<col width="5%" />
+<col width="12%" />
+<col width="29%" />
+<col width="39%" />
+<col width="7%" />
+<col width="11%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th align="left">Date</th>
-<th align="left">Session Assignment</th>
-<th align="left">Prep for Next Session</th>
+<th align="left">Presenter</th>
+<th align="left">Topic</th>
+<th align="center">Slides</th>
 <th align="center">Resources</th>
-<th align="center"></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">04/07/2020 12 – 1pm</td>
-<td align="left">Unit Testing: <a href="https://www.cs.cornell.edu/courses/cs1110/2014sp/labs/lab03.pdf"><i class="fab fa-safari fa-lg"></i></a></td>
-<td align="left"></td>
+<td align="left">06/26/2020 11 – 11:45am</td>
+<td align="left">Neel Madhukar, PhD</td>
+<td align="left"><strong>Building a Data Science Approach Focused on Interpretability</strong></td>
 <td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr class="even">
-<td align="left">02/19/2020 12 – 1pm</td>
-<td align="left">Functions: <a href="https://www.cs.cornell.edu/courses/cs1110/2014sp/labs/lab02.pdf"><i class="fab fa-safari fa-lg"></i></a></td>
-<td align="left">Review functions <br> Read <strong>A Byte of Python</strong>, Modules</td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr class="odd">
-<td align="left">01/28/2020 12 – 1pm</td>
-<td align="left">Variables, Expressions, and Statements: <a href="https://www.cs.cornell.edu/courses/cs1110/2014sp/labs/lab01.pdf"><i class="fab fa-safari fa-lg"></i></a></td>
-<td align="left">Read <strong> Think Python</strong>, Chapter 3 <br> Read <strong>A Byte of Python</strong>, Control flow and Functions</td>
-<td align="center"></td>
-<td align="center"></td>
+<td align="center"><a href="file_resources/Guest_speaker_Neel_Madhukar.pdf"><i class="fas fa-desktop fa-lg"></i></a></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div id="section-1" class="section level3">
-<h3>2019</h3>
-<p>|:———-|:—————————————————————-|:—————————————————————————————————————————-|:————–:|:———————–:|:————:| | 12/17/2019 12 – 1pm | Troubleshooting Installations <br> Introduction to study group | Read <strong>Think Python</strong>, Chapter 2 <br> Read <strong>A Byte of Python</strong>, Operators and Expressions | | | 12/02/2019 | NA | Download Python: <a href="https://www.python.org/downloads/"><i class="fab fa-safari fa-lg"></i></a> <br> or alternatively Anaconda: <a href="https://www.anaconda.com/"><i class="fab fa-safari fa-lg"></i></a> <br> Read <strong>A Byte of Python</strong>, Introduction - First Steps : <a href="https://python.swaroopch.com/"><i class="fab fa-safari fa-lg"></i></a>| Documentation for Anaconda: <a href="https://docs.anaconda.com/anaconda/user-guide/getting-started"><i class="fab fa-safari fa-lg"></i></a> |</p>
-</div>
 </div>
 
 
@@ -496,7 +473,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2,h3",
+      selectors: "h1,h2,h3,h4,h5",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
@@ -505,8 +482,8 @@ $(document).ready(function ()  {
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
     };
-    options.showAndHide = true;
-    options.smoothScroll = true;
+    options.showAndHide = false;
+    options.smoothScroll = false;
 
     // tocify
     var toc = $("#TOC").tocify(options).data("toc-tocify");
