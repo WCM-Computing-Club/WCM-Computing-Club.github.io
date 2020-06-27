@@ -17,6 +17,8 @@ output:
 
 ### 2020
 
-| Date      | Presenter  | Topic | Slides | Resources  |                                         
-|:-------------------------|:----------------------------------------------------------------|:--------------------------------------------------------------------------------------|:--------------:|:-----------------------:|
-| 06/26/2020 11 -- 11:45am | Neel Madhukar, PhD | <strong>Building a Data Science Approach Focused on Interpretability</strong> | | [<i class="fas fa-desktop fa-lg"></i>](file_resources/Guest_speaker_Neel_Madhukar.pdf) [<i class="fas fa-play fa-lg"></i>](file_resources/DS_June_26_Speaker_Meeting.mp4)| 
+| Date      | Presenter  | Topic | Slides/Resources  |                                         
+|:-------------------------|:--------------------|:------------------------|:----------------------------------------:|
+| 06/26/2020 11 -- 11:45am | Neel Madhukar, PhD | <strong>Building a Data Science Approach Focused on Interpretability</strong> | [<i class="fas fa-desktop fa-lg"></i>](file_resources/Guest_speaker_Neel_Madhukar.pdf)   <video src="file_resources/DS_June_26_Speaker_Meeting.mp4" width="120" height="75" controls preload></video> |
+
+
