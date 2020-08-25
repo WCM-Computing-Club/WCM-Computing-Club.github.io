@@ -19,23 +19,16 @@ Some useful resources & links:
 ## Python
 
 - Web-scraping with Python [[link]](https://deepak915.github.io/post-2.html)
-
 - Hackerrank [[link]] (https://www.hackerrank.com/domains/python)
-
 - Automate the boring stuff [[link]] (https://automatetheboringstuff.com/)
-
 - Learn Python the hard way [[link]] (https://learntocodetogether.com/learn-python-the-hard-way-free-ebook-download/)
 
 ## Blogs
 
 - Emily Robinson [[link]] (https://hookedondata.org/)
-
 - David Robinson [[link]] (http://varianceexplained.org/)
-
 - Ken Jee [[link]] (https://www.playingnumbers.com/)
-
 - Paul Adamson [[link]] (http://padamson.github.io/)
-
 - Nicholas Tierney [[link]] (https://njtierney.github.io/)
 
 
