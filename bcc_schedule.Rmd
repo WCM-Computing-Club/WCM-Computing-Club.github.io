@@ -25,7 +25,7 @@ If there are topics you'd like (us) to cover, please let us know!
 
 | Date      | Presenter  | Topic  | Software | Slides | Codes | Resources  |                                         
 |:----------|:----------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:--------------:|:-----------------------:|:------------:|:-------------------:|
-| 01/19/2021 12 -- 1pm | [Katherine Hoffman, MS](https://www.khstats.com) | Become a Superlearner! An Introduction to Ensemble Learning with R | `R` | |  | |
+| 01/19/2021 12 -- 1pm | [Katherine Hoffman, MS](https://www.khstats.com) | Become a Superlearner! An Introduction to Ensemble Learning with R | `R` | |  | [<i class="fab fa-safari fa-lg"></i>](https://www.khstats.com/blog/sl/superlearning/) [<i class="fab fa-safari fa-lg"></i>](https://github.com/hoffmakl/causal-inference-visual-guides/blob/master/visual-guides/Superlearner.pdf) |
 
 ### 2020
 
