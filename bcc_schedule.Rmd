@@ -21,6 +21,12 @@ If there are topics you'd like (us) to cover, please let us know!
 
 <br>
 
+### 2021
+
+| Date      | Presenter  | Topic  | Software | Slides | Codes | Resources  |                                         
+|:----------|:----------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:--------------:|:-----------------------:|:------------:|:-------------------:|
+| 01/19/2021 12 -- 1pm | [Katherine Hoffman, MS](https://www.khstats.com) | Become a Superlearner! An Introduction to Ensemble Learning with R | `R` | |  | |
+
 ### 2020
 
 | Date      | Presenter  | Topic  | Software | Slides | Codes | Resources  |                                         
