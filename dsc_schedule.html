@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 
 <meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -237,7 +238,6 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
-  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -266,12 +266,6 @@ $(document).ready(function () {
 }
 }
 
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
 
 .toc-content {
   padding-left: 30px;
@@ -406,7 +400,7 @@ div.tocify {
 <colgroup>
 <col width="22%" />
 <col width="18%" />
-<col width="22%" />
+<col width="21%" />
 <col width="36%" />
 </colgroup>
 <thead>
@@ -419,7 +413,7 @@ div.tocify {
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">06/26/2020 11 -- 11:45am</td>
+<td align="left">06/26/2020 11 – 11:45am</td>
 <td align="left">Neel Madhukar, PhD</td>
 <td align="left"><strong>Building a Data Science Approach Focused on Interpretability</strong></td>
 <td align="center"><a href="file_resources/Guest_speaker_Neel_Madhukar.pdf"><i class="fas fa-desktop fa-lg"></i></a> <a href="https://wcm.box.com/s/iwi2ojv2mvqrrnfknka0x6c7wa46ua3v"><i class="fas fa-play fa-lg"></i></a></td>
@@ -479,7 +473,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
