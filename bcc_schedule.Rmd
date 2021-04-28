@@ -25,6 +25,7 @@ If there are topics you'd like (us) to cover, please let us know!
 
 | Date      | Presenter  | Topic  | Software | Slides | Codes | Resources  |                                         
 |:----------|:----------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:--------------:|:-----------------------:|:------------:|:-------------------:|
+| 05/25/2021 **1 -- 2pm** | [Nicholas Williams, MPH](https://github.com/nt-williams) | An Introduction to Julia programming | `Julia` | | | |
 | 04/27/2021 12 -- 1pm | [Daniel D. Sjoberg, MA](http://www.danieldsjoberg.com) | Presentation-ready Summary Tables with \{gtsummary\} | `R` | [<i class="fas fa-desktop fa-lg"></i>](http://www.danieldsjoberg.com/gtsummary-weill-cornell-presentation/#1)  [<i class="fas fa-play fa-lg"></i>](https://wcm.box.com/s/xihvceexbdowfp6a4b3h917e1nioebda) || [<i class="fab fa-safari fa-lg"></i>](https://github.com/ddsjoberg/gtsummary) |
 | 01/19/2021 12 -- 1pm | [Katherine Hoffman, MS](https://www.khstats.com) | Become a Superlearner! An Introduction to Ensemble Learning with R | `R` | [<i class="fas fa-desktop fa-lg"></i>](file_slides/presentation_superlearning_2.pdf) [<i class="fas fa-play fa-lg"></i>](https://wcm.box.com/s/x9mxbwud72zb2ccs0t9a748ywosev4fv) | [<i class="fa fa-file-code-o  fa-lg"></i>](file_slides/presentation_superlearning_2.Rmd) | [<i class="fab fa-safari fa-lg"></i>](https://www.khstats.com/blog/sl/superlearning/) [<i class="fab fa-safari fa-lg"></i>](https://github.com/hoffmakl/causal-inference-visual-guides/blob/master/visual-guides/Superlearner.pdf) |
 
@@ -70,8 +71,13 @@ If there are topics you'd like (us) to cover, please let us know!
 
 <br>
 
-### 2019
+### 2021
 
+| Date      | Presenter  | Topic  | Software | Slides | Codes | Resources  |                                         
+|:----------|:----------------------------------------------------------------|:--------------------------------------------------------------------------------------------------|:--------------:|:-----------------------:|:------------:|:-------------------:|
+| 06/2021 12 -- 1pm | Will Simmons, MPH <br> Jacky Choi, MPH | TBD |||||
+
+### 2019
 
 | Date      | Presenter  | Topic  | Software | Slides | Codes | Resources  |                                         
 |:----------|:----------------------------------------------------------------|:--------------------------------------------------------------------------------------------------|:--------------:|:-----------------------:|:------------:|:-------------------:|
