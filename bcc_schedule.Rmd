@@ -75,7 +75,7 @@ If there are topics you'd like (us) to cover, please let us know!
 
 | Date      | Presenter  | Topic  | Software | Slides | Codes | Resources  |                                         
 |:----------|:----------------------------------------------------------------|:--------------------------------------------------------------------------------------------------|:--------------:|:-----------------------|:------------:|:-------------------:|
-| 06/29/2021 12 -- 1pm | Will Simmons, MPH <br> Jacky Choi, MPH | Integrating the Redcap API with R <br> CONSORT flow diagrams in R | `R` <br> `R`|[<i class="fas fa-desktop fa-lg"></i>]() [<i class="fas fa-play fa-lg"></i>](https://wcm.box.com/s/23lknovcbkosdu16v5bfj3i033c6fuma) <br> [<i class="fas fa-desktop fa-lg"></i>]()|||
+| 06/29/2021 12 -- 1pm | Will Simmons, MPH <br> Jacky Choi, MPH | Integrating the Redcap API with R <br> CONSORT flow diagrams in R | `R` <br> `R`|[<i class="fas fa-desktop fa-lg"></i>](https://simmwill.github.io/wcmbcc_pres_redcap) [<i class="fas fa-play fa-lg"></i>](https://wcm.box.com/s/23lknovcbkosdu16v5bfj3i033c6fuma) <br> [<i class="fas fa-desktop fa-lg"></i>]()|||
 
 ### 2019
 
