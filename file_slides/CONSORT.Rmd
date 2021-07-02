@@ -1,0 +1,956 @@
+---
+title: "Creating CONSORT Diagrams in R"
+subtitle: ""  
+author: 
+  - "Jacky Choi, MPH"
+  - "jmc4005@med.cornell.edu"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    css: xaringan_themer_clean.css
+    lib_dir: libs
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: true
+      ratio: 16:9
+      countIncrementalSlides: true
+---
+
+```{r setup, include=FALSE}
+library(here)
+library(xaringanthemer)
+library(flipbookr)
+library(tidyverse)
+library(DiagrammeR)
+
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=6.5, fig.retina=6,
+  out.width = "110%",
+  cache = FALSE,
+  message = FALSE, 
+  warning = FALSE,
+  hiline = TRUE
+)
+
+# knitr::opts_chunk$set(fig.width = 6, message = FALSE, warning = FALSE, comment = "", cache = F)
+
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+# style_duo_accent(
+#   primary_color = "#1381B0",
+#   secondary_color = "#FF961C",
+#   inverse_header_color = "#FFFFFF"
+# )
+
+#Adjust some of the colors for title slide and choose a base color
+style_mono_accent(base_color = "#B31B1B",
+                  title_slide_background_color = "#FFFFFF",
+                  title_slide_text_color = "#B31B1B")
+
+```
+
+## A Trip Down Memory Lane...
+
+```{r consort_diagram_pic, warning=FALSE, message = FALSE, echo=FALSE, out.width = '45%', fig.align='center'}
+
+knitr::include_graphics("consort_pic.png")
+
+```
+
+---
+
+## Overview
+
+* CONSORT Statement and Diagram
+
+<br>
+
+* DiagrammeR Package
+  + GraphViz and DOT
+    - Nodes, Edges, Graph Capabilities
+
+<br>
+
+* Building One, Yay!
+
+---
+
+## About CONSORT Diagrams
+
+* **CONSORT** (Consolidated Standards of Reporting Trials) **Statement** 
+
+* Guide to help researchers effectively report randomized trials to enhance transparency of study design and analysis
+
+* For 2010, includes a 25-item checklist and a diagram showing participant flow 
+
+* Reporting participant flow helps assess the quality of the study design and reliability of the results
+
+---
+
+## Example<sup>1</sup>
+
+```{r consort_example, warning=FALSE, message = FALSE, echo=FALSE, out.width = '45%', fig.align='center'}
+
+knitr::include_graphics("consort_example.png")
+
+```
+
+.footnote[1 http://www.consort-statement.org/consort-statement/flow-diagram]
+
+---
+
+# DiagrammeR Package
+
+* Powerful R package that allows you to create various diagrams and graphs
+
+* Functionality includes GraphViz and DOT (graph description) language
+
+* Pass various graph specifications to `grViz()` function using DOT language 
+
+* DOT is generally customizable and syntax is generally straightforward
+
+* GraphViz substitution allows for mixing in R expressions
+
+--
+
+<br>
+
+**Let's dive a bit deeper into the GraphViz specifications!**
+
+---
+
+# GraphViz Specifications
+
+.left-column[
+## Graph statement
+
+## Node statement
+
+## Edge statement
+]
+
+.right-column[
+Define overall attributes of the visual you are creating
+  * `graph [nodesep = 0.8]`
+  
+<br>
+
+Define attributes for nodes, styled as boxes, circles, and other shapes
+  * `node [shape = box, width = 2] A; B; C; D`
+
+<br>
+
+Define attributes for the edges that connect nodes
+  * `edge [arrowhead = diamonds] A -> B; B -> C; C -> D [label = 'Hello!']`
+]
+
+---
+`r chunk_reveal("basic_example", break_type = "non_seq", widths = c(30, 35), title = "# Basic Example")`
+
+```{r basic_example, message=FALSE, warning=FALSE, include=FALSE}
+grViz("
+digraph basic_example {
+
+#Add nodes
+node [shape = box, width = 2] #BREAK2 
+A #BREAK2
+B #BREAK3
+C #BREAK4
+D #BREAK5   
+
+#Add edges
+edge [arrowhead = diamonds] #BREAK6
+A -> B #BREAK6
+B -> C #BREAK7
+C -> D [label = 'Hello!'] #BREAK8
+
+#Add graph statement #BREAK9
+graph [ranksep = 0.1] #BREAK9
+}"
+)
+
+```
+
+---
+
+# Example Trial Data
+
+* 2-arm randomized controlled trial comparing care from a home nurse plus standard prenatal care versus standard prenatal care for pregnant women with high glucose levels
+
+* Primary outcome was composite measure of perinatal death and neonatal complications
+
+* 843 pregnant women were screened and assessed for eligibility at doctors' offices
+  + 26 did not meet inclusion criteria; 36 declined to participate; 11 could not be reached
+
+* 770 were eligible and randomized
+
+* 391 were assigned to treatment group; 379 were assigned to control group
+  + Treatment: 21/391 were lost to follow-up and 8/391 had no delivery data
+  + Control: 17/379 were lost to follow-up and 10/379 had no delivery data
+
+---
+
+`r chunk_reveal("graphviz1", "non_seq", widths = c(35, 30), title = "# Attempt 1 - Build Skeleton")`
+
+```{r graphviz1, message=FALSE, warning=FALSE, include=FALSE}
+
+grViz("
+digraph attempt_1 {                                                 
+#Add nodes
+node [shape = box, fontsize = 12, color = black, width = 2] #BREAK2      
+A; B; C; D; E; F; G #BREAK2                                                             
+
+#Add edges
+edge [arrowhead = none] #BREAK3                                                     
+A -> B #BREAK3
+B -> C #BREAK4
+C -> D #BREAK5
+E -> F #BREAK6
+B -> E #BREAK7
+B -> G #BREAK8
+
+#Add graph statement
+graph [ranksep = 0.5] #BREAK9                
+}"
+)
+
+```
+
+---
+
+`r chunk_reveal("graphviz1b", "non_seq", widths = c(35, 30), title = "# Attempt 1 - Build Skeleton")`
+
+```{r graphviz1b, message=FALSE, warning=FALSE, include=FALSE}
+
+grViz("
+digraph attempt_1 {                                                 
+#Add nodes
+node [shape = box, fontsize = 12, color = black, width = 2] #BREAK2      
+A; B; C; D; E; F; G #BREAK2                                                             
+
+#Add edges
+edge [arrowhead = none] #BREAK3                                                     
+A -> B #BREAK3
+B -> C #BREAK4
+C -> D #BREAK5
+E -> F #BREAK6
+B -> E #BREAK7
+A -> G #BREAK8
+
+#Add graph statement
+graph [ranksep = 0.5] #BREAK9                
+}"
+)
+
+```
+
+
+---
+
+# Attempt 1 - Add in Labels
+
+.pull-left[
+```{r graphviz2a, message=FALSE, warning=FALSE, echo=TRUE, results ='hide'}
+
+grViz("
+digraph attempt_1 {                                                 
+#Add nodes
+node [shape = box, fontsize = 12, color = black, width = 2]      
+A [label = 'Screened for Eligiblity (n=843)'] 
+B [label = 'Eligible and Randomized (n=770)']
+C [label = <
+    Treatment (n=391)<br ALIGN = 'LEFT'/>
+    &#8226; 21: Lost to Follow-Up<br ALIGN = 'LEFT'/>
+    &#8226; 8: No Delivery Data<br ALIGN = 'LEFT'/>>
+    ] 
+D [label = 'ITT Analysis (n=362)'] 
+E [label = <
+    Control (n=379)<br ALIGN = 'LEFT'/>
+    &#8226; 17: Lost to Follow-Up<br ALIGN = 'LEFT'/>
+    &#8226; 10:No Delivery Data<br ALIGN = 'LEFT'/>>
+    ] 
+F [label = 'ITT Analysis (n=352)'] 
+G [label = <
+    &#8226; 26: Failed Inclusion criteria<br ALIGN = 'LEFT'/>
+    &#8226; 36: Declined Participation<br ALIGN = 'LEFT'/>
+    &#8226; 11:Unreachable<br ALIGN = 'LEFT'/>>
+    ] 
+    
+#Add edges #OMIT  
+edge [arrowhead = none] #OMIT                                                     
+A -> B #OMIT
+B -> C #OMIT
+C -> D #OMIT
+E -> F #OMIT
+B -> E #OMIT               
+A -> G #OMIT
+
+#Add graph statement #OMIT
+graph [ranksep = 0.5] #OMIT               
+}"
+)
+
+```
+]
+
+.pull-right[
+```{r graphviz2b, message=FALSE, warning=FALSE, echo=FALSE}
+
+grViz("
+digraph attempt_1 {                                                 
+#Add nodes
+node [shape = box, fontsize = 12, color = black, width = 2]      
+A [label = 'Screened for Eligiblity (n=843)'] 
+B [label = 'Eligible and Randomized (n=770)']
+C [label = <
+    Treatment (n=391)<br ALIGN = 'LEFT'/>
+    &#8226; 21: Lost to Follow-Up<br ALIGN = 'LEFT'/>
+    &#8226; 8: No Delivery Data<br ALIGN = 'LEFT'/>>
+    ] 
+D [label = 'ITT Analysis (n=362)'] 
+E [label = <
+    Control (n=379)<br ALIGN = 'LEFT'/>
+    &#8226; 17: Lost to Follow-Up<br ALIGN = 'LEFT'/>
+    &#8226; 10:No Delivery Data<br ALIGN = 'LEFT'/>>
+    ] 
+F [label = 'ITT Analysis (n=352)'] 
+G [label = <
+    &#8226; 26: Failed Inclusion criteria<br ALIGN = 'LEFT'/>
+    &#8226; 36: Declined Participation<br ALIGN = 'LEFT'/>
+    &#8226; 11:Unreachable<br ALIGN = 'LEFT'/>>
+    ] 
+    
+#Add edges #OMIT  
+edge [arrowhead = none] #OMIT                                                     
+A -> B #OMIT
+B -> C #OMIT
+C -> D #OMIT
+E -> F #OMIT
+B -> E #OMIT               
+A -> G #OMIT
+
+#Add graph statement #OMIT
+graph [ranksep = 0.5] #OMIT               
+}"
+)
+
+```
+]
+
+---
+
+# About That...
+
+* We were nearly able to obtain our desired result
+
+* GraphViz generally does a great job connecting edges to nodes, but needs help from time to time
+
+* We want edges to be completely vertical or horizontal
+
+* We don't want the diagram to be angled or tilted from the addition of any side nodes
+
+* Try to visualize as a grid
+
+--
+
+**Let's try again!**
+
+---
+
+class: middle, center
+
+# Questions?
+
+---
+
+`r chunk_reveal("graphviz3a", "non_seq", widths = c(35, 30), title = "# Attempt 2 - Build Skeleton")`
+
+```{r graphviz3a, message=FALSE, warning=FALSE, include=FALSE}
+
+grViz("
+digraph {
+#Add nodes
+node [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black] #BREAK2
+1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12; 13; 14; 15; 16; 17; 18 #BREAK2
+
+#Add edges
+edge [arrowhead = 'normal', color = 'black'] #BREAK3       
+1 -> 2; 2 -> 3; 3 -> 4; 4 -> 5; 5 -> 6; 7 -> 8; 8 -> 9; 9 -> 10; 10 -> 11; 11 -> 12; 13 -> 14; 14 -> 15; 15 -> 16; 16 -> 17; 17 -> 18 #BREAK3    
+
+#Add additional arrowheads
+edge [arrowhead = 'normal', color = 'black'] #BREAK4      
+2 -> 8; 8 -> 14 #BREAK4
+
+edge [arrowhead = 'normal', color = 'black'] #BREAK5      
+4 -> 10; 10 -> 16 #BREAK5
+
+#Use rank to keep these three boxes on the same rank/level!!!  
+{rank=same; '2';'8';'14'} #BREAK6
+{rank=same; '4';'10';'16'} #BREAK7
+
+#Use nodesep to keep the nodes a bit closer together
+graph [nodesep = 0.28] #BREAK8
+
+}"
+)
+
+```
+
+---
+
+`r chunk_reveal("graphviz3b", "non_seq", widths = c(35, 30), title = "# Attempt 2 - Define Grid")`
+
+```{r graphviz3b, message=FALSE, warning=FALSE, include=FALSE}
+
+grViz("
+digraph {
+
+#First column
+1 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = blue] #BREAK2
+2 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = red] #BREAK2
+3 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = red] #BREAK2  
+4 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = blue] #BREAK2
+5 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2] #BREAK2
+6 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2] #BREAK2
+
+#Second column
+7 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2] #BREAK3
+8 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = blue]  #BREAK3
+9 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2] #BREAK3
+10 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = blue] #BREAK3
+11 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = blue] #BREAK3
+12 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = blue] #BREAK3
+
+#Third column
+13 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = red] #BREAK4
+14 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2] #BREAK4  
+15 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = red] #BREAK4
+16 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = blue] #BREAK4
+17 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2] #BREAK4
+18 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2] #BREAK4
+
+#Add edges
+edge [arrowhead = 'normal', color = 'black'] #BREAK5    
+1 -> 2; 2 -> 3; 3 -> 4; 4 -> 5; 5 -> 6; 7 -> 8; 8 -> 9; 9 -> 10; 10 -> 11; 11 -> 12; 13 -> 14; 14 -> 15; 15 -> 16; 16 -> 17; 17 -> 18 #BREAK5  
+
+#Add additional arrowheads
+edge [arrowhead = 'normal', color = 'black'] #BREAK6      
+2 -> 8; 8 -> 14 #BREAK6
+
+edge [arrowhead = 'normal', color = 'black'] #BREAK7   
+4 -> 10; 10 -> 16 #BREAK7
+
+#Use rank to keep these three boxes on the same rank/level!!!  
+{rank=same; '2';'8';'14'} {rank=same; '4';'10';'16'} #BREAK8
+
+#Use nodesep to keep the nodes a bit closer together
+graph [nodesep = 0.28] #BREAK9
+
+}"
+)
+
+```
+
+---
+
+# Attempt 2 - Define Grid
+
+.pull-left[
+
+* <span style="color:red">Red</span>: Will be removed from the visual 
+
+<br>
+
+* <span style="color:blue">Blue</span>: Will be modified; here, we will make the nodes and arrowheads essentially invisible; we will also add some headings
+
+<br>
+
+* <span style="color:black">Black</span>: Keep for visual; they are the backbone of the visual
+
+]
+
+.pull-right[
+```{r graphviz3c, message=FALSE, warning=FALSE, echo=FALSE}
+
+grViz("
+digraph {
+
+#First column
+1 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = blue] #BREAK2
+2 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = red] #BREAK2
+3 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = red] #BREAK2  
+4 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = blue] #BREAK2
+5 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2] #BREAK2
+6 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2] #BREAK2
+
+#Second column
+7 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2] #BREAK3
+8 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = blue]  #BREAK3
+9 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2] #BREAK3
+10 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = blue] #BREAK3
+11 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = blue] #BREAK3
+12 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = blue] #BREAK3
+
+#Third column
+13 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = red] #BREAK4
+14 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2] #BREAK4  
+15 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = red] #BREAK4
+16 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = blue] #BREAK4
+17 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2] #BREAK4
+18 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2] #BREAK4
+
+#Add edges
+edge [arrowhead = 'normal', color = 'black'] #BREAK5    
+1 -> 2; 2 -> 3; 3 -> 4; 4 -> 5; 5 -> 6; 7 -> 8; 8 -> 9; 9 -> 10; 10 -> 11; 11 -> 12; 13 -> 14; 14 -> 15; 15 -> 16; 16 -> 17; 17 -> 18 #BREAK5  
+
+#Add additional arrowheads
+edge [arrowhead = 'normal', color = 'black'] #BREAK6      
+2 -> 8; 8 -> 14 #BREAK6
+
+edge [arrowhead = 'normal', color = 'black'] #BREAK7   
+4 -> 10; 10 -> 16 #BREAK7
+
+#Use rank to keep these three boxes on the same rank/level!!!  
+{rank=same; '2';'8';'14'} {rank=same; '4';'10';'16'} #BREAK8
+
+#Use nodesep to keep the nodes a bit closer together
+graph [nodesep = 0.28] #BREAK9
+
+}"
+)
+
+```
+]
+
+---
+
+# Attempt 2 - Shape the Diagram
+
+.pull-left[
+
+* `shape = 'none'`: Remove outlines of nodes
+
+<br>
+
+* `height = 0.1, width = 0.1`: Started shrinking blue nodes; they will be a size of 0 for next step
+  + Notice that the arrows are starting to converge together in those locations
+
+<br>
+
+* `fontsize = 12`: Adjusted font size for the headings
+
+]
+
+.pull-right[
+```{r graphviz3d, message=FALSE, warning=FALSE, echo=FALSE}
+grViz("
+digraph {
+
+#First column
+1 [style = 'solid', shape = 'none', width = 2, fontsize = 18, color = red] 
+2 [style = 'invisible', shape = 'box', width = 2, fontsize = 48, color = red] 
+3 [style = 'invisible', shape = 'box', width = 2, fontsize = 48, color = red]   
+4 [style = 'solid', shape = 'box', height = 0.1, width = 0.1, fontsize = 12, color = blue] 
+5 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2] 
+6 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2] 
+
+#Second column
+7 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2] 
+8 [style = 'solid', shape = 'box', height = 0.1, width = 0.1, fontsize = 12, color = blue]  
+9 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2] 
+10 [style = 'solid', shape = 'box', height = 0.1, width = 0.1, fontsize = 12, color = blue] 
+11 [style = 'solid', shape = 'none', width = 2, fontsize = 18, color = blue] 
+12 [style = 'solid', shape = 'none', width = 2, fontsize = 18, color = blue] 
+
+#Third column
+13 [style = 'invisible', shape = 'box', width = 2, fontsize = 48, color = red] 
+14 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2]   
+15 [style = 'invisible', shape = 'box', width = 2, fontsize = 48, color = red] 
+16 [style = 'solid', shape = 'box', height = 0.1, width = 0.1, fontsize = 12, color = blue] 
+17 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2] 
+18 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2]
+
+#Add edges
+edge [arrowhead = 'normal', color = 'black']    
+1 -> 2; 2 -> 3; 3 -> 4; 4 -> 5; 5 -> 6; 7 -> 8; 8 -> 9; 9 -> 10; 10 -> 11; 11 -> 12; 13 -> 14; 14 -> 15; 15 -> 16; 16 -> 17; 17 -> 18  
+
+#Add additional arrowheads
+edge [arrowhead = 'normal', color = 'black']      
+2 -> 8; 8 -> 14
+
+edge [arrowhead = 'normal', color = 'black']   
+4 -> 10; 10 -> 16
+
+#Use rank to keep these three boxes on the same rank/level!!!  
+{rank=same; 2;'8';'14'} {rank=same; '4';'10';'16'}
+
+#Use nodesep to keep the nodes a bit closer together
+graph [nodesep = 0.28]
+
+}"
+)
+
+```
+]
+
+---
+
+# Attempt 2 - Finalize the Diagram
+
+.pull-left[
+
+* `label = ''`: Make the labels invisible in order to connect various edges
+  + `4 [label = '', style = 'invisible', shape = 'none', height = 0, width = 0, fontsize = 12, color = blue]`
+
+<br>
+
+* `[arrowhead = 'none', color = black]`:  Remove arrowheads, but keep as black
+  + Use `color = #00000000` to make them invisible
+
+]
+
+.pull-right[
+```{r graphviz3e, message=FALSE, warning=FALSE, echo=FALSE}
+grViz("
+digraph {
+
+#First column
+1 [label = 'Screening', style = 'solid', shape = 'none', width = 2, fontsize = 18, color = black]
+2 [style = 'invisible', shape = 'box', width = 2, fontsize = 48, color = red]
+3 [style = 'invisible', shape = 'box', width = 2, fontsize = 48, color = red]  
+4 [label = '', style = 'invisible', shape = 'none', height = 0, width = 0, fontsize = 12, color = blue]
+5 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2]
+6 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2]
+
+#Second column
+7 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2]
+8 [label = '', style = 'invisible', shape = 'none', height = 0, width = 0, fontsize = 12, color = blue]
+9 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2]
+10 [label = '', style = 'invisible', shape = 'none', height = 0, width = 0, fontsize = 12, color = blue]
+11 [label = 'Allocation', style = 'solid', shape = 'none', width = 2, fontsize = '18', color = blue]
+12 [label = 'Analysis', style = 'solid', shape = 'none', width = 2, fontsize = '18', color = blue]
+
+#Third column
+13 [style = 'invisible', shape = 'box', width = 2, fontsize = 48, color = red] #BREAK4
+14 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2]  
+15 [style = 'invisible', shape = 'box', width = 2, fontsize = 48, color = red] #BREAK4
+16 [label = '', style = 'invisible', shape = 'none', height = 0, width = 0, fontsize = 12, color = blue]
+17 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2]
+18 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2]
+
+#Add edges
+edge [arrowhead = 'normal', color = '#00000000'] #BREAK5    
+1 -> 2; 2 -> 3; 3 -> 4; 10 -> 11; 11 -> 12; 13 -> 14; 14 -> 15; 15 -> 16
+
+edge [arrowhead = 'none', color = black] #BREAK5    
+4 -> 5; 5 -> 6; 7 -> 8; 8 -> 9; 9 -> 10; 16 -> 17; 17 -> 18
+
+#Add additional arrowheads
+edge [arrowhead = 'none', color = '#00000000'] #BREAK6      
+2 -> 8 #BREAK6
+
+edge [arrowhead = 'none', color = 'black'] #BREAK7   
+8 -> 14; 4 -> 10; 10 -> 16 #BREAK7
+
+#Use rank to keep these three boxes on the same rank/level!!!  
+{rank=same; '2';'8';'14'} {rank=same; '4';'10';'16'} #BREAK8
+
+#Use nodesep to keep the nodes a bit closer together
+graph [nodesep = 0.28, ranksep = 0.5] #BREAK9
+
+}"
+)
+
+```
+
+]
+
+---
+
+# Attempt 2 - Finalize the Diagram
+
+.pull-left[
+
+* `graph [nodesep = 0.28, ranksep = 0.5]`: Adjust the vertical and horizontal space between the nodes
+
+<br>
+
+* `label = 'Screening'`: Change the labels of each node
+
+]
+
+.pull-right[
+```{r graphviz3f, message=FALSE, warning=FALSE, echo=FALSE}
+grViz("
+digraph {
+
+#First column
+1 [label = 'Screening', style = 'solid', shape = 'none', width = 2, fontsize = 18, color = black]
+2 [style = 'invisible', shape = 'box', width = 2, fontsize = 48, color = red]
+3 [style = 'invisible', shape = 'box', width = 2, fontsize = 48, color = red]  
+4 [label = '', style = 'invisible', shape = 'none', height = 0, width = 0, fontsize = 12, color = blue]
+5 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2]
+6 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2]
+
+#Second column
+7 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2]
+8 [label = '', style = 'invisible', shape = 'none', height = 0, width = 0, fontsize = 12, color = blue]
+9 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2]
+10 [label = '', style = 'invisible', shape = 'none', height = 0, width = 0, fontsize = 12, color = blue]
+11 [label = 'Allocation', style = 'solid', shape = 'none', width = 2, fontsize = '18', color = blue]
+12 [label = 'Analysis', style = 'solid', shape = 'none', width = 2, fontsize = '18', color = blue]
+
+#Third column
+13 [style = 'invisible', shape = 'box', width = 2, fontsize = 48, color = red] #BREAK4
+14 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2]  
+15 [style = 'invisible', shape = 'box', width = 2, fontsize = 48, color = red] #BREAK4
+16 [label = '', style = 'invisible', shape = 'none', height = 0, width = 0, fontsize = 12, color = blue]
+17 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2]
+18 [style = 'solid', shape = 'box', width = 2, fontsize = 48, color = black, penwidth = 2]
+
+#Add edges
+edge [arrowhead = 'normal', color = '#00000000'] #BREAK5    
+1 -> 2; 2 -> 3; 3 -> 4; 10 -> 11; 11 -> 12; 13 -> 14; 14 -> 15; 15 -> 16
+
+edge [arrowhead = 'none', color = black] #BREAK5    
+4 -> 5; 5 -> 6; 7 -> 8; 8 -> 9; 9 -> 10; 16 -> 17; 17 -> 18
+
+#Add additional arrowheads
+edge [arrowhead = 'none', color = '#00000000'] #BREAK6      
+2 -> 8 #BREAK6
+
+edge [arrowhead = 'none', color = 'black'] #BREAK7   
+8 -> 14; 4 -> 10; 10 -> 16 #BREAK7
+
+#Use rank to keep these three boxes on the same rank/level!!!  
+{rank=same; '2';'8';'14'} {rank=same; '4';'10';'16'} #BREAK8
+
+#Use nodesep to keep the nodes a bit closer together
+graph [nodesep = 0.28, ranksep = 0.5] #BREAK9
+
+}"
+)
+
+```
+]
+
+---
+
+# Attempt 2 - Finish the Diagram
+
+.pull-left[
+
+* `graph [nodesep = 0.28, ranksep = 0.5]`: Adjust the vertical and hortizontal space between the nodes
+
+<br>
+
+* `label = 'Screening'`: Change the labels of each node
+
+]
+
+.pull-right[
+```{r graphviz3g, message=FALSE, warning=FALSE, echo=FALSE}
+grViz("
+digraph {
+
+#First column
+1 [label = 'Screening', style = 'solid', shape = 'none', width = 2, fontsize = 18, color = black]
+2 [style = 'invisible', shape = 'box', width = 2, fontsize = 48, color = red]
+3 [style = 'invisible', shape = 'box', width = 2, fontsize = 48, color = red]  
+4 [label = '', style = 'invisible', shape = 'none', height = 0, width = 0, fontsize = 12, color = blue]
+5 [label = <
+    Treatment (n=391)<br ALIGN = 'LEFT'/>
+    &#8226; 21: Lost to Follow-Up<br ALIGN = 'LEFT'/>
+    &#8226; 8: No Delivery Data<br ALIGN = 'LEFT'/>>, 
+    style = 'solid', shape = 'box', width = 2, fontsize = 18, color = black, penwidth = 1]
+6 [label = 'ITT Analysis (n=362)', style = 'solid', shape = 'box', width = 2, fontsize = 18, color = black, penwidth = 1]
+
+#Second column
+7 [label = 'Screened for Eligiblity (n=843)', style = 'solid', shape = 'box', width = 2, fontsize = 18, color = black, penwidth = 1]
+8 [label = '', style = 'invisible', shape = 'none', height = 0, width = 0, fontsize = 12, color = blue]
+9 [label = 'Eligible and Randomized (n=770)', style = 'solid', shape = 'box', width = 2, fontsize =18, color = black, penwidth = 1]
+10 [label = '', style = 'invisible', shape = 'none', height = 0, width = 0, fontsize = 12, color = blue]
+11 [label = 'Allocation', style = 'solid', shape = 'none', width = 2, fontsize = '18', color = blue]
+12 [label = 'Analysis', style = 'solid', shape = 'none', width = 2, fontsize = '18', color = blue]
+
+#Third column
+13 [style = 'invisible', shape = 'box', width = 2, fontsize = 48, color = red] #BREAK4
+14 [label = <
+    &#8226; 26: Failed Inclusion criteria<br ALIGN = 'LEFT'/>
+    &#8226; 36: Declined Participation<br ALIGN = 'LEFT'/>
+    &#8226; 11: Unreachable<br ALIGN = 'LEFT'/>>,
+    style = 'solid', shape = 'box', width = 2, fontsize = 18, color = black, penwidth = 1]  
+15 [style = 'invisible', shape = 'box', width = 2, fontsize = 48, color = red] #BREAK4
+16 [label = '', style = 'invisible', shape = 'none', height = 0, width = 0, fontsize = 12, color = blue]
+17 [label = <
+    Control (n=379)<br ALIGN = 'LEFT'/>
+    &#8226; 17: Lost to Follow-Up<br ALIGN = 'LEFT'/>
+    &#8226; 10: No Delivery Data<br ALIGN = 'LEFT'/>>,
+    style = 'solid', shape = 'box', width = 2, fontsize = 18, color = black, penwidth = 1]
+18 [label = 'ITT Analysis (n=352)', style = 'solid', shape = 'box', width = 2, fontsize = 18, color = black, penwidth = 1]
+
+#Add edges
+edge [arrowhead = 'normal', color = '#00000000'] #BREAK5    
+1 -> 2; 2 -> 3; 3 -> 4; 10 -> 11; 11 -> 12; 13 -> 14; 14 -> 15; 15 -> 16
+
+edge [arrowhead = 'none', color = black] #BREAK5    
+4 -> 5; 5 -> 6; 7 -> 8; 8 -> 9; 9 -> 10; 16 -> 17; 17 -> 18
+
+#Add additional arrowheads
+edge [arrowhead = 'none', color = '#00000000'] #BREAK6      
+2 -> 8 #BREAK6
+
+edge [arrowhead = 'none', color = 'black'] #BREAK7   
+8 -> 14; 4 -> 10; 10 -> 16 #BREAK7
+
+#Use rank to keep these three boxes on the same rank/level!!!  
+{rank=same; '2';'8';'14'} {rank=same; '4';'10';'16'} #BREAK8
+
+#Use nodesep to keep the nodes a bit closer together
+graph [nodesep = 0.10, ranksep = 0.5] #BREAK9
+
+}"
+)
+
+```
+]
+
+---
+
+# Export Diagram
+
+* To export the diagram, use `library(rsvg)` and `library(DiagrammeRsvg)`
+
+<br>
+
+* Assign `grViz` output into an object and run `export_svg %>% charToRaw %>% rsvg_pdf("consort_diagram.pdf")`
+
+<br>
+
+* Replace `rsvg_pdf` with `rsvg_png` to save as PNG file instead
+
+---
+
+# Final Code
+
+```{r final_code, message=FALSE, warning=FALSE, echo=TRUE, results = 'hide'}
+grViz("
+digraph {
+
+#First column
+1 [label = 'Screening', style = 'solid', shape = 'none', width = 2, fontsize = 18, color = black]
+2 [style = 'invisible', shape = 'box', width = 2, fontsize = 48, color = red]
+3 [style = 'invisible', shape = 'box', width = 2, fontsize = 48, color = red]  
+4 [label = '', style = 'invisible', shape = 'none', height = 0, width = 0, fontsize = 12, color = blue]
+5 [label = <
+    Treatment (n=391)<br ALIGN = 'LEFT'/>
+    &#8226; 21: Lost to Follow-Up<br ALIGN = 'LEFT'/>
+    &#8226; 8: No Delivery Data<br ALIGN = 'LEFT'/>>, 
+    style = 'solid', shape = 'box', width = 2, fontsize = 18, color = black, penwidth = 1]
+6 [label = 'ITT Analysis (n=362)', style = 'solid', shape = 'box', width = 2, fontsize = 18, color = black, penwidth = 1]
+
+#Second column
+7 [label = 'Screened for Eligiblity (n=843)', style = 'solid', shape = 'box', width = 2, fontsize = 18, color = black, penwidth = 1]
+8 [label = '', style = 'invisible', shape = 'none', height = 0, width = 0, fontsize = 12, color = blue]
+9 [label = 'Eligible and Randomized (n=770)', style = 'solid', shape = 'box', width = 2, fontsize =18, color = black, penwidth = 1]
+10 [label = '', style = 'invisible', shape = 'none', height = 0, width = 0, fontsize = 12, color = blue]
+11 [label = 'Allocation', style = 'solid', shape = 'none', width = 2, fontsize = '18', color = blue]
+12 [label = 'Analysis', style = 'solid', shape = 'none', width = 2, fontsize = '18', color = blue]
+
+}"
+)
+
+```
+
+---
+
+# Final Code (Cont.)
+
+```{r final_code2, message=FALSE, warning=FALSE, echo=TRUE, results = 'hide'}
+grViz("
+digraph {
+
+#Third column
+13 [style = 'invisible', shape = 'box', width = 2, fontsize = 48, color = red] #BREAK4
+14 [label = <
+    &#8226; 26: Failed Inclusion criteria<br ALIGN = 'LEFT'/>
+    &#8226; 36: Declined Participation<br ALIGN = 'LEFT'/>
+    &#8226; 11: Unreachable<br ALIGN = 'LEFT'/>>,
+    style = 'solid', shape = 'box', width = 2, fontsize = 18, color = black, penwidth = 1]  
+15 [style = 'invisible', shape = 'box', width = 2, fontsize = 48, color = red] #BREAK4
+16 [label = '', style = 'invisible', shape = 'none', height = 0, width = 0, fontsize = 12, color = blue]
+17 [label = <
+    Control (n=379)<br ALIGN = 'LEFT'/>
+    &#8226; 17: Lost to Follow-Up<br ALIGN = 'LEFT'/>
+    &#8226; 10: No Delivery Data<br ALIGN = 'LEFT'/>>,
+    style = 'solid', shape = 'box', width = 2, fontsize = 18, color = black, penwidth = 1]
+18 [label = 'ITT Analysis (n=352)', style = 'solid', shape = 'box', width = 2, fontsize = 18, color = black, penwidth = 1]
+
+}"
+)
+
+```
+
+---
+
+# Final Code (Cont.)
+
+```{r final_code3, message=FALSE, warning=FALSE, echo=TRUE, results = 'hide'}
+grViz("
+digraph {
+
+#Add edges
+edge [arrowhead = 'normal', color = '#00000000']    
+1 -> 2; 2 -> 3; 3 -> 4; 10 -> 11; 11 -> 12; 13 -> 14; 14 -> 15; 15 -> 16
+
+edge [arrowhead = 'none', color = black]    
+4 -> 5; 5 -> 6; 7 -> 8; 8 -> 9; 9 -> 10; 16 -> 17; 17 -> 18
+
+#Add additional arrowheads
+edge [arrowhead = 'none', color = '#00000000']      
+2 -> 8
+
+edge [arrowhead = 'none', color = 'black']   
+8 -> 14; 4 -> 10; 10 -> 16
+
+#Use rank to keep these three boxes on the same rank/level!!!  
+{rank=same; '2';'8';'14'} {rank=same; '4';'10';'16'}
+
+#Use nodesep and ranksep to keep the nodes a bit closer together
+graph [nodesep = 0.10, ranksep = 0.5]
+
+}"
+)
+
+```
+
+---
+
+background-image: url("pretty_pic.png")
+background-position: 50% 50%
+
+---
+
+# Summary and Notes
+
+* CONSORT diagrams provide an effective way of showing participant flow
+
+* We used the DiagrammeR package in R and worked with the GraphViz functionality to build the diagram
+  + We did not use the native built-in approach - Syntax is also generally straightforward
+
+* Graph specifications consist of node, edge, and graph statements
+
+* When creating CONSORT diagrams, visualize the grid first!
+  + Try to anticipate what nodes you need, what will be modified, and what can go
+  
+* Don't limit yourself to just use for randomized trials!
+  
+---
+
+class: middle, center, inverse
+
+Thank You!!!
+
