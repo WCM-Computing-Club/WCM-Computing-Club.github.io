@@ -1,0 +1,272 @@
+---
+title: "Alluvial Plots with ggalluvial"
+author: "Victoria Cooley"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output: 
+  wcmtheme::wcm_html: 
+    toc: true
+    toc_float: true
+    #code_folding: hide
+    df_print: "paged"
+    
+knit: (function(inputFile, encoding) { 
+      out_dir <- "../Reports";
+      sd=format(Sys.Date(), "%Y-%m-%d");
+      out_file <- paste("COVID_cancer_",sd, ".html", sep = "");
+      rmarkdown::render(inputFile,
+                        encoding=encoding, 
+                        output_file=file.path(dirname(inputFile), out_dir, out_file)) })
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F, message = F, warning = F, results = "asis")
+
+options(gtsummary.as_gt.addl_cmds = "gt::tab_options(table.font.size = 'small', data_row.padding = gt::px(3))")
+```
+
+```{r}
+
+#Load required packages
+library(tidyverse)
+library(here)
+library(gtsummary)
+library(janitor)
+library(Hmisc)
+library(ggalluvial)
+library(vcd)
+
+```
+
+
+# Introduction
+
+## Background
+
+* Show the flow and change in frequencies as process flows between between states (in our case, variables) 
+
+* Can visualize the relationship between many categorical variables at once, including the status variable
+
+* Investigators love them, be are often interpreted incorrectly!
+
+* We'll be using the `ggalluvial` package, a ggplot2 extension for alluvial plots
+
+ ![](/Users/victoriacooley/Desktop/Computing club/Syntax/Alluvial.png)
+ 
+## Some vocabulary 
+
+* Axis: variable(s) from your dataset; data are grouped/stacked vertically and at certain horiztonal positions across normal x-axis (period and cancer type in the plot above)
+
+* Strata: the groupings of each axis variable (think factor levels of categorical variable; pre-covid and covid for period)
+
+* Alluvia: horizontal splines that are distributed across the plot; identified by vertical position on axis and fill color (treatment)
+
+* Flows: segments of alluvial between axes
+
+* Lodes: where the alluvia intersect the stata; cannot visualize in plots. Can imagine as rectangular box that continues from the flows through the strata
+
+
+# Data types
+
+* Three major types (wide, long, and tabular/array)
+
+* We will focus on wide and long (like the arrangement for repeated measures data) 
+
+
+## Wide format
+
+* We will use the Arthritis dataset from the `vcd` package
+* Each row = grouping of observations that take certain value of each variable
+* Each variable has own column
+* Include an additional column the tallies the combinations of the variables
+* One row per alluvium 
+
+
+```{r, include= TRUE, echo = TRUE}
+
+data(Arthritis)
+
+Arthritis %>% group_by(Treatment, Sex, Improved) %>% tally()
+
+Arthritis_grp <- Arthritis %>% group_by(Treatment, Sex, Improved) %>% tally()
+Arthritis_grp %>%
+ggplot(
+  aes(y = n, axis1 = Treatment, axis2 = Sex)) +
+  scale_x_discrete(limits = c("Treatment", "Sex"), expand = c(.2, .05)) +
+  geom_alluvium(aes(fill = Improved)) +
+  geom_stratum() +
+  geom_text(stat = "stratum", aes(label = after_stat(stratum)), min.y = 5) +
+  ggtitle("Improvement pathways",
+          "By treatment and gender") + 
+  ylab("Frequency") + 
+  scale_fill_brewer(type = "qual", palette = "Set1")
+
+
+
+```
+
+* Notice how there are not any gaps or white spaces in the above plot
+* Height of the plot = cumulative sum of all observations in data set
+
+## Lodes/long format
+
+* We can convert the above dataset into lodes (long) format using the `to_lodes_form()` function
+* One row per lode
+* “gathering” (dplyr) of the axis columns to create axis-stratum pairs
+* Useful for repeated measures data (see additional example below)
+
+```{r, include=T,echo=T}
+
+Arthritis_lodes <- to_lodes_form(as.data.frame(Arthritis_grp),
+                           axes = 1:3,
+                           id = "Cohort")
+
+
+Arthritis_lodes
+
+is_lodes_form(Arthritis_lodes, key = x, value = stratum, id = Cohort, silent = TRUE)
+
+```
+
+In the above transformed data we have the following:
+
+* x: the axis variable that is plotted on the x axis
+* stratum: the different levels that each axis variable can assume
+* alluvium: the id assigned to each axis-stratum pair
+
+
+### Vaccinations data
+
+* Let's look at the vaccinations data, which is a more applicable example of long format (response from one question from three surveys)
+
+```{r, include=T, echo=T}
+
+data(vaccinations)
+
+vaccinations <- vaccinations %>% 
+                mutate(response = forcats::fct_relevel(response, "Always", "Sometimes", 
+                                                       "Never", "Missing"))
+
+ggplot(vaccinations,
+       aes(x = survey, stratum = response, alluvium = subject,
+           y = freq,
+           fill = response, label = response)) +
+  scale_x_discrete(expand = c(.1, .1)) +
+  geom_flow() +
+  geom_stratum(alpha = .5) +
+  geom_text(stat = "stratum", size = 3) +
+  theme(legend.position = "none") +
+  ylab("Frequency") +
+  xlab("Survey") +
+  ggtitle("Vaccination survey responses (one question per survey)")
+
+
+
+
+  
+```
+
+* Notice in the above plot there is one stratum where the text does not fit well
+
+* To fix the latter we can set a parameter `aes(label = after_stat(stratum)), min.y = 8)` to restrict labeling to a certain vertical height
+
+```{r, include=T, echo=T}
+
+ggplot(vaccinations,
+       aes(x = survey, stratum = response, alluvium = subject,
+           y = freq,
+           fill = response, label = response)) +
+  scale_x_discrete(expand = c(.1, .1)) +
+  geom_flow() +
+  geom_stratum(alpha = .5) +
+  geom_text(stat = "stratum", aes(label = after_stat(stratum)), min.y = 8) +
+  theme(legend.position = "none") +
+  ylab("Frequency") +
+  xlab("Survey") +
+  ggtitle("Vaccination survey responses (one question per survey)")
+
+```
+
+**Notes**
+
+* The geom_alluvium() differs from geom_flow() - depends on the type of dataset and the purpose of the plot!
+
+* Regarding missing values, in the plot above the removal would result in gaps whereas in the earlier plots this would not occur (depends on type of data) 
+
+
+# Additional customizations
+
+* We'll revisit the arthritis dataset
+
+## Curve types
+
+* Type of curve used to produce flows
+* Default: "xspline" (approximation splines using 4 points per curve)
+* Other options: "linear", "cubic", "quintic", "sine", "arctangent", and "sigmoid" (produce interpolation splines between points along the graphs of functions of the associated type)
+
+### Linear
+```{r, include= TRUE, echo = TRUE}
+
+Arthritis_grp %>%
+ggplot(
+  aes(y = n, axis1 = Treatment, axis2 = Sex)) +
+  scale_x_discrete(limits = c("Treatment", "Sex"), expand = c(.2, .05)) +
+  geom_alluvium(aes(fill = Improved), curve_type = "linear") +
+  geom_stratum() +
+  geom_text(stat = "stratum", aes(label = after_stat(stratum)), min.y = 5) +
+  ggtitle("Improvement pathways",
+          "By treatment and gender") + 
+  ylab("Frequency") + 
+  scale_fill_brewer(type = "qual", palette = "Set1")
+
+
+
+```
+
+### Cubic
+```{r, include= TRUE, echo = TRUE}
+
+Arthritis_grp %>%
+ggplot(
+  aes(y = n, axis1 = Treatment, axis2 = Sex)) +
+  scale_x_discrete(limits = c("Treatment", "Sex"), expand = c(.2, .05)) +
+  geom_alluvium(aes(fill = Improved), curve_type = "cubic") +
+  geom_stratum() +
+  geom_text(stat = "stratum", aes(label = after_stat(stratum)), min.y = 5) +
+  ggtitle("Improvement pathways",
+          "By treatment and gender") + 
+  ylab("Frequency") + 
+  scale_fill_brewer(type = "qual", palette = "Set1")
+
+
+
+```
+
+
+## Color
+
+```{r, include= TRUE, echo = TRUE}
+
+Arthritis_grp %>%
+ggplot(
+  aes(y = n, axis1 = Treatment, axis2 = Sex)) +
+  scale_x_discrete(limits = c("Treatment", "Sex"), expand = c(.2, .05)) +
+  geom_alluvium(aes(fill = Improved)) +
+  geom_stratum() +
+  geom_text(stat = "stratum", aes(label = after_stat(stratum)), min.y = 5) +
+  ggtitle("Improvement pathways",
+          "By treatment and gender") + 
+  ylab("Frequency") + 
+  scale_fill_brewer(type = "qual", palette = "Dark2")
+
+
+
+```
+
+# Resources 
+
+https://cran.r-project.org/web/packages/ggalluvial/vignettes/ggalluvial.html
+
+https://corybrunson.github.io/ggalluvial/
+
+https://cran.r-project.org/web/packages/ggalluvial/ggalluvial.pdf
+
