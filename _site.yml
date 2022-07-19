@@ -3,17 +3,15 @@ output_dir: "."
 navbar:
   title: "Home"
   left:
-    - text: "BCC Schedule"
+    - text: "Schedule"
       href: bcc_schedule.html
-    - text: "DSC Schedule"
-      href: dsc_schedule.html
     - text: "Resources"
       href: resource.html
     - text: "Python Study Group"
       href: Python.html
   right:
     - icon: fa-envelope fa-lg
-      href: mailto:<jil2043@med.cornell.edu>
+      href: mailto:<kah2797@med.cornell.edu>
     - icon: fa-github fa-lg
       href: https://github.com/WCM-computing-club/WCM-computing-club.github.io
 

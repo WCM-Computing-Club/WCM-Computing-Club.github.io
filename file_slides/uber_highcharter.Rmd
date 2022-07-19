@@ -1,0 +1,278 @@
+---
+title: "Say Hello to Highcharter"
+author: Vasili Fokaidis, Biostatistician I
+output: html_document
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(geosphere)
+library(highcharter)
+library(plotly)
+library(gtsummary)
+library(maps)
+set_gtsummary_theme(theme_gtsummary_compact())
+```
+
+## Data Engineering + Cleaning + `gtsummary`
+<br>
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+uber_df = read.csv('uber.csv')
+
+uber_df = uber_df %>%
+    filter(
+    pickup_longitude >= -180 & pickup_longitude <= 180 & pickup_longitude != 0,
+    dropoff_longitude >= -180 & dropoff_longitude <= 180 & dropoff_longitude != 0,
+    pickup_latitude >= -90 & pickup_latitude <= 90 & pickup_latitude != 0,
+    dropoff_latitude >= -90 & dropoff_latitude <= 90 & dropoff_latitude != 0
+  ) %>% 
+  mutate(   
+    key = as.Date(key),   
+    pickup_datetime = as.Date(pickup_datetime),
+    ride_dist = distHaversine(cbind(pickup_longitude, pickup_latitude),
+                                cbind(dropoff_longitude, dropoff_latitude)),
+    ride_dist = ride_dist/1609.34
+    ) %>%
+  filter(
+   ride_dist > 0
+   ) 
+
+uber_df = uber_df %>%
+  mutate(
+    country = map.where(database="world", 
+                        uber_df$pickup_longitude, uber_df$pickup_latitude),
+    state = map.where(database="state", 
+                        uber_df$pickup_longitude, uber_df$pickup_latitude),
+    borough = map.where(database = 'county',
+                        uber_df$pickup_longitude, uber_df$pickup_latitude)
+  ) %>%
+  filter(
+    str_starts(borough, 'new york')
+  )
+
+uber_df = uber_df %>%
+  mutate(
+    year = format(as.Date(uber_df$key, format="%Y-%m-%d"),"%Y"),
+    borough = ifelse(uber_df$borough=='new york,new york', 'Manhattan',
+                    ifelse(uber_df$borough=='new york,queens', 'Queens',
+                           ifelse(uber_df$borough=='new york,kings', 'Brooklyn',
+                                  ifelse(uber_df$borough=='new york,richmond', 'Staten Island', 
+                                         ifelse(uber_df$borough=='new york,bronx', 'Bronx', borough))))),
+    state = rep('New York', nrow(uber_df)),
+    country = rep('U.S.', nrow(uber_df)),
+    distance = ifelse(uber_df$ride_dist<1, '<1 mile',
+                      ifelse(between(uber_df$ride_dist,1,5), '1-5 miles',
+                             ifelse(between(uber_df$ride_dist,5,10), '5-10 miles',
+                                    ifelse(between(uber_df$ride_dist,10,15), '10-15 miles',
+                                            ifelse(uber_df$ride_dist>15, '15+ miles', ride_dist)))))
+  ) %>%
+  filter(
+    borough %in% c("Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"),
+    fare_amount > 0,
+    ride_dist > 0 & ride_dist <= 35,
+    passenger_count > 0
+  ) %>%
+  select(-X) %>%
+  arrange(key)
+
+uber_df = uber_df %>%
+  mutate(
+    distance = factor(distance, levels = c('<1 mile', '1-5 miles', '5-10 miles', '10-15 miles', '15+ miles'))
+  )
+
+uber_df %>%
+  rename(
+    `Fare Amount` = fare_amount,
+    `Pickup Date` = pickup_datetime,
+    `Passenger Count` = passenger_count,
+    `Ride Distance (mi)` = ride_dist,
+    State = state,
+    Borough = borough,
+    Distance = distance
+    
+  ) %>%
+  select(-year, -pickup_longitude, -pickup_latitude, -dropoff_longitude, -dropoff_latitude, -country, -key) %>%
+tbl_summary() %>%
+modify_header(label = "**Variable**") %>%
+bold_labels()
+```
+
+## At a Glance {.tabset .tabset-fade .tabset-pills}
+
+### Highcharter 
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+# Avg Fare by Borough (2009-2015)
+uber_bb = uber_df %>%
+  group_by(borough, year) %>%
+  summarise(avg_fare = round(mean(fare_amount), 2))
+
+uber_bb = uber_bb %>%
+  filter(borough!= 'Bronx' & borough!= 'Staten Island')
+
+# Average Ride Price by Year
+uber_bb %>%
+  hchart(type = 'line',
+         hcaes(x = 'year', 
+               y = 'avg_fare', 
+               group = 'borough')) %>%
+  hc_title(text = 'Average Ride Price by Borough') %>%
+  hc_xAxis(title = list(text = "Year")) %>%
+  hc_yAxis(title = list(text = "Average Ride Price")) %>%
+  hc_chart(zoomType = 'xy')
+```
+
+### Plotly
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+uber_bb %>% 
+  plot_ly(x = ~year, 
+          y = ~avg_fare, 
+          type = 'scatter', 
+          mode = 'lines + markers', 
+          color = ~borough) %>%
+  layout(title = "Average Ride Price by Borough",
+         xaxis = list(title = "Year"),
+         yaxis = list (title = "Average Ride Price"))
+```
+
+### ggplot2
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+uber_bb %>%
+  ggplot(aes(x = year,
+             y = avg_fare,
+             group = borough,
+             color = borough,
+             label = avg_fare),
+         legend = FALSE) +
+  geom_line() +
+  geom_point() +
+  geom_text(label = uber_bb$avg_fare,
+            nudge_x = 0.25, nudge_y = 0.25
+  ) +
+  labs(title = 'Average Ride Price by Borough',
+       x = 'Year',
+       y = 'Average Ride Price') +
+  theme(legend.title = element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+## {-}
+
+## Some Highcharter Plots {.tabset .tabset-fade .tabset-pills}
+
+### Boxplot
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+# Average ride price by year
+uber_bd = uber_df %>%
+  group_by(distance, year, borough) %>%
+  summarise(avg_fare = round(mean(fare_amount), 2))
+
+dat = data_to_boxplot(data = uber_df, 
+                      variable = fare_amount,
+                      group_var = distance,
+                      add_outliers = FALSE,
+                      name = 'Ride Price')
+
+highchart() %>%
+  hc_xAxis(type = "category") %>%
+  hc_add_series_list(dat) %>%
+  hc_title(text = 'Ride Prices by Distance Travelled') %>%
+  hc_xAxis(title = list(text = "Distance")) %>%
+  hc_yAxis(title = list(text = "Ride Price (USD)")) %>%
+  hc_chart(zoomType = 'xy')
+```
+
+### Bar Chart
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+# Frequency of Distances Uber'd (2009-2015)
+uber_df %>%
+  count(borough, distance) %>%
+  hchart('bar', hcaes(x = 'borough', y = 'n', group = 'distance')) %>%
+  hc_title(text = 'Frequency of Distances by Borough') %>%
+  hc_xAxis(title = list(text = "Borough")) %>%
+  hc_yAxis(title = list(text = "N")) %>%
+  hc_chart(zoomType = 'xy')
+```
+
+## {-}
+
+## Elevating our line plots {.tabset .tabset-fade .tabset-pills}
+
+### Simple
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+# Average Ride Price by Year
+uber_bb %>%
+  hchart('line', hcaes(x = 'year', y = 'avg_fare', group = 'borough')) %>%
+  hc_title(text = 'Average Ride Price by Borough') %>%
+  hc_xAxis(title = list(text = "Year")) %>%
+  hc_yAxis(title = list(text = "Average Ride Price")) %>%
+  hc_chart(zoomType = 'xy')
+```
+
+### Adding in bands
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+# Average Ride Price by Year w/ Bands
+annual_ride_price = uber_bb %>%
+  hchart('line', hcaes(x = 'year', y = 'avg_fare', group = 'borough')) %>%
+  hc_title(text = 'Average Ride Price by Borough') %>%
+  hc_xAxis(title = list(text = "Year")) %>%
+  hc_yAxis(title = list(text = "Average Ride Price")) %>%
+  hc_yAxis_multiples(list(title = list(text = 'Average Ride Price'),
+                          plotBands = list(
+                            list(from = 5.58, to = 6.49, color = "rgba(68, 170, 213, 0.1)",
+                                 label = list(text = "< 1 mile")),
+                            list(from = 9.88, to = 12.44, color = "rgba(0, 0, 0, 0.1)",
+                                 label = list(text = "1-5 miles")),
+                            list(from = 24.38 , to = 31.62, color = "rgba(68, 170, 213, 0.1)",
+                                 label = list(text = "5-10 miles")),
+                            list(from = 45.23 , to = 57.05, color = "rgba(68, 170, 213, 0.1)",
+                                 label = list(text = "10-15 miles"))
+                          )
+                          )
+                     ) %>%
+  hc_chart(zoomType = 'xy')
+
+annual_ride_price
+```
+
+### Static but interactive
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+# No Mouse Tracking w/ Data Labels
+annual_ride_price %>%
+  hc_plotOptions(line = list(
+                   dataLabels = list(enabled = TRUE),
+                   enableMouseTracking = FALSE))
+```
+
+### Grand Finale
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+gas_df = read_csv('PET_PRI_GND_DCUS_NUS_W.csv') %>%
+  select(Date, R3) %>%
+  mutate(
+    Date = format(Date, format = '%m/%d/%Y'),
+    Date = as.Date(Date, '%m/%d/%Y')
+  ) %>%
+  filter(
+    Date >= '2009-01-01' & Date <= '2015-06-30'
+  )
+
+gas_df['year'] = format(gas_df$Date, '%Y')
+
+gas_by = gas_df %>%
+  group_by(year) %>%
+  summarise(annual_price = round(mean(R3), 2))
+
+# Average Ride Price By Borough + Gas Prices
+annual_ride_price %>%
+  hc_add_series(gas_by, type = 'column', hcaes(x = 'year', y = 'annual_price'), name = 'Gas Price') %>%
+  hc_plotOptions(column = list(
+                   dataLabels = list(enabled = TRUE),
+                   enableMouseTracking = FALSE),
+                 series = list(
+                   states = list(inactive = list(opacity=1))
+                 ))
+```
+
+## {-}
