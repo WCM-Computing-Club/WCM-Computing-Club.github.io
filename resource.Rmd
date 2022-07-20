@@ -6,10 +6,17 @@ output:
     toc_float: true
 ---
 
-Some useful resources & links:
+WCM-specific resources:
+
+- Submit a CTSC consult [[link]](http://ctsc.med.cornell.edu/BiostatisticsConsult)
+- RMarkdown reporting template by Nick Williams [[link]](https://github.com/nt-williams/wcmtheme)
+- Communicating with a Statistician by Debby D'angelo and Anjile An [[link]]()
+
+Generally useful resources & links:
 
 ## R
 
+- R packages [[link]](https://r-pkgs.org/)
 - R Studio cheatsheets [[link]](https://resources.rstudio.com/rstudio-cheatsheets)
 - htmlwidgets: Visualization in R [[link]](https://www.htmlwidgets.org/showcase_leaflet.html)
 - The Beauty of ggplot2 by Jihui Lee [[pdf]](file_resources/R_ggplot2.pdf) [[html]](file_resources/R_ggplot2.html)
