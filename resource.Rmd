@@ -6,15 +6,15 @@ output:
     toc_float: true
 ---
 
-WCM-specific resources:
+## WCM-specific resources:
 
 - Submit a CTSC consult [[link]](http://ctsc.med.cornell.edu/BiostatisticsConsult)
 - RMarkdown reporting template by Nick Williams [[link]](https://github.com/nt-williams/wcmtheme)
-- Communicating with a Statistician by Debby D'angelo and Anjile An [[link]]()
+- Communicating with a Statistician by Debby D'angelo and Anjile An [[link]](file_slides/Communicating with a Statistician 2021.pptx )
 
-Generally useful resources & links:
+## Generally useful resources & links:
 
-## R
+### R
 
 - R packages [[link]](https://r-pkgs.org/)
 - R Studio cheatsheets [[link]](https://resources.rstudio.com/rstudio-cheatsheets)
@@ -23,15 +23,16 @@ Generally useful resources & links:
 - Web-scraping with R [[link]](https://deepak915.github.io/post-1.html)
 
 
-## Python
+### Python
 
 - Web-scraping with Python [[link]](https://deepak915.github.io/post-2.html)
 - Hackerrank [[link]](https://www.hackerrank.com/domains/python)
 - Book: Automate the boring stuff [[link]](https://automatetheboringstuff.com/)
 - Book: Learn Python the hard way [[link]](https://learntocodetogether.com/learn-python-the-hard-way-free-ebook-download/)
 
-## Blogs
+### Blogs
 
+- Kat Hoffman [[link]](https://www.khstats.com/)
 - Emily Robinson [[link]](https://hookedondata.org/)
 - David Robinson [[link]](http://varianceexplained.org/)
 - Ken Jee [[link]](https://www.playingnumbers.com/)
