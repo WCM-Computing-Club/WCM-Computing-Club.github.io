@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Becoming an AnimatoR</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Brady Rippon" />
+    <meta name="date" content="2022-08-02" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="my-css.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+class: center, inverse
+
+&lt;br&gt;&lt;br&gt; 
+
+# Becoming an AnimatoR
+## Applications in `ggplot`, `gganimate`, and more!
+
+&lt;br&gt;&lt;br&gt; 
+
+### Brady Rippon
+### WCM Biostatistics Computing Club
+### August 02, 2022
+
+&lt;a href="https://wcm-computing-club.github.io/"&gt;
+&lt;img style="position: absolute; top: 40px; right: 50px; width: 250px; height: 58px; border: 0;" src="https://weillcornell.org/sites/all/themes/weillcornell/logo.png" alt="Fork me on GitHub"&gt;&lt;/a&gt;
+
+&lt;a href="https://gganimate.com/"&gt;
+&lt;img style="position: absolute; top: 25px; left: 50px; width: 150px; height: 174px; border: 0;" src="https://gganimate.com/reference/figures/logo.png" alt="Fork me on GitHub"&gt;&lt;/a&gt;
+
+---
+
+class: inverse, center, middle
+
+# Grammar of Graphics
+
+---
+
+background-image: url(figures/drake.png)
+background-size: 550px
+background-position: 50% 70%
+
+# Using `ggplot` v. base R?
+
+---
+
+# Using `ggplot` v. base R?
+
+.pull-left2[
+
+
+
+
+
+
+
+&lt;code class ='r hljs remark-code'&gt;ggplot(&lt;span style='color:#d1d5d8'&gt;iris&lt;/span&gt;, &lt;span style='color:#eb6b56'&gt;aes&lt;/span&gt;(x = Sepal.Length, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;y = Sepal.Width)) +&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;span style='color:#54acd2'&gt;geom_jitter&lt;/span&gt;(alpha = 0.6) +&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;span style='color:#fba026'&gt;facet_grid&lt;/span&gt;(. ~ Species) +&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;span style='color:#61bd6d'&gt;stat_smooth&lt;/span&gt;(method = "lm", &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;se = F, col = "red") + &lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;span style='color:#f7da64'&gt;scale_y_continuous&lt;/span&gt;("Sepal Width (cm)",&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;limits = c(2, 5),&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;expand = c(0, 0)) +&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;span style='color:#f7da64'&gt;scale_x_continuous&lt;/span&gt;("Sepal Length (cm)",&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;limits = c(4, 8),&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;expand = c(0, 0)) +&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;span style='color:#f7da64'&gt;coord_equal&lt;/span&gt;() +&lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;span style='color:#9365b8'&gt;my_theme&lt;/span&gt; # custom pre-defined theme&lt;/code&gt;
+
+
+&lt;img src="gganimate_files/figure-html/unnamed-chunk-50-1.png" width="504" /&gt;
+]
+
+.pull-right2[
+
+![](figures/layers2.png)
+![](figures/exampleGG.png)
+
+]
+
+---
+
+# Explore different `ggplot` extensions!
+
+
+```r
+library(ggridges)
+plot_a &lt;- ggplot(iris) +
+* geom_density_ridges(aes(fill = Species)) + # custom geometric layer
+  (...) # additional layers
+  
+library(ggalt)
+iris_setosa &lt;- iris %&gt;% filter(Species == "setosa")
+plot_b &lt;- ggplot(iris) +
+* geom_encircle(data = iris_setosa) + # custom geometric layer
+  (...) # additional layers
+
+library(ggforce)
+plot_c &lt;- ggplot(iris) +
+* facet_zoom(x = Species == "versicolor") + # custom facet layer
+  (...) # additional layers
+
+library(ggpubr) # also includes many plotting extensions
+ggarrange(plot_a, plot_b, plot_c, ncol = 3, nrow = 1, 
+          common.legend = TRUE, legend = "bottom", labels = "AUTO")
+```
+
+---
+
+# Explore different `ggplot` extensions!
+
+![Image description](figures/GGgallery.png)
+
+---
+
+background-image: url(figures/passionCat.png)
+background-size: 500px
+background-position: 80% 85%
+
+&lt;a href="https://ggplot2.tidyverse.org/reference/ggplot.html"&gt;
+&lt;img style="position: absolute; top: 25px; right: 50px; width: 200px; height: 232px; border: 0;" src="https://ggplot2.tidyverse.org/logo.png" alt="Fork me on GitHub"&gt;&lt;/a&gt;
+
+# `ggplot` Resources
+
+Public materials and tutorials:
+
+- Package documentation from [tidyverse website](https://ggplot2.tidyverse.org/)
+
+- Browse the [R graph gallery](https://r-graph-gallery.com/) for more extensions and figure examples 
+
+&lt;br&gt;
+
+WCM Computing Club materials:
+
+- [The Beauty of `ggplot2`](https://wcm-computing-club.github.io/file_resources/Lee_R_ggplot2.html) by Dr. Jihui Lee
+
+- [Visualization in R](https://wcm-computing-club.github.io/file_slides/2019/201904_Cooley_Visualization_in_R.html#introduction) by Vicky Cooley
+
+
+
+---
+
+class: inverse, center, middle
+
+# The Animation Layer
+
+---
+
+&lt;a href="https://gganimate.com/"&gt;
+&lt;img style="position: absolute; top: 25px; right: 50px; width: 200px; height: 232px; border: 0;" src="https://gganimate.com/reference/figures/logo.png" alt="Fork me on GitHub"&gt;&lt;/a&gt;
+
+# Add a custom animation layer
+
+&lt;br&gt;
+
+The **gganimate** package provides a new range of grammar classes &lt;br&gt; which can be added to the `ggplot` plot object
+
+&lt;br&gt;
+
+- **transition*_()** defines how long the data should be spread out and how long it relates to itself across time
+
+.secondary[
+- **view*_()** defines how the position scales should change along the animation
+
+- **shadow*_()** defines how the data from other points in time should be presented in the given point in time
+
+- **enter*_()** / **exit*_()** defines how new data should appear and how old data should disappear during the course of the animation
+
+- **ease_aes()** defines how different aesthetics should be eased during transitions 
+]
+
+---
+
+# The **transition*_()** function
+
+This function could take the following form:
+
+- **transition_states()**: Transition between several distinct stages of the data
+
+.secondary[
+- **transition_time()**: Transition through distinct states in time
+
+- **transition_reveal()**: Reveal data along a given dimension
+
+- **transition_events()**: Transition individual events in and out
+
+- **transition_filter()**: Transition between different filters
+
+- **transition_layers()**: Build up a plot, layer by layer
+
+- **transition_components()**: Transition individual components through their own lifecycle
+
+- **transition_manual()**: Create an animation by specifying the frame membership directly
+
+- **transition_null()**: Keep all data constant across the animation
+]
+
+---
+
+# Example: **transition_states()**:
+
+
+```r
+ggplot(iris, aes(Sepal.Width, Petal.Width)) +
+  geom_point() +
+* transition_states(Species, transition_length = 3, state_length = 1)
+```
+
+.center[
+&lt;img src="gifs/t_s.gif" width="500px" /&gt;
+]
+
+---
+
+# The **transition*_()** function
+
+This function could take the following form:
+
+.secondary[
+- **transition_states()**: Transition between several distinct stages of the data
+]
+
+- **transition_time()**: Transition through distinct states in time
+
+.secondary[
+- **transition_reveal()**: Reveal data along a given dimension
+
+- **transition_events()**: Transition individual events in and out
+
+- **transition_filter()**: Transition between different filters
+
+- **transition_layers()**: Build up a plot, layer by layer
+
+- **transition_components()**: Transition individual components through their own lifecycle
+
+- **transition_manual()**: Create an animation by specifying the frame membership directly
+
+- **transition_null()**: Keep all data constant across the animation
+]
+
+---
+
+# Example: **transition_time()**:
+
+
+```r
+ggplot(airquality, aes(Day, Temp)) +
+  geom_point(aes(colour = factor(Month))) +
+* transition_time(Day) # coerces raw values into the closest frame
+```
+
+.center[
+&lt;img src="gifs/t_t.gif" width="800px" /&gt;
+]
+
+---
+
+# The **transition*_()** function
+
+This function could take the following form:
+
+.secondary[
+- **transition_states()**: Transition between several distinct stages of the data
+
+- **transition_time()**: Transition through distinct states in time
+]
+
+- **transition_reveal()**: Reveal data along a given dimension
+
+.secondary[
+- **transition_events()**: Transition individual events in and out
+
+- **transition_filter()**: Transition between different filters
+
+- **transition_layers()**: Build up a plot, layer by layer
+
+- **transition_components()**: Transition individual components through their own lifecycle
+
+- **transition_manual()**: Create an animation by specifying the frame membership directly
+
+- **transition_null()**: Keep all data constant across the animation
+]
+
+---
+
+# Example: **transition_reveal()**:
+
+
+```r
+ggplot(airquality, aes(Day, Temp, group = Month)) +
+  geom_line(aes(colour = factor(Month))) +
+* transition_reveal(Day) # calculates intermediary values at exact positions
+```
+
+.center[
+&lt;img src="gifs/t_r.gif" width="800px" /&gt;
+]
+
+---
+
+# The **transition*_()** function
+
+This function could take the following form:
+
+.secondary[
+- **transition_states()**: Transition between several distinct stages of the data
+
+- **transition_time()**: Transition through distinct states in time
+
+- **transition_reveal()**: Reveal data along a given dimension
+]
+
+- **transition_events()**: Transition individual events in and out
+
+.secondary[
+- **transition_filter()**: Transition between different filters
+
+- **transition_layers()**: Build up a plot, layer by layer
+
+- **transition_components()**: Transition individual components through their own lifecycle
+
+- **transition_manual()**: Create an animation by specifying the frame membership directly
+
+- **transition_null()**: Keep all data constant across the animation
+]
+
+---
+
+# Example: **transition_events()**:
+
+.pull-left[
+
+```r
+# create sample data
+set.seed(1)
+
+data &lt;- data.frame(
+  x = 1:10,
+  y = runif(10),
+  begin = runif(10, 1, 100),
+  length = runif(10, 5, 20),
+  enter = runif(10, 5, 10),
+  exit = runif(10, 5, 10)
+)
+
+
+ggplot(data, aes(x, y)) +
+  geom_col() +
+* transition_events(start = begin,
+*                   end = begin + length,
+*                   enter_length = enter,
+*                   exit_length = exit)
+```
+]
+
+.pull-right[
+.center[
+&lt;img src="gifs/t_e.gif" width="500px" /&gt;
+]
+]
+---
+
+# The **transition*_()** function
+
+This function could take the following form:
+
+.secondary[
+- **transition_states()**: Transition between several distinct stages of the data
+
+- **transition_time()**: Transition through distinct states in time
+
+- **transition_reveal()**: Reveal data along a given dimension
+
+- **transition_events()**: Transition individual events in and out
+]
+
+- **transition_filter()**: Transition between different filters
+
+.secondary[
+- **transition_layers()**: Build up a plot, layer by layer
+
+- **transition_components()**: Transition individual components through their own lifecycle
+
+- **transition_manual()**: Create an animation by specifying the frame membership directly
+
+- **transition_null()**: Keep all data constant across the animation
+]
+
+---
+
+# Example: **transition_filter()**:
+
+.pull-left[
+
+```r
+ggplot(iris, aes(Petal.Width, Petal.Length, 
+                 colour = Species)) +
+  geom_point() +
+* transition_filter(
+*   transition_length = 3,
+*   filter_length = 1,
+*   Setosa = Species == 'setosa',
+*   Long = Petal.Length &gt; 4,
+*   Wide = Petal.Width &gt; 2
+* ) +
+  theme(legend.position = "bottom")
+
+# transition_filter(keep = T)
+# Will keep previous data
+
+# Can also control 
+# enter() / exit() parameters
+```
+]
+
+.pull-right[
+.center[
+&lt;img src="gifs/t_f.gif" width="500px" /&gt;
+]
+]
+
+---
+
+
+# The **transition*_()** function
+
+This function could take the following form:
+
+.secondary[
+- **transition_states()**: Transition between several distinct stages of the data
+
+- **transition_time()**: Transition through distinct states in time
+
+- **transition_reveal()**: Reveal data along a given dimension
+
+- **transition_events()**: Transition individual events in and out
+
+- **transition_filter()**: Transition between different filters
+]
+
+- **transition_layers()**: Build up a plot, layer by layer
+
+.secondary[
+- **transition_components()**: Transition individual components through their own lifecycle
+
+- **transition_manual()**: Create an animation by specifying the frame membership directly
+
+- **transition_null()**: Keep all data constant across the animation
+]
+
+---
+
+# Example: **transition_layers()**:
+
+.pull-left[
+
+```r
+ggplot(mtcars, aes(mpg, disp)) +
+  geom_point() +
+  geom_smooth(colour = 'grey', se = FALSE) +
+  geom_smooth(aes(colour = factor(gear))) +
+* transition_layers(layer_length = 1,
+*               transition_length = 2,
+*               from_blank = FALSE,
+*               keep_layers = c(Inf, 0, 0)) +
+  theme(legend.position = "bottom")
+
+# Treats each plotting layer
+# like a "state"
+```
+]
+
+.pull-right[
+.center[
+&lt;img src="gifs/t_l.gif" width="500px" /&gt;
+]
+]
+
+---
+
+
+# The **transition*_()** function
+
+This function could take the following form:
+
+.secondary[
+- **transition_states()**: Transition between several distinct stages of the data
+
+- **transition_time()**: Transition through distinct states in time
+
+- **transition_reveal()**: Reveal data along a given dimension
+
+- **transition_events()**: Transition individual events in and out
+
+- **transition_filter()**: Transition between different filters
+
+- **transition_layers()**: Build up a plot, layer by layer
+]
+
+- **transition_components()**: Transition individual components through their own lifecycle
+
+.secondary[
+- **transition_manual()**: Create an animation by specifying the frame membership directly
+
+- **transition_null()**: Keep all data constant across the animation
+]
+
+---
+
+# Example: **transition_components()**:
+
+.pull-left[
+
+```r
+# create sample data
+set.seed(1)
+
+data &lt;- data.frame(
+  x = runif(10),
+  y = runif(10),
+  size = sample(1:3, 10, TRUE),
+  time = c(1, 4, 6, 7, 9, 6, 7, 8, 9, 10),
+  id = rep(1:2, each = 5)
+)
+
+ggplot(data, aes(x, y, group = id, 
+                 size = size)) +
+  geom_point() +
+* transition_components(time,
+*                       range = c(4, 8)) +
+  theme(legend.position = "bottom")
+
+# No common "state" and "transition"
+```
+]
+
+.pull-right[
+.center[
+&lt;img src="gifs/t_c.gif" width="500px" /&gt;
+]
+]
+
+---
+
+
+# The **transition*_()** function
+
+This function could take the following form:
+
+.secondary[
+- **transition_states()**: Transition between several distinct stages of the data
+
+- **transition_time()**: Transition through distinct states in time
+
+- **transition_reveal()**: Reveal data along a given dimension
+
+- **transition_events()**: Transition individual events in and out
+
+- **transition_filter()**: Transition between different filters
+
+- **transition_layers()**: Build up a plot, layer by layer
+
+- **transition_components()**: Transition individual components through their own lifecycle
+]
+
+- **transition_manual()**: Create an animation by specifying the frame membership directly
+
+.secondary[
+- **transition_null()**: Keep all data constant across the animation
+]
+
+---
+
+# Example: **transition_manual()**:
+
+- Use with caution! Can often have rendering issues with frame count. The plot below is generated with **transition_states()**
+
+
+```r
+ggplot(mtcars, aes(gear, mpg)) +
+  geom_boxplot() +
+* transition_manual(gear) # no "tweening"; creates a 3-frame animation
+```
+
+.center[
+&lt;img src="gifs/t_m.gif" width="500px" /&gt;
+]
+
+---
+
+
+# The **transition*_()** function
+
+This function could take the following form:
+
+.secondary[
+- **transition_states()**: Transition between several distinct stages of the data
+
+- **transition_time()**: Transition through distinct states in time
+
+- **transition_reveal()**: Reveal data along a given dimension
+
+- **transition_events()**: Transition individual events in and out
+
+- **transition_filter()**: Transition between different filters
+
+- **transition_layers()**: Build up a plot, layer by layer
+
+- **transition_components()**: Transition individual components through their own lifecycle
+
+- **transition_manual()**: Create an animation by specifying the frame membership directly
+]
+
+- **transition_null()**: Keep all data constant across the animation
+
+---
+
+&lt;a href="https://gganimate.com/"&gt;
+&lt;img style="position: absolute; top: 25px; right: 50px; width: 200px; height: 232px; border: 0;" src="https://gganimate.com/reference/figures/logo.png" alt="Fork me on GitHub"&gt;&lt;/a&gt;
+
+# Add a custom animation layer
+
+&lt;br&gt;
+
+The **gganimate** package provides a new range of grammar classes &lt;br&gt; which can be added to the `ggplot` plot object
+
+&lt;br&gt;
+
+.secondary[
+- **transition*_()** defines how long the data should be spread out and how long it relates to itself across time
+]
+
+- **view*_()** defines how the position scales should change along the animation
+
+.secondary[
+- **shadow*_()** defines how the data from other points in time should be presented in the given point in time
+
+- **enter*_()** / **exit*_()** defines how new data should appear and how old data should disappear during the course of the animation
+
+- **ease_aes()** defines how different aesthetics should be eased during transitions 
+]
+
+---
+
+# **view*_(): view_follow()**
+
+
+```r
+transition_states_plot +
+* view_follow(fixed_x = TRUE) # OR: view_follow(fixed_x = c(4, NA), y(...))
+```
+
+.pull-left[
+.center[
+&lt;img src="gifs/t_s2.gif" width="400px" /&gt;
+]
+]
+
+.pull-right[
+.center[
+&lt;img src="gifs/v_f.gif" width="400px" /&gt;
+]
+]
+---
+
+# **view*_(): view_step()**
+
+- Also explore **view_step_manual()**!
+
+
+```r
+transition_states_plot +
+* view_step(pause_length = 3, step_length = 1,
+*           nsteps = 3) # view_follow() with less static elements
+```
+
+.pull-left[
+.center[
+&lt;img src="gifs/t_s2.gif" width="400px" /&gt;
+]
+]
+
+.pull-right[
+.center[
+&lt;img src="gifs/v_s.gif" width="400px" /&gt;
+]
+]
+
+---
+
+# **view*_(): view_zoom()**
+
+- Also explore **view_zoom_manual()**!
+
+
+```r
+transition_states_plot +
+* view_zoom(pause_length = 1, step_length = 2,
+*           nsteps = 3, pan_zoom = -2) # view_step() with smooth zoom and pan
+```
+
+.pull-left[
+.center[
+&lt;img src="gifs/t_s2.gif" width="400px" /&gt;
+]
+]
+
+.pull-right[
+.center[
+&lt;img src="gifs/v_z.gif" width="400px" /&gt;
+]
+]
+
+---
+
+
+&lt;a href="https://gganimate.com/"&gt;
+&lt;img style="position: absolute; top: 25px; right: 50px; width: 200px; height: 232px; border: 0;" src="https://gganimate.com/reference/figures/logo.png" alt="Fork me on GitHub"&gt;&lt;/a&gt;
+
+# Add a custom animation layer
+
+&lt;br&gt;
+
+The **gganimate** package provides a new range of grammar classes &lt;br&gt; which can be added to the `ggplot` plot object
+
+&lt;br&gt;
+
+.secondary[
+- **transition*_()** defines how long the data should be spread out and how long it relates to itself across time
+
+- **view*_()** defines how the position scales should change along the animation
+]
+
+- **shadow*_()** defines how the data from other points in time should be presented in the given point in time
+
+.secondary[
+- **enter*_()** / **exit*_()** defines how new data should appear and how old data should disappear during the course of the animation
+
+- **ease_aes()** defines how different aesthetics should be eased during transitions 
+]
+
+---
+
+# **shadow*_(): shadow_wake()**
+
+
+
+```r
+transition_states_plot +
+* shadow_wake(wake_length = 0.05, colour = 'grey90') # (... size, alpha, etc.)
+```
+
+.pull-left[
+.center[
+&lt;img src="gifs/t_s2.gif" width="400px" /&gt;
+]
+]
+
+.pull-right[
+.center[
+&lt;img src="gifs/s_w.gif" width="400px" /&gt;
+]
+]
+
+---
+
+# **shadow*_(): shadow_trail()**
+
+
+```r
+transition_time_plot +
+* shadow_trail(0.02) # will keep every n-th frame, (... max_frames = N)
+```
+
+.pull-left[
+.center[
+&lt;img src="gifs/t_t2.gif" width="400px" /&gt;
+]
+]
+
+.pull-right[
+.center[
+&lt;img src="gifs/s_t.gif" width="400px" /&gt;
+]
+]
+
+---
+
+# **shadow*_(): shadow_mark()**
+
+
+```r
+ggplot(airquality, aes(Day, Temp)) +
+  geom_line() + transition_time(Month) +
+* shadow_mark(color = "grey", size = 0.75) # (... past = T, future = F)
+```
+
+.pull-left[
+.center[
+&lt;img src="gifs/s_m1.gif" width="400px" /&gt;
+]
+]
+
+.pull-right[
+.center[
+&lt;img src="gifs/s_m2.gif" width="400px" /&gt;
+]
+]
+
+---
+
+&lt;a href="https://gganimate.com/"&gt;
+&lt;img style="position: absolute; top: 25px; right: 50px; width: 200px; height: 232px; border: 0;" src="https://gganimate.com/reference/figures/logo.png" alt="Fork me on GitHub"&gt;&lt;/a&gt;
+
+# Add a custom animation layer
+
+&lt;br&gt;
+
+The **gganimate** package provides a new range of grammar classes &lt;br&gt; which can be added to the `ggplot` plot object
+
+&lt;br&gt;
+
+.secondary[
+- **transition*_()** defines how long the data should be spread out and how long it relates to itself across time
+
+- **view*_()** defines how the position scales should change along the animation
+
+- **shadow*_()** defines how the data from other points in time should be presented in the given point in time
+]
+
+- **enter*_()** / **exit*_()** defines how new data should appear and how old data should disappear during the course of the animation
+
+.secondary[
+- **ease_aes()** defines how different aesthetics should be eased during transitions 
+]
+
+---
+
+# **enter() / exit()**
+
+
+```r
+transition_manual_plot +
+* enter_fade() + exit_fly(x_loc = 7, y_loc = 40)
+```
+
+.pull-left[
+.center[
+&lt;img src="gifs/t_m2.gif" width="400px" /&gt;
+]
+]
+
+.pull-right[
+.center[
+&lt;img src="gifs/t_m2_ee.gif" width="400px" /&gt;
+]
+]
+
+---
+
+&lt;a href="https://gganimate.com/"&gt;
+&lt;img style="position: absolute; top: 25px; right: 50px; width: 200px; height: 232px; border: 0;" src="https://gganimate.com/reference/figures/logo.png" alt="Fork me on GitHub"&gt;&lt;/a&gt;
+
+# Add a custom animation layer
+
+&lt;br&gt;
+
+The **gganimate** package provides a new range of grammar classes &lt;br&gt; which can be added to the `ggplot` plot object
+
+&lt;br&gt;
+
+.secondary[
+- **transition*_()** defines how long the data should be spread out and how long it relates to itself across time
+
+- **view*_()** defines how the position scales should change along the animation
+
+- **shadow*_()** defines how the data from other points in time should be presented in the given point in time
+
+- **enter*_()** / **exit*_()** defines how new data should appear and how old data should disappear during the course of the animation
+]
+
+- **ease_aes()** defines how different aesthetics should be eased during transitions 
+
+---
+
+# ease_aes()
+
+
+```r
+enter_exit_plot +
+* ease_aes("cubic-in-out") # many other smoothing functions available!
+```
+
+.pull-left[
+.center[
+&lt;img src="gifs/t_m2_ee.gif" width="400px" /&gt;
+]
+]
+
+.pull-right[
+.center[
+&lt;img src="gifs/t_m2_ee2.gif" width="400px" /&gt;
+]
+]
+
+---
+
+class: inverse, center, middle
+
+# Tips and Tricks
+
+---
+
+# Smarter labelling
+
+- Use **label variables** for string literal interpretation (Similar syntax to the `glue` package)
+
+
+```r
+ggplot(iris, aes(Petal.Width, Petal.Length, colour = Species)) +
+  geom_point() +
+  scale_color_manual(values = c("#00AFBB", "#E7B800", "#FC4E07"),
+                    labels = c("Sestota", "Versicolor", "Virginica")) +
+  labs(y = "", x = "Sepal Length (cm)") +
+  theme_bw() +
+  transition_filter(
+    transition_length = 2,
+    filter_length = 1,
+    Setosa = Species == 'setosa',
+    Long = Petal.Length &gt; 4,
+    Wide = Petal.Width &gt; 2
+  ) +
+  enter_fade() + exit_fade() +
+  ggtitle(
+*   'Filter Type: {closest_filter}',  # will add filter type to header
+*   subtitle = '{closest_expression}' # will add filter condition to subheader
+  )
+```
+
+---
+
+# Smarter labelling
+
+.center[
+&lt;img src="gifs/label.gif" width="600px" /&gt;
+]
+
+---
+
+# Saving and Rendering
+
+- You can save your plots locally with a syntax similar to `ggsave`
+
+
+```r
+start.time &lt;- Sys.time()
+# # # 
+gif &lt;- ggplot(iris, aes(Petal.Width, Petal.Length)) +
+  geom_point(...) +
+  transition_states(Species, transition_length = 2, state_length = 1) +
+  shadow_wake(wake_length = 0.1, colour = 'grey90') +
+  theme(...)
+
+anim &lt;- animate(gif, width = 4, height = 4,
+                nframes = 100, fps = 10, # be mindful of computing power!
+                units = "in", res = 200,
+                renderer = magick_renderer()) # av_renderer()
+
+anim_save(here("gifs", "iris_states.gif"), anim)
+# # # 
+end.time &lt;- Sys.time()
+```
+
+---
+
+# Saving and Rendering
+
+.pull-left[
+.center[
+&lt;img src="gifs/states10.gif" width="500px" /&gt;
+]
+]
+
+.pull-right[
+.center[
+&lt;img src="gifs/states25.gif" width="500px" /&gt;
+]
+]
+
+---
+
+# Stitching Animations Together
+
+
+```r
+# Start with two animation objects: [gif_a] &amp; [gif_b]
+
+for(i in 1:500){
+  combined_gif &lt;- image_append(c(gif_a[i], gif_b[i]), stack = T)
+  
+  # stacking animations will combine vertically, not horizontally 
+  
+  if(i == 1) {final_gif &lt;- combined_gif}
+  if(i &gt; 1) {final_gif &lt;- c(final_gif, combined_gif)}
+
+  print(paste0("Image Index: ", i))
+  
+  # print the index as the loop passes through
+}
+
+# combined animation is still an animation object, save as normal
+anim_save(here("gifs", "two_panels.gif"), final_gif)
+```
+
+---
+
+# Stitching Animations Together
+
+.center[
+&lt;img src="gifs/roc_jitter.gif" width="550px" /&gt;
+]
+
+
+--- 
+
+
+
+---
+
+# Motivation
+
+.center[
+&lt;img src="gifs/tdist.gif" width="750px" /&gt;
+]
+
+---
+
+# Resources: [the `gganimate` gallery!](https://r-graph-gallery.com/animation.html)
+
+.center[
+&lt;img src="gifs/gallery1.gif" width="600px" /&gt;
+]
+
+---
+
+background-image: url(figures/help.png)
+background-size: 400px
+background-position: 92% 15%
+
+# Additional Resources
+
+&lt;br&gt; &lt;br&gt;
+
+
+- [The `gganimate` reference page](https://gganimate.com/reference/) (all label variables listed here)
+
+&lt;br&gt;
+
+- Package developer: [Thomas Lin Pederson](https://www.data-imaginist.com/)
+
+&lt;br&gt;
+
+- [GGANIMATE: How to create plots with beautiful animation in R](https://www.datanovia.com/en/blog/gganimate-how-to-create-plots-with-beautiful-animation-in-r/) by DataNovia
+
+&lt;br&gt;
+
+- Alternatives: the [`magick`](https://cran.r-project.org/web/packages/magick/vignettes/intro.html) package for image processing
+
+
+---
+
+class: inverse, center, middle
+
+# Thanks!
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
+
+**Email**: brr7014@med.cornel.edu
+
+**Twitter**: @bradyrippon
+
+&lt;a href="https://wcm-computing-club.github.io/"&gt;
+&lt;img style="position: absolute; top: 40px; right: 50px; width: 250px; height: 58px; border: 0;" src="https://weillcornell.org/sites/all/themes/weillcornell/logo.png" alt="Fork me on GitHub"&gt;&lt;/a&gt;
+
+&lt;a href="https://gganimate.com/"&gt;
+&lt;img style="position: absolute; top: 25px; left: 50px; width: 150px; height: 174px; border: 0;" src="https://gganimate.com/reference/figures/logo.png" alt="Fork me on GitHub"&gt;&lt;/a&gt;
+
+.footer[These slides available at &lt;https://wcm-computing-club.github.io/&gt;]
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

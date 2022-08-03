@@ -13,14 +13,14 @@ output:
 
 # 2022
 
-| Date      | Presenter  | Topic  | Software | Slides | Codes | Resources  |                                         
+| Date      | Presenter  | Topic  | Software | Slides | Code | Resources  |                                         
 |:----------|:----------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:--------------:|:-----------------------:|:------------:|:-------------------:|
-| 08/02/2022 4 -- 5pm | Brady Rippon, MS | Becoming an AnimatoR: applications in `ggplot`, `gganimate`, and more  | `R`|  | | |
+| 08/02/2022 4 -- 5pm | Brady Rippon, MS <br> <br> [Anjile An, MPH](https://phs.weill.cornell.edu/directory/profiles/anjile) | Becoming an AnimatoR: applications in `ggplot`, `gganimate`, and more <br> LEGO fun with `brickr` | `R` <br> <br> `R` | [<i class="fas fa-desktop fa-lg"></i>](file_slides/2022/202208_Rippon_gganimate.html) <br> <br> [<i class="fas fa-desktop fa-lg"></i>](file_slides/2022/202208_An_brickr.pdf) | <br> <br> [<i class="fa fa-file-code-o fa-lg"></i>](file_slides/2022/202208_An_brickr.zip) | |
 | 06/23/2022 4 -- 5pm | [Katherine Hoffman, MS](https://www.khstats.com) <br> Diego Salazar, PhD <br> [Will Simmons, MPH](https://simmwill.github.io) <br> [Jacky Choi, MPH](https://phs.weill.cornell.edu/directory/profiles/jacky-choi) <br> Vasilios Fokaidis, MS | Tips and Tricks for Table 1's <br> A Shiny App for TMLE <br> `dbplyr` and the tidy-SQL-verse <br> Effect size plots using `ggplot2` <br> Say Hello to `highcharter` | `R` <br> `R` <br> `R` <br> `R` <br> `R`| [<i class="fas fa-desktop fa-lg"></i>](file_slides/2022/202206_Hoffman_Tips_Tricks_for_Table1.pdf) <br> [<i class="fas fa-desktop fa-lg"></i>](file_slides/2022/202206_Salazar_ShinyTMLE.pdf) <br> [<i class="fas fa-desktop fa-lg"></i>](https://docs.google.com/presentation/d/1cWrmY1kkvNqVgjiJAQoiykHSPzLbkeybxk-2LEePH6Q/edit#slide=id.p)<br> [<i class="fas fa-desktop fa-lg"></i>](file_slides/2022/202206_Choi_Effect_Size_Plots.pdf) <br>  [<i class="fas fa-desktop fa-lg"></i>](file_slides/2022/202206_Fokaidis_uber_highcharter.html) [<i class="fas fa-desktop fa-lg"></i>](file_slides/2022/202206_Fokaidis_Highcharter.pdf)  | <br> [<i class="fa fa-file-code-o fa-lg"></i>](https://github.com/dasalazarb/tmleShiny)<br> <br> <br> [<i class="fa fa-file-code-o fa-lg"></i>](file_slides/2022/202206_Fokaidis_uber_highcharter.Rmd)  |
 
 # 2021
 
-| Date      | Presenter  | Topic  | Software | Slides | Codes | Resources  |                                         
+| Date      | Presenter  | Topic  | Software | Slides | Code | Resources  |                                         
 |:----------|:----------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:--------------:|:-----------------------:|:------------:|:-------------------:|
 | 09/13/2021 12 -- 1pm | [Anjile An, MPH](https://phs.weill.cornell.edu/directory/profiles/anjile) <br> Victoria Cooley, MS | Geospatial Analysis in R <br> Alluvial Plots with `ggalluvial` | `R` <br> `R`|[<i class="fas fa-play fa-lg"></i>](https://wcm.box.com/s/zi4uh9pruxaeppok8vnirn1j5pkmuxld) <br> [<i class="fas fa-desktop fa-lg"></i>](file_slides/2021/202109_Cooley_Alluvial.html) | [<i class="fa fa-file-code-o fa-lg"></i>](file_slides/2021/202109_An_Geospatial_Analysis.zip) <br> [<i class="fa fa-file-code-o fa-lg"></i>](file_slides/2021/202109_Cooley_Alluvial.Rmd)
 | 06/29/2021 12 -- 1pm | [Will Simmons, MPH](https://simmwill.github.io) <br> [Jacky Choi, MPH](https://phs.weill.cornell.edu/directory/profiles/jacky-choi) | Integrating the Redcap API with R <br> CONSORT flow diagrams in R | `R` <br> `R`|[<i class="fas fa-desktop fa-lg"></i>](https://simmwill.github.io/wcmbcc_pres_redcap) [<i class="fas fa-play fa-lg"></i>](https://wcm.box.com/s/23lknovcbkosdu16v5bfj3i033c6fuma) <br> [<i class="fas fa-desktop fa-lg"></i>](file_slides/2021/202106_Choi_CONSORT.pdf)| <br> [<i class="fa fa-file-code-o fa-lg"></i>](file_slides/2021/202106_Choi_CONSORT.Rmd) |<br> [<i class="fab fa-safari fa-lg"></i>](https://dannyjnwong.github.io/STROBE-CONSORT-Diagrams-in-R/) [<i class="fab fa-safari fa-lg"></i>](https://scriptsandstatistics.wordpress.com/2017/12/22/how-to-draw-a-consort-flow-diagram-using-r-and-graphviz/)|
@@ -30,7 +30,7 @@ output:
 
 # 2020
 
-| Date      | Presenter  | Topic  | Software | Slides | Codes | Resources  |                                         
+| Date      | Presenter  | Topic  | Software | Slides | Code | Resources  |                                         
 |:----------|:----------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:--------------:|:-----------------------:|:------------:|:-------------------:|
 | 07/14/2020 12 -- 1pm | [Nicholas Williams, MPH](https://github.com/nt-williams) | An Introduction to Answering Causal Questions with the `lmtp` Package | `R` | [<i class="fas fa-desktop fa-lg"></i>](file_slides/2020/202007_Williams_lmtp.pdf) [<i class="fas fa-play fa-lg"></i>](https://wcm.box.com/s/p85nud4otefc11ee8y8cqlof9tyxqm2m) | [<i class="fa fa-file-code-o  fa-lg"></i>](file_slides/2020/202007_Williams_lmtp.zip)  | [<i class="fab fa-safari fa-lg"></i>](https://towardsdatascience.com/an-introduction-to-estimating-the-causal-effects-of-feasible-interventions-e07ed45136ff) |
 | 03/03/2020 12 -- 1pm | Attendees of R Studio | Takeaways from R Studio 2020 | `R` | [<i class="fas fa-desktop fa-lg"></i>](file_slides/2020/202003_Wu_rstudioconf.pdf)| [<i class="fa fa-file-code-o  fa-lg"></i>](file_slides/2020/202003_An_rstudioconf.R) | [<i class="fab fa-safari fa-lg"></i>](https://github.com/ianmcook/tidyquery) [<i class="fab fa-safari fa-lg"></i>](https://resources.rstudio.com/rstudio-conf-2020/one-r-markdown-document-fourteen-demosyihui-xie) |
@@ -39,7 +39,7 @@ output:
 
 # 2019
 
-| Date      | Presenter  | Topic  | Software | Slides | Codes | Resources  |                                         
+| Date      | Presenter  | Topic  | Software | Slides | Code | Resources  |                                         
 |:----------|:----------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:--------------:|:-----------------------:|:------------:|:-------------------:|
 | 12/17/2019 12 -- 1pm | <strong>Python Study Group</strong> | Troubleshooting Installations <br> Introduction to study group | `Python` | | | |
 | 12/03/2019 12 -- 1pm |  [Yiyuan Wu, MS](https://phs.weill.cornell.edu/directory/profiles/wu-yiyuan) <br> [Xiaoyue Ma, MSc](https://phs.weill.cornell.edu/directory/profiles/xiaoyue-ma) | DC R Conference Recap || [<i class="fas fa-desktop fa-lg"></i>](file_slides/2019/201912_Wu_DC_R_Recap.pdf) <br> [<i class="fas fa-desktop fa-lg"></i>](file_slides/2019/201912_Ma_DC_R_Recap.pdf)| |  [<i class="fab fa-safari fa-lg"></i>](file_resources/CheatSheet.pdf)
@@ -66,7 +66,7 @@ output:
 
 # 2018
 
-| Date      | Presenter  | Topic  | Software | Slides | Codes | Resources  |                                         
+| Date      | Presenter  | Topic  | Software | Slides | Code | Resources  |                                         
 |:----------|:----------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:--------------:|:-----------------------:|:------------:|:-------------------:|
 | 12/13/2018 4 -- 5pm | Elizabeth Mauer, MS | Workflow and organization for collaboration | | [<i class="fas fa-desktop fa-lg"></i>](file_slides/2018/201812_Mauer_Organization_and_Documentation_of_Workflow.html) [<i class="fas fa-desktop fa-lg"></i>](file_slides/2018/201812_Mauer_Integrating_Git_into_Your_Data_Analysis_Workflow_for_Version_Control.html) | | [<i class="fab fa-safari fa-lg"></i>](http://happygitwithr.com/)  [<i class="fa fa-file-pdf-o fa-lg"></i>](file_slides/2018/201812_Mauer_CodebookCookbook.pdf)|
 
