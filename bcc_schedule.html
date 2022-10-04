@@ -13,7 +13,7 @@
 
 <title>Schedule</title>
 
-<script src="site_libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -147,11 +147,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -392,13 +396,24 @@ div.tocify {
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left">10/04/2022 12 – 1pm</td>
+<td align="left">Colby Lewis V, MS <br> Rachel Heise, MS</td>
+<td align="left">Like Riding a Bike: API Basics for Statisticians <br>
+Data diagnosis, exploration, and transformation with
+<code>dlookr</code></td>
+<td align="center"><code>R</code> <br> <code>R</code></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
 <td align="left">09/06/2022 4 – 5pm</td>
 <td align="left"><a href="https://www.khstats.com/about">Katherine
 Hoffman, MS</a> <br> <a href="https://simmwill.github.io">Will Simmons,
 MPH</a></td>
 <td align="left">Swimmer plots in R <br> Getting Organized with
 Notion</td>
-<td align="center"><code>R</code> <br> <br> <code>R</code></td>
+<td align="center"><code>R</code> <br> <code>R</code></td>
 <td align="center"><a
 href="https://kathoffman.github.io/swimmer-plots/slides-wcm.html#1"><i class="fas fa-desktop fa-lg"></i></a>
 <br> <br></td>
@@ -409,7 +424,7 @@ href="https://www.khstats.com/blog/trt-timelines/multiple-vars/"><i class="fab f
 <a
 href="https://www.khstats.com/blog/trt-timelines/trt-timelines/"><i class="fab fa-safari fa-lg"></i></a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">08/02/2022 4 – 5pm</td>
 <td align="left">Brady Rippon, MS <br> <br> <a
 href="https://phs.weill.cornell.edu/directory/profiles/anjile">Anjile
@@ -426,7 +441,7 @@ href="file_slides/2022/202208_An_brickr.pdf"><i class="fas fa-desktop fa-lg"></i
 href="file_slides/2022/202208_An_brickr.zip"><i class="fa fa-file-code-o fa-lg"></i></a></td>
 <td align="center"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">06/23/2022 4 – 5pm</td>
 <td align="left"><a href="https://www.khstats.com">Katherine Hoffman,
 MS</a> <br> Diego Salazar, PhD <br> <a
