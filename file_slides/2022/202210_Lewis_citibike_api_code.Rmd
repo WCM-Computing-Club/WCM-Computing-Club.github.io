@@ -1,0 +1,96 @@
+---
+title: "citibike"
+author: "colbylewisv"
+date: '2022-10-04'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+library(dplyr)
+library(geodist)
+```
+
+## The code below generate the examples in today's presentation.
+
+```{r}
+# Use wrapper *once* to get all bikeshare programs
+library(gbfs)
+all_city_df <- get_gbfs_cities() 
+```
+
+```{r}
+# Filter down static data to our program of interest
+ny_df <- all_city_df %>%
+  filter(`Country Code` == "US") %>%
+  filter(grepl(', NY', `Location`))
+ny_df
+```
+```{r}
+# Pull down all info on all citibike stations (90kb)
+citibike_station_df <- get_station_information(
+  'NYC',
+  directory = "/Users/colbyfive/Documents/computing_club",
+  file = "citibike_info.rds",
+  output = "both"
+)
+```
+
+```{r}
+# use hardcoded lat lon to work with our df
+# library(geodist)
+office_lat = 40.76441
+office_lon = -73.95804
+
+citibike_station_df$meters_to_office <- as.numeric(geodist(
+      citibike_station_df %>% select('lon','lat'),
+      c(office_lon, office_lat)
+    ))
+
+citibike_station_df %>%
+  arrange(meters_to_office) %>%
+  select(meters_to_office, name, capacity, eightd_station_services) %>%
+  head(5)
+```
+```{r}
+# pull out annoying formatted special service
+onerow_df <- citibike_station_df %>%
+  filter(name == "1 Ave & E 68 St")
+
+service_df <- t(data.frame(onerow_df[1, 'eightd_station_services']))
+service_df
+```
+
+```{r}
+# setup for using an API to get our closest station
+library('httr')
+library('jsonlite')
+
+call_base <- 'https://geocoding.geo.census.gov/'
+```
+
+```{r}
+# configure our request
+endpoint <- 'geocoder/'
+returntype <- 'locations/'
+searchtype <- 'address?'
+address <- 'street=400+E+67th+St&city=New+York&state=NY&zip=10065'
+other_params <- '&benchmark=2020&format=json'
+
+ip_geo_call <- paste(call_base, endpoint, returntype, searchtype,
+                                    address, other_params, sep="")
+
+# make the request
+https_response <- GET(ip_geo_call)
+response_json <- fromJSON(content(https_response, 'text'),
+                                                   flatten = TRUE)
+response_json
+```
+
+```{r}
+# now we have the data
+# passing this information to the original dataframe is left as an project for the reader 
+as.data.frame(response_json) %>%
+  select("result.addressMatches.coordinates.x", "result.addressMatches.coordinates.y")
+```
