@@ -13,7 +13,7 @@
 
 <title>Schedule</title>
 
-<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.18/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -184,8 +184,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -193,16 +193,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -372,6 +365,44 @@ div.tocify {
 
 
 <div id="section" class="section level1">
+<h1>2023</h1>
+<table>
+<colgroup>
+<col width="3%" />
+<col width="23%" />
+<col width="45%" />
+<col width="5%" />
+<col width="9%" />
+<col width="5%" />
+<col width="7%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Date</th>
+<th align="left">Presenter</th>
+<th align="left">Topic</th>
+<th align="center">Software</th>
+<th align="center">Slides</th>
+<th align="center">Code</th>
+<th align="center">Resources</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">2/17/2022 1 – 2pm</td>
+<td align="left">Bilal Shaikh, MS <br> Vasili Fokaidis, MS and Rachel
+Heise, MS</td>
+<td align="left">Introduction to REDCap Cloud <br> Making shiny apps
+easier with <code>golem</code></td>
+<td align="center"><code>REDCap</code> <br> <code>R</code></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="section-1" class="section level1">
 <h1>2022</h1>
 <table>
 <colgroup>
@@ -482,7 +513,7 @@ href="file_slides/2022/202206_Fokaidis_uber_highcharter.Rmd"><i class="fa fa-fil
 </tbody>
 </table>
 </div>
-<div id="section-1" class="section level1">
+<div id="section-2" class="section level1">
 <h1>2021</h1>
 <table>
 <colgroup>
@@ -592,7 +623,7 @@ href="https://github.com/hoffmakl/causal-inference-visual-guides/blob/master/vis
 </tbody>
 </table>
 </div>
-<div id="section-2" class="section level1">
+<div id="section-3" class="section level1">
 <h1>2020</h1>
 <table>
 <colgroup>
@@ -667,7 +698,7 @@ href="https://resources.rstudio.com/rstudio-conf-2020/one-r-markdown-document-fo
 </tbody>
 </table>
 </div>
-<div id="section-3" class="section level1">
+<div id="section-4" class="section level1">
 <h1>2019</h1>
 <table>
 <colgroup>
@@ -989,7 +1020,7 @@ href="https://support.rstudio.com/hc/en-us/articles/200486488-Developing-Package
 </tbody>
 </table>
 </div>
-<div id="section-4" class="section level1">
+<div id="section-5" class="section level1">
 <h1>2018</h1>
 <table>
 <colgroup>
