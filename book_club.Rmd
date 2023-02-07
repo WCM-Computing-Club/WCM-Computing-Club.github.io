@@ -1,0 +1,46 @@
+---
+title: "Biostats Book Club"
+output:
+ html_document:
+   toc: true
+   toc_depth: 5
+   toc_float:
+     collapsed: false
+     smooth_scroll: false
+---
+
+## 2023
+
+- [Remarkably Bright Creatures, Shelby Pelt](https://www.goodreads.com/en/book/show/58733693)
+- [I Must Betray You, Ruta Sepetys](https://www.goodreads.com/book/show/56970272-i-must-betray-you)
+
+## 2022
+
+- [The Design of Everyday Things, Donald A. Norman](https://www.goodreads.com/book/show/840.The_Design_of_Everyday_Things)
+- [Piranesi, Susanna Clarke](https://www.goodreads.com/book/show/50202953-piranesi)
+- [How High We Go in the Dark, Sequoia Nagamatsu](https://www.goodreads.com/book/show/57850265-how-high-we-go-in-the-dark)
+- [The Anthropocene Reviewed, John Green](https://www.goodreads.com/book/show/55145261-the-anthropocene-reviewed)
+
+## 2021
+
+- [Your Inner Fish, Neil Shubin](https://www.goodreads.com/book/show/1662160.Your_Inner_Fish)
+- [Bloodchild and Other Stories, Octavia E. Butler](https://www.goodreads.com/book/show/60930.Bloodchild_and_Other_Stories)
+- [Anxious People, Fredrik Backman](https://www.goodreads.com/book/show/53799686-anxious-people)
+- [Unfollow: A Journey from Hatred to Hope, Megan Phelps-Roper](https://www.goodreads.com/book/show/43314707-unfollow)
+- [Transcendent Kingdom, Yaa Gyasi](https://www.goodreads.com/book/show/48570454-transcendent-kingdom)
+
+## 2020
+
+- [The Song of Achilles, Madeline Miller](https://www.goodreads.com/book/show/13623848-the-song-of-achilles)
+- [Recursion, Blake Crouch](https://www.goodreads.com/book/show/42046112-recursion)
+- [The Underground Railroad, Colson Whitehead](https://www.goodreads.com/book/show/30555488-the-underground-railroad)
+- [How to Be an Antiracist, Ibram X. Kendi](https://www.goodreads.com/book/show/40265832-how-to-be-an-antiracist)
+- [Stories of Your Life and Others, Ted Chiang](https://www.goodreads.com/book/show/223380.Stories_of_Your_Life_and_Others)
+- [Maus, Art Spiegelman](https://www.goodreads.com/book/show/15195.The_Complete_Maus)
+- [The Immortal Life of Henrietta Lacks, Rebecca Skloot](https://www.goodreads.com/book/show/6493208-the-immortal-life-of-henrietta-lacks)
+- [The Satanic Verses, Salman Rushdie](https://www.goodreads.com/book/show/12781.The_Satanic_Verses)
+- [The Ocean at the End of the Lane, Neil Gaiman](https://www.goodreads.com/book/show/15783514-the-ocean-at-the-end-of-the-lane)
+
+## 2019
+
+- [Pachinko, Min Jin Lee](https://www.goodreads.com/book/show/34051011-pachinko)

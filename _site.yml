@@ -7,11 +7,11 @@ navbar:
       href: bcc_schedule.html
     - text: "Resources"
       href: resource.html
-    - text: "Python Study Group"
-      href: Python.html
+    - text: "Book Club"
+      href: book_club.html
   right:
     - icon: fa-envelope fa-lg
-      href: mailto:<kah2797@med.cornell.edu>
+      href: mailto:<jia4001@med.cornell.edu>
     - icon: fa-github fa-lg
       href: https://github.com/WCM-computing-club/WCM-computing-club.github.io
 
