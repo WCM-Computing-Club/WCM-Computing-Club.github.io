@@ -14,7 +14,7 @@ output:
 
 | Date      | Presenter  | Topic  | Software | Slides | Code | Resources  |                                         
 |:----------|:----------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:--------------:|:-----------------------:|:------------:|:-------------------:|
-2/17/2022 1 -- 2pm | Bilal Shaikh, MS <br> Vasili Fokaidis, MS and Rachel Heise, MS | Introduction to REDCap Cloud <br> Making shiny apps easier with `golem` | `REDCap` <br> `R` | | | |
+2/17/2022 1 -- 2pm | Bilal Shaikh, MS <br> Vasili Fokaidis, MS and Rachel Heise, MS | Introduction to REDCap Cloud <br> Making shiny apps easier with `golem` | `REDCap` <br> `R` | [<i class="fas fa-desktop fa-lg"></i>](file_slides/2023/202302_Shaikh_Randomization_REDCap.pdf) <br> [<i class="fas fa-desktop fa-lg"></i>](file_slides/2023/202302_Fokaidis_shinyapps_with_golem.pdf) | | |
 
 
 # 2022
