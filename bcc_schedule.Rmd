@@ -14,7 +14,7 @@ output:
 
 | Date      | Presenter  | Topic  | Software | Slides | Code | Resources  |                                         
 |:----------|:----------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:--------------:|:-----------------------:|:------------:|:-------------------:|
-04/14/2023 1 -- 2pm | Ying Li, MS <br> Brady Rippon, MS | Submitting your R package to CRAN <br> Setting up a workflow with RProjects | `R` <br> `R` | | | |
+04/14/2023 1 -- 2pm | Ying Li, MS <br> Brady Rippon, MS | Submitting your R package to CRAN <br> Setting up a workflow with RProjects | `R` <br> `R` | [<i class="fas fa-desktop fa-lg"></i>](https://yinglia.github.io/Submitting-your-package-to-CRAN) <br> [<i class="fas fa-desktop fa-lg"></i>](file_slides/2023/202304_Rippon_Workflow_with_RProjects.pdf) | <br> [<i class="fa fa-file-code-o fa-lg"></i>](file_slides/2023/202304_Rippon_Workflow_with_RProjects_template.zip) | |
 02/17/2023 1 -- 2pm | Bilal Shaikh, MS <br> Vasili Fokaidis, MS <br> [Anjile An, MPH](https://phs.weill.cornell.edu/directory/profiles/anjile) | Introduction to REDCap Cloud <br> Making shiny apps easier with `golem` <br> The `tidylog` lifestyle | `REDCap` <br> `R` <br> `R` | [<i class="fas fa-desktop fa-lg"></i>](file_slides/2023/202302_Shaikh_Randomization_REDCap.pdf) <br> [<i class="fas fa-desktop fa-lg"></i>](file_slides/2023/202302_Fokaidis_shinyapps_with_golem.pdf) | <br> <br> [<i class="fa fa-file-code-o fa-lg"></i>](file_slides/2023/202302_An_tidylog_demo.R) | |
 
 
