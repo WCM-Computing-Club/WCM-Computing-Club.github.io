@@ -5,7 +5,7 @@ output: html_document
 
 <br>
 
-<center><img src="file_resources/logos/wcm_phs.png" alt="hi" width="483" height="70"><img src="file_resources/logos/wcm_ctsc.png" alt="hi" style="text-align:center;" width="380" height="100"></center>
+<center><img src="file_resources/logos/wcm_phs.png" alt="hi" width="500" height="100"><img src="file_resources/logos/wcm_ctsc.png" alt="hi" style="text-align:center;" width="380" height="100"></center>
 
 <br>
 
