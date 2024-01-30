@@ -9,6 +9,11 @@ output:
      smooth_scroll: false
 ---
 
+# 2024
+
+| Date      | Presenter  | Topic  | Software | Slides | Code | Resources  |                                         
+|:----------|:----------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:--------------:|:-----------------------:|:------------:|:-------------------:|
+02/02/2024 3 -- 4pm | [Anjile An, MPH](https://phs.weill.cornell.edu/directory/profiles/anjile) | Incorporating design principles into scientific research | | | | |
 
 # 2023
 
