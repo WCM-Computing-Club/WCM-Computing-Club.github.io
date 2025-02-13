@@ -13,7 +13,7 @@ output:
 
 | Date      | Presenter  | Topic  | Software | Slides | Code | Resources  |                                         
 |:----------|:----------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:--------------:|:-----------------------:|:------------:|:-------------------:|
-02/13/2025 12 -- 1pm | [Caroline Andy, MS](https://phs.weill.cornell.edu/directory/profiles/andy-caroline) | Causal inference methods for combining randomized trials and observational studies | `R` | | | |
+02/13/2025 12 -- 1pm | [Caroline Andy, MS](https://phs.weill.cornell.edu/directory/profiles/andy-caroline) | Causal inference methods for combining randomized trials and observational studies | `R` | [<i class="fas fa-desktop fa-lg"></i>](file_slides/2025/202502_Andy_Causal_Inference_RCT.pdf) | | [<i class="fab fa-safari fa-lg"></i>](https://projecteuclid.org/journals/statistical-science/volume-39/issue-1/Causal-Inference-Methods-for-Combining-Randomized-Trials-and-Observational-Studies/10.1214/23-STS889.full) [<i class="fab fa-safari fa-lg"></i>](https://academic.oup.com/biometrics/article/79/2/1213/7513941) |
 
 # 2024
 
